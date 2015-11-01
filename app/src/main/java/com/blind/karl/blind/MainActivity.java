@@ -1,11 +1,15 @@
 package com.blind.karl.blind;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,20 +18,27 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
     private SpeechRecognizer sr;
+    private TextToSpeech tts;
+    private Button btnSpeak;
+    private EditText et1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,21 +49,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr = SpeechRecognizer.createSpeechRecognizer(this,
                 new ComponentName(
                         "ee.ioc.phon.android.speak",
                         "ee.ioc.phon.android.speak.service.HttpRecognitionService"));
+        // ee.ioc.phon.android.speak.service.HttpRecognitionService (uses the grammar-supporting server)
+        // ee.ioc.phon.android.speak.service.WebSocketRecognitionService (uses the continuous full-duplex server)
         sr.setRecognitionListener(new listener()); // this
+
+        et1 = (EditText) findViewById(R.id.editText1);
+        btnSpeak = (Button) findViewById(R.id.btn3);
     }
 
-//    public static List<String> getHeardFromDirect(Bundle bundle){
-//        List<String> results=new ArrayList<String>();
-//        if ((bundle != null) && bundle.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
-//            results=bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-//        }
-//        return results;
-//    }
+    public void onResume (){
+        super.onResume();
+        tts = new TextToSpeech(this, this);
+    }
+
+    @Override
+    public void onInit(int status) {
+        //peale keeleseadete muutmist tuleks uuesti kontrollida.
+
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.US);
+/*            int result = tts.setLanguage(new Locale("est","EST"));
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported");
+                btnSpeak.setEnabled(false);
+            } else {
+                btnSpeak.setEnabled(true);
+                //speakOut();
+            }*/
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
+
+    }
 
     public void doSomething2(View view) {
         Log.d("tag", "do something 2 start");
@@ -60,18 +93,39 @@ public class MainActivity extends AppCompatActivity {
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-
+//        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         /*SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(this,
                 new ComponentName(
                         "ee.ioc.phon.android.speak",
                         "ee.ioc.phon.android.speak.service.HttpRecognitionService"));*/
-        // ee.ioc.phon.android.speak.service.HttpRecognitionService (uses the grammar-supporting server)
-        // ee.ioc.phon.android.speak.service.WebSocketRecognitionService (uses the continuous full-duplex server)
         sr.startListening(recognizerIntent);
         //startActivity(intent);
         Log.d("tag", "do something 2 end");
     }
+
+    public void doSomething3(View view) {
+        String textToRead = et1.getText().toString();
+        Log.d("tag", "text to read is " + textToRead);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ttsGreater21(textToRead);
+        } else {
+            ttsUnder20(textToRead);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void ttsUnder20(String text) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "MessageId");
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void ttsGreater21(String text) {
+        String utteranceId=this.hashCode() + "";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -110,11 +164,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onResults(Bundle results) {
-            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            List<String> matches=new ArrayList<String>();
+            if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
+                matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            }
             Log.d("tag", "results " + results);
             Log.d("tag", "matches " + matches);
-            //System.out.println("results " + results);
-            //System.out.println("matches " + matches);
+            EditText editText = (EditText) findViewById(R.id.editText1);
+            editText.setText(matches.get(0).toString());
         }
 
         @Override
