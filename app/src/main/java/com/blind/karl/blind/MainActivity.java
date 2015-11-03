@@ -147,64 +147,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     public void doSomething4(View view) {
 
         new StuffJSON().execute("");
-
-        HashMap params = new HashMap();
-        params.put("v", "6");
-        params.put("speech", "hobune lammas orkester test 1234");
-        Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(params);
-        Log.d("tag", "json is: " + json);
-
-        String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
-        StringBuilder sb = new StringBuilder();
-
-        HttpURLConnection c = null;
-        DataOutputStream printout = null;
-        DataInputStream input;
-        try {
-            //URL url = new URL(path); //(getCodeBase().toString() + "env.tcgi");
-            URL url = new URL (request);
-            c = (HttpURLConnection) url.openConnection();
-            c.setDoInput(true);
-            c.setDoOutput(true);
-            c.setUseCaches(false);
-            c.setRequestProperty("Content-Type", "application/json");
-            //c.setRequestProperty("Host", );
-            c.connect();
-            //Create JSONObject here
-            JSONObject jsonParam = new JSONObject();
-            try {
-                jsonParam.put("v", "6");
-                jsonParam.put("speech", "proov");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            // Send POST output.
-            printout = new DataOutputStream(c.getOutputStream());
-            printout.write(Integer.parseInt(URLEncoder.encode(jsonParam.toString(), "UTF-8")));
-            printout.flush();
-            printout.close();
-
-            int HttpResult = c.getResponseCode();
-            if(HttpResult == HttpURLConnection.HTTP_OK){
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        c.getInputStream(),"utf-8"));
-                String line = null;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
-                Log.d("tag", "sb is " + sb.toString());
-            }else{
-                Log.d("tag","sb is "+c.getResponseMessage());
-                System.out.println("swag");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            if(c!=null)
-                c.disconnect();
-        }
  /*
         HttpURLConnection httpcon;
         String data = null;
@@ -317,7 +259,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -362,6 +303,65 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
         @Override
         protected String doInBackground(String... params) {
+
+            HashMap myParams = new HashMap();
+            myParams.put("v", "6");
+            myParams.put("speech", "hobune lammas orkester test 1234");
+            Gson gson = new GsonBuilder().create();
+            String json = gson.toJson(myParams);
+            Log.d("tag", "json is: " + json);
+
+            String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
+            StringBuilder sb = new StringBuilder();
+
+            HttpURLConnection c = null;
+            DataOutputStream printout = null;
+            DataInputStream input;
+            try {
+                //URL url = new URL(path); //(getCodeBase().toString() + "env.tcgi");
+                URL url = new URL (request);
+                c = (HttpURLConnection) url.openConnection();
+                c.setDoInput(true);
+                c.setDoOutput(true);
+                c.setUseCaches(false);
+                c.setRequestProperty("Content-Type", "application/json");
+                //c.setRequestProperty("Host", );
+                c.connect();
+                //Create JSONObject here
+                JSONObject jsonParam = new JSONObject();
+                try {
+                    jsonParam.put("v", "6");
+                    jsonParam.put("speech", "proov");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                // Send POST output.
+                printout = new DataOutputStream(c.getOutputStream());
+                printout.write(Integer.parseInt(URLEncoder.encode(jsonParam.toString(), "UTF-8")));
+                printout.flush();
+                printout.close();
+
+                int HttpResult = c.getResponseCode();
+                if(HttpResult == HttpURLConnection.HTTP_OK){
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            c.getInputStream(),"utf-8"));
+                    String line = null;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+                    Log.d("tag", "sb is " + sb.toString());
+                }else{
+                    Log.d("tag","sb is "+c.getResponseMessage());
+                    System.out.println("swag");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally{
+                if(c!=null)
+                    c.disconnect();
+            }
+
             return null;
         } // executega kaasas, progressupdate return, onpostexecute parameeter
 
