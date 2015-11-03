@@ -51,10 +51,21 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="text to speech"
+        android:text="TTS standard"
         android:id="@+id/btn3"
         android:layout_below="@+id/btn2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="doSomething3" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TTS web"
+        android:id="@+id/btn4"
+        android:layout_below="@+id/btn3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="doSomething4"/>
 </RelativeLayout>

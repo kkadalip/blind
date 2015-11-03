@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -12,19 +13,39 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 
 public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
     private SpeechRecognizer sr;
@@ -71,8 +92,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         //peale keeleseadete muutmist tuleks uuesti kontrollida.
 
         if (status == TextToSpeech.SUCCESS) {
-            tts.setLanguage(Locale.US);
-/*            int result = tts.setLanguage(new Locale("est","EST"));
+//            tts.setLanguage(Locale.US);
+            int result = tts.setLanguage(new Locale("est","EST"));
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
@@ -80,7 +101,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             } else {
                 btnSpeak.setEnabled(true);
                 //speakOut();
-            }*/
+            }
         } else {
             Log.e("TTS", "Initilization Failed!");
         }
@@ -113,6 +134,118 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         }
     }
 
+
+    // EKI veebiserverit kasutades tekst heliks:
+    // POST päring: (nt Chrome'i Postman app)
+    // http://heli.eki.ee/koduleht/kiisu/koduleht.php
+    // v 6
+    // speech misiganes
+    // tagasi saab tulemusena wav/mp3 id
+    // tulemus asub aadressil http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/123456.mp3
+
+    //http://stackoverflow.com/questions/6218143/how-to-send-post-request-in-json-using-httpclient
+    public void doSomething4(View view) {
+
+        new StuffJSON().execute("");
+
+        HashMap params = new HashMap();
+        params.put("v", "6");
+        params.put("speech", "hobune lammas orkester test 1234");
+        Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(params);
+        Log.d("tag", "json is: " + json);
+
+        String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
+        StringBuilder sb = new StringBuilder();
+
+        HttpURLConnection c = null;
+        DataOutputStream printout = null;
+        DataInputStream input;
+        try {
+            //URL url = new URL(path); //(getCodeBase().toString() + "env.tcgi");
+            URL url = new URL (request);
+            c = (HttpURLConnection) url.openConnection();
+            c.setDoInput(true);
+            c.setDoOutput(true);
+            c.setUseCaches(false);
+            c.setRequestProperty("Content-Type", "application/json");
+            //c.setRequestProperty("Host", );
+            c.connect();
+            //Create JSONObject here
+            JSONObject jsonParam = new JSONObject();
+            try {
+                jsonParam.put("v", "6");
+                jsonParam.put("speech", "proov");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // Send POST output.
+            printout = new DataOutputStream(c.getOutputStream());
+            printout.write(Integer.parseInt(URLEncoder.encode(jsonParam.toString(), "UTF-8")));
+            printout.flush();
+            printout.close();
+
+            int HttpResult = c.getResponseCode();
+            if(HttpResult == HttpURLConnection.HTTP_OK){
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        c.getInputStream(),"utf-8"));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+                Log.d("tag", "sb is " + sb.toString());
+            }else{
+                Log.d("tag","sb is "+c.getResponseMessage());
+                System.out.println("swag");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(c!=null)
+                c.disconnect();
+        }
+ /*
+        HttpURLConnection httpcon;
+        String data = null;
+        String result = null;
+        try{
+//Connect
+            httpcon = (HttpURLConnection) ((new URL (url).openConnection()));
+            httpcon.setDoOutput(true);
+            httpcon.setRequestProperty("Content-Type", "application/json");
+            httpcon.setRequestProperty("Accept", "application/json");
+            httpcon.setRequestMethod("POST");
+            httpcon.connect();
+
+//Write
+            OutputStream os = httpcon.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(data);
+            writer.close();
+            os.close();
+
+//Read
+            BufferedReader br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(),"UTF-8"));
+
+            String line = null;
+            StringBuilder sb = new StringBuilder();
+
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+            br.close();
+            result = sb.toString();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    }
+
+
     @SuppressWarnings("deprecation")
     private void ttsUnder20(String text) {
         HashMap<String, String> map = new HashMap<>();
@@ -125,7 +258,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         String utteranceId=this.hashCode() + "";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -221,5 +353,22 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         startActivity(intent);
         Log.d("tag", "do something end");
     }
+
+    private class StuffJSON extends AsyncTask<String, Integer, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return null;
+        } // executega kaasas, progressupdate return, onpostexecute parameeter
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    } // end StuffJSON
 
 }
