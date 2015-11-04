@@ -25,6 +25,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -45,7 +46,6 @@ import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 
 public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
     private SpeechRecognizer sr;
@@ -145,46 +145,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
     //http://stackoverflow.com/questions/6218143/how-to-send-post-request-in-json-using-httpclient
     public void doSomething4(View view) {
-
-        new StuffJSON().execute("");
- /*
-        HttpURLConnection httpcon;
-        String data = null;
-        String result = null;
-        try{
-//Connect
-            httpcon = (HttpURLConnection) ((new URL (url).openConnection()));
-            httpcon.setDoOutput(true);
-            httpcon.setRequestProperty("Content-Type", "application/json");
-            httpcon.setRequestProperty("Accept", "application/json");
-            httpcon.setRequestMethod("POST");
-            httpcon.connect();
-
-//Write
-            OutputStream os = httpcon.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(data);
-            writer.close();
-            os.close();
-
-//Read
-            BufferedReader br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(),"UTF-8"));
-
-            String line = null;
-            StringBuilder sb = new StringBuilder();
-
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-            br.close();
-            result = sb.toString();
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        new StuffJSON().execute();
     }
 
 
@@ -295,15 +256,32 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         Log.d("tag", "do something end");
     }
 
+    // http://stackoverflow.com/questions/25647881/android-asynctask-example-and-explanation/25647882#25647882
+
+    // Esimene parameeter tuleb executest, läheb doInBackgroundi nt params[0]
+    // Teine parameeter läheb doInBackGroundi publishProgress(i)-st onProgressUpdate'i
+    // Kolmas parameeter läheb doInBackground returnist onPostExecute'i
     private class StuffJSON extends AsyncTask<String, Integer, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            // Do something like display a progress bar
         }
 
+        // This is run in a background thread
         @Override
         protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+            //String myString = params[0];
 
+            // Do something that takes a long time, for example:
+/*
+            for (int i = 0; i <= 100; i++) {
+                // Do things
+                // Call this to update your progress
+                publishProgress(i);
+            }
+*/
             HashMap myParams = new HashMap();
             myParams.put("v", "6");
             myParams.put("speech", "hobune lammas orkester test 1234");
@@ -311,20 +289,23 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             String json = gson.toJson(myParams);
             Log.d("tag", "json is: " + json);
 
-            String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
+
             StringBuilder sb = new StringBuilder();
 
             HttpURLConnection c = null;
-            DataOutputStream printout = null;
+            //DataOutputStream printout = null;
+            OutputStreamWriter printout = null;
             DataInputStream input;
             try {
                 //URL url = new URL(path); //(getCodeBase().toString() + "env.tcgi");
-                URL url = new URL (request);
+                String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
+                URL url = new URL (request); // URL url = new URL(strings[0]);
                 c = (HttpURLConnection) url.openConnection();
-                c.setDoInput(true);
                 c.setDoOutput(true);
-                c.setUseCaches(false);
                 c.setRequestProperty("Content-Type", "application/json");
+                c.setRequestMethod("POST");
+                c.setDoInput(true);
+                c.setUseCaches(false);
                 //c.setRequestProperty("Host", );
                 c.connect();
                 //Create JSONObject here
@@ -336,8 +317,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                     e.printStackTrace();
                 }
                 // Send POST output.
-                printout = new DataOutputStream(c.getOutputStream());
-                printout.write(Integer.parseInt(URLEncoder.encode(jsonParam.toString(), "UTF-8")));
+                //printout = new DataOutputStream(c.getOutputStream());
+                printout = new OutputStreamWriter(c.getOutputStream());
+                printout.write(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
                 printout.flush();
                 printout.close();
 
@@ -362,13 +344,64 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                     c.disconnect();
             }
 
-            return null;
+            //return null;
+            return "this string is passed to onPostExecute";
         } // executega kaasas, progressupdate return, onpostexecute parameeter
 
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            // Do things like hide the progress bar or change a TextView
         }
     } // end StuffJSON
 
 }
+
+
+/*
+        HttpURLConnection httpcon;
+        String data = null;
+        String result = null;
+        try{
+//Connect
+            httpcon = (HttpURLConnection) ((new URL (url).openConnection()));
+            httpcon.setDoOutput(true);
+            httpcon.setRequestProperty("Content-Type", "application/json");
+            httpcon.setRequestProperty("Accept", "application/json");
+            httpcon.setRequestMethod("POST");
+            httpcon.connect();
+
+//Write
+            OutputStream os = httpcon.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(data);
+            writer.close();
+            os.close();
+
+//Read
+            BufferedReader br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(),"UTF-8"));
+
+            String line = null;
+            StringBuilder sb = new StringBuilder();
+
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+            br.close();
+            result = sb.toString();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
