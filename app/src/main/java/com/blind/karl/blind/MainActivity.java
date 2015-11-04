@@ -64,7 +64,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     private EditText et1;
     private String text_from_et;
 
-    MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
+    private int mediaFileLengthInMilliseconds; // audio duration in ms. Used with getDuration()
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,6 +182,19 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         super.onDestroy();
         if (sr != null) {
             sr.destroy();
+        }
+
+        killMediaPlayer();
+    }
+
+    private void killMediaPlayer() {
+        if(mediaPlayer!=null) {
+            try {
+                mediaPlayer.release();
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -412,10 +427,34 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             //String sound_url = String.format("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/", Uri.encode(mp3value), Uri.encode(".mp3"));
 
             Log.d("tag", "mp3 link is " + sound_url);
+
+            try {
+                playAudio(sound_url);
+                playLocalAudio();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //new DownloadMP3Task()
             //        .execute("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3"); // "1511040453140_3995.mp3");
         }
     } // end StuffJSON
+
+    private void playAudio(String url) throws Exception
+    {
+        killMediaPlayer();
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(url);
+        mediaPlayer.prepare();
+        mediaPlayer.start();
+    }
+
+    private void playLocalAudio() throws Exception
+    {
+        //mediaPlayer = MediaPlayer.create(this, R.raw.music_file);
+        mediaPlayer.start();
+    }
+
 
 /*    private class DownloadMP3Task extends AsyncTask<String, Integer, File> {
         protected File doInBackground(String... urls) {
