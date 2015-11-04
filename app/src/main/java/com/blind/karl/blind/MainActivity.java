@@ -53,6 +53,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     private TextToSpeech tts;
     private Button btnSpeak;
     private EditText et1;
+    private String text_from_et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         sr.setRecognitionListener(new listener()); // this
 
         et1 = (EditText) findViewById(R.id.editText1);
+        et1.setText("proovitekst tuleb siia jajaja");
         btnSpeak = (Button) findViewById(R.id.btn3);
     }
 
@@ -266,6 +268,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         protected void onPreExecute() {
             super.onPreExecute();
             // Do something like display a progress bar
+            text_from_et = et1.getText().toString();
         }
 
         // This is run in a background thread
@@ -302,7 +305,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 URL url = new URL (request); // URL url = new URL(strings[0]);
                 c = (HttpURLConnection) url.openConnection();
                 c.setRequestMethod("POST");
-                c.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+                c.setRequestProperty("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
                 //c.setRequestProperty("Content-Type", "application/json");
                 c.setRequestProperty("Host", "heli.eki.ee");
                 //c.setRequestProperty("Content-Length", "" + Integer.toString(postData.getBytes().length));
@@ -332,7 +335,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 //                printout.flush();
 //                printout.close();
 
-                String str = "v=6&speech=proovike"; //json; //"some string goes here";
+                String str = "v=6&speech="+text_from_et; //json; //"some string goes here";
                 byte[] outputInBytes = str.getBytes("UTF-8");
                 OutputStream os = c.getOutputStream();
                 os.write(outputInBytes);
