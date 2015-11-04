@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -377,7 +379,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
             JsonParser parser = new JsonParser();
             JsonObject o = (JsonObject)parser.parse(sb.toString()); //"{\"a\": \"A\"}"
-            String mp3value = o.get("mp3").toString();
+
+            JsonElement jsonElement = o.get("mp3");
+            String mp3value = jsonElement.getAsString();
+            //String mp3value = o.get("mp3").toString();
+            //String mp3value = o.get("mp3").toString();
             Log.d("tag", "mp3value is " + mp3value);
 
             //return null;
@@ -402,6 +408,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             sb_sound_url.append(mp3value);
             sb_sound_url.append(".mp3");
             String sound_url = sb_sound_url.toString();
+
+            //String sound_url = String.format("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/", Uri.encode(mp3value), Uri.encode(".mp3"));
 
             Log.d("tag", "mp3 link is " + sound_url);
             //new DownloadMP3Task()
