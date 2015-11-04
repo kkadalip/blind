@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +25,9 @@ import android.widget.EditText;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -46,6 +51,8 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
@@ -54,6 +61,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     private Button btnSpeak;
     private EditText et1;
     private String text_from_et;
+
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -291,8 +300,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
             Log.d("tag", "json is: " + json);
-
-
             StringBuilder sb = new StringBuilder();
 
             HttpURLConnection c = null;
@@ -363,8 +370,18 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                     c.disconnect();
             }
 
+            //Gson gson2 = new GsonBuilder().create();
+            //JSONObject json2 = gson.fromJson(myParams);
+            //String json2 = gson.toJson(myParams);
+            //JSONObject JSONresult = gson.toJson(sb);
+
+            JsonParser parser = new JsonParser();
+            JsonObject o = (JsonObject)parser.parse(sb.toString()); //"{\"a\": \"A\"}"
+            String mp3value = o.get("mp3").toString();
+            Log.d("tag", "mp3value is " + mp3value);
+
             //return null;
-            return "this string is passed to onPostExecute";
+            return mp3value; //"this string is passed to onPostExecute";
         } // executega kaasas, progressupdate return, onpostexecute parameeter
 
         // This is called from background thread but runs in UI
@@ -377,13 +394,121 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
         // This runs in UI when background thread finishes
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String mp3value) {
+            super.onPostExecute(mp3value);
             // Do things like hide the progress bar or change a TextView
+            StringBuilder sb_sound_url = new StringBuilder();
+            sb_sound_url.append("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/");
+            sb_sound_url.append(mp3value);
+            sb_sound_url.append(".mp3");
+            String sound_url = sb_sound_url.toString();
+
+            Log.d("tag", "mp3 link is " + sound_url);
+            //new DownloadMP3Task()
+            //        .execute("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3"); // "1511040453140_3995.mp3");
         }
     } // end StuffJSON
 
+/*    private class DownloadMP3Task extends AsyncTask<String, Integer, File> {
+        protected File doInBackground(String... urls) {
+            File out = null;
+            for (int i = 0; i < 4; i++) {
+                System.out.println("[Jama] prooviL ," + urls[0]);
+                out = HTTPtoFile(urls[0]);
+                if (out != null)
+                    break;
+            }
+            return out;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            // setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(File result) {
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+            playMp3(result);
+            SetBtns();
+            downloading = false;
+        }
+    }
+
+    private synchronized File HTTPtoFile(String urla) {
+        try {
+            URL url = new URL(urla);
+
+            HttpURLConnection urlConnection = (HttpURLConnection) url
+                    .openConnection();
+            urlConnection.setRequestMethod("GET");
+            // urlConnection.setDoOutput(true);
+            urlConnection.connect();
+
+            InputStream inputStream = urlConnection.getInputStream();
+
+            // int totalSize = urlConnection.getContentLength();
+            pref_jarg = urlConnection.getHeaderFieldInt("Nupp", 0);
+
+            SharedPreferences.Editor prefsave = prefs.edit();
+            prefsave.putInt("jarg", pref_jarg);
+            prefsave.commit();
+
+            byte[] buffer = new byte[1024];
+            inputStream.read(buffer);
+            System.out.println("[----] HTTP TO FILE = ," + getCacheDir());
+            File tempMp3 = File.createTempFile("news", "mp3", getCacheDir());
+
+            tempMp3.deleteOnExit();
+            FileOutputStream fos = new FileOutputStream(tempMp3);
+            int len1;
+            while ((len1 = inputStream.read(buffer)) > 0) {
+                fos.write(buffer, 0, len1);
+            }
+
+            fos.close();
+            inputStream.close();
+            return tempMp3;
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("[Jama] HTTP TO FILE = NULL ," + urla);
+        return null;
+    }
+
+    private void playMp3(File tempMp3) {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+
+        // teata kasutajat ka...
+        try {
+            mediaPlayer = new MediaPlayer();
+            FileInputStream fis = new FileInputStream(tempMp3);
+            mediaPlayer.setDataSource(fis.getFD());
+            mediaPlayer.prepare();
+            //textView.setText(getString(R.string.main_loaded));
+            if (playing) {
+                // mediaPlayer.seekTo(0);
+                mediaPlayer.start();
+                handler.removeCallbacks(UpdatePlayerStats);
+                handler.postDelayed(UpdatePlayerStats, 100);
+                wl.acquire();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }*/
+
+
 }
+
+
 
 /*
         HttpURLConnection httpcon;
