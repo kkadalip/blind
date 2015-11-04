@@ -25,6 +25,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -134,15 +135,14 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         }
     }
 
-
     // EKI veebiserverit kasutades tekst heliks:
     // POST päring: (nt Chrome'i Postman app)
     // http://heli.eki.ee/koduleht/kiisu/koduleht.php
     // v 6
+    // JSON POST application/x-www-form-urlencoded
     // speech misiganes
     // tagasi saab tulemusena wav/mp3 id
     // tulemus asub aadressil http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/123456.mp3
-
     //http://stackoverflow.com/questions/6218143/how-to-send-post-request-in-json-using-httpclient
     public void doSomething4(View view) {
         new StuffJSON().execute();
@@ -284,7 +284,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 */
             HashMap myParams = new HashMap();
             myParams.put("v", "6");
-            myParams.put("speech", "hobune lammas orkester test 1234");
+            myParams.put("speech", "hobune lammas orkester test 1234 2");
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
             Log.d("tag", "json is: " + json);
@@ -301,13 +301,20 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
                 URL url = new URL (request); // URL url = new URL(strings[0]);
                 c = (HttpURLConnection) url.openConnection();
-                c.setDoOutput(true);
-                c.setRequestProperty("Content-Type", "application/json");
                 c.setRequestMethod("POST");
+                c.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+                //c.setRequestProperty("Content-Type", "application/json");
+                c.setRequestProperty("Host", "heli.eki.ee");
+                //c.setRequestProperty("Content-Length", "" + Integer.toString(postData.getBytes().length));
+
+                c.setDoOutput(true);
                 c.setDoInput(true);
                 c.setUseCaches(false);
-                //c.setRequestProperty("Host", );
+
                 c.connect();
+
+                //http://stackoverflow.com/questions/20020902/android-httpurlconnection-how-to-set-post-data-in-http-body
+
                 //Create JSONObject here
                 JSONObject jsonParam = new JSONObject();
                 try {
@@ -318,12 +325,21 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 }
                 // Send POST output.
                 //printout = new DataOutputStream(c.getOutputStream());
-                printout = new OutputStreamWriter(c.getOutputStream());
-                printout.write(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                printout.flush();
-                printout.close();
+
+//                printout = new OutputStreamWriter(c.getOutputStream());
+//                Log.d("tag","json on " + printout);
+//                printout.write(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+//                printout.flush();
+//                printout.close();
+
+                String str = "v=6&speech=proovike"; //json; //"some string goes here";
+                byte[] outputInBytes = str.getBytes("UTF-8");
+                OutputStream os = c.getOutputStream();
+                os.write(outputInBytes);
+                os.close();
 
                 int HttpResult = c.getResponseCode();
+                Log.d("tag","httpresult is " + Integer.toString(HttpResult));
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             c.getInputStream(),"utf-8"));
@@ -365,7 +381,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     } // end StuffJSON
 
 }
-
 
 /*
         HttpURLConnection httpcon;
