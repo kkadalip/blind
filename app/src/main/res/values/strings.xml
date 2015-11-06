@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Blind</string>
     <string name="action_settings">Settings</string>
+
+    <!-- 1 Main menu title -->
+    <string name="main_menu_title">Main menu</string>
+    <!-- 1 Main menu buttons -->
+    <string name="bMenuMain1">Menu selection 1</string>
+    <string name="bMenuMain2">Menu selection 2</string>
+    <string name="bMenuMain3">Menu selection 3</string>
+    <string name="bMenuMain4">Menu selection 4</string>
+
 </resources>

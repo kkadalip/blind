@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.blind.karl.blind.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:nestedScrollingEnabled="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,4 +69,27 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="doSomething4"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:id="@+id/btn_test"
+        android:layout_below="@+id/btn4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="doSomething5"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="swap screen"
+        android:id="@+id/btn_swap"
+        android:layout_below="@+id/btn_test"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="swapScreen"/>
+
 </RelativeLayout>

@@ -3,8 +3,8 @@ package com.blind.karl.blind;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -23,50 +23,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
+
+    private Button btnSpeak;
+
+    private EditText edit_text_1;
+    private String edit_text_1_text;
+
     private SpeechRecognizer sr;
     private TextToSpeech tts;
-    private Button btnSpeak;
-    private EditText et1;
-    private String text_from_et;
 
-    private MediaPlayer mediaPlayer;
-    private int mediaFileLengthInMilliseconds; // audio duration in ms. Used with getDuration()
-
+    private MediaPlayer mediaPlayer; // http://stackoverflow.com/questions/8486147/how-can-i-play-a-mp3-without-download-from-the-url
+    //private int mediaFileLengthInMilliseconds; // audio duration in ms. Used with getDuration()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,16 +74,13 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             }
         });
 
-        sr = SpeechRecognizer.createSpeechRecognizer(this,
-                new ComponentName(
-                        "ee.ioc.phon.android.speak",
-                        "ee.ioc.phon.android.speak.service.HttpRecognitionService"));
+        sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak","ee.ioc.phon.android.speak.service.HttpRecognitionService"));
         // ee.ioc.phon.android.speak.service.HttpRecognitionService (uses the grammar-supporting server)
         // ee.ioc.phon.android.speak.service.WebSocketRecognitionService (uses the continuous full-duplex server)
         sr.setRecognitionListener(new listener()); // this
 
-        et1 = (EditText) findViewById(R.id.editText1);
-        et1.setText("proovitekst tuleb siia jajaja");
+        edit_text_1 = (EditText) findViewById(R.id.editText1);
+        edit_text_1.setText("proovitekst tuleb siia jajaja");
         btnSpeak = (Button) findViewById(R.id.btn3);
     }
 
@@ -141,7 +127,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
 
     public void doSomething3(View view) {
-        String textToRead = et1.getText().toString();
+        String textToRead = edit_text_1.getText().toString();
         Log.d("tag", "text to read is " + textToRead);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ttsGreater21(textToRead);
@@ -163,6 +149,25 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         new StuffJSON().execute();
     }
 
+    public void doSomething5(View view) {
+        startNewActivity(this, "com.android.calculator2");
+    }
+
+    public void swapScreen(View veiw){
+        Intent intent = new Intent(this, ListenText.class);
+        this.startActivity(intent);
+    }
+
+    public void startNewActivity(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + packageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     @SuppressWarnings("deprecation")
     private void ttsUnder20(String text) {
@@ -245,7 +250,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         public void onEvent(int eventType, Bundle params) {
 
         }
-
     }
 
     @Override
@@ -266,7 +270,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -294,7 +297,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         protected void onPreExecute() {
             super.onPreExecute();
             // Do something like display a progress bar
-            text_from_et = et1.getText().toString();
+            edit_text_1_text = edit_text_1.getText().toString();
         }
 
         // This is run in a background thread
@@ -359,7 +362,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 //                printout.flush();
 //                printout.close();
 
-                String str = "v=6&speech="+text_from_et; //json; //"some string goes here";
+                String str = "v=6&speech="+ edit_text_1_text; //json; //"some string goes here";
                 byte[] outputInBytes = str.getBytes("UTF-8");
                 OutputStream os = c.getOutputStream();
                 os.write(outputInBytes);

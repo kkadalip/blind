@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:orientation="vertical" >
+
+            <!-- TOP PART OF SCREEN -->
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/MenuTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/main_menu_title" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llMenuButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:weightSum="100" >
+
+            <!-- MENU BUTTONS PART OF SCREEN -->
+
+            <Button
+                android:id="@+id/bMenu1"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:text="@string/bMenuMain1" />
+
+            <Button
+                android:id="@+id/bMenu2"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:text="@string/bMenuMain2" />
+
+            <Button
+                android:id="@+id/bMenu3"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:text="@string/bMenuMain3" />
+
+            <Button
+                android:id="@+id/bMenu4"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:text="@string/bMenuMain4" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<include layout="@layout/sliding_drawer_prefs" />-->
+
+</FrameLayout>
