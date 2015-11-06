@@ -74,9 +74,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             }
         });
 
-        sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak","ee.ioc.phon.android.speak.service.HttpRecognitionService"));
-        // ee.ioc.phon.android.speak.service.HttpRecognitionService (uses the grammar-supporting server)
-        // ee.ioc.phon.android.speak.service.WebSocketRecognitionService (uses the continuous full-duplex server)
+        String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
+        String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
+        sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak",grammar_supporting_server));
         sr.setRecognitionListener(new listener()); // this
 
         edit_text_1 = (EditText) findViewById(R.id.editText1);
@@ -288,7 +288,6 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
 
     // http://stackoverflow.com/questions/25647881/android-asynctask-example-and-explanation/25647882#25647882
-
     // Esimene parameeter tuleb executest, läheb doInBackgroundi nt params[0]
     // Teine parameeter läheb doInBackGroundi publishProgress(i)-st onProgressUpdate'i
     // Kolmas parameeter läheb doInBackground returnist onPostExecute'i
