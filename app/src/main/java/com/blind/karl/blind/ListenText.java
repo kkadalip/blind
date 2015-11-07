@@ -3,6 +3,7 @@ package com.blind.karl.blind;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,10 +41,10 @@ public class ListenText extends Activity {
     private EditText et_main;
     private String et_main_text;
 
-    //private Button btn_record;
+    private Button btn_record;
     private SpeechRecognizer sr;
 
-    //private Button btn_speak;
+    private Button btn_speak;
     private MediaPlayer mediaPlayer; // http://stackoverflow.com/questions/8486147/how-can-i-play-a-mp3-without-download-from-the-url
     //private int mediaFileLengthInMilliseconds; // audio duration in ms. Used with getDuration()
 
@@ -54,8 +55,8 @@ public class ListenText extends Activity {
         setContentView(R.layout.listen_text_main);
 
         et_main = (EditText) findViewById(R.id.editText);
-        //btn_record = (Button) findViewById(R.id.btn_record);
-        //btn_speak = (Button) findViewById(R.id.btn_speak);
+        btn_record = (Button) findViewById(R.id.btn_record);
+        btn_speak = (Button) findViewById(R.id.btn_speak);
 
         String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
         String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
@@ -94,6 +95,9 @@ public class ListenText extends Activity {
             super.onPreExecute();
             // Do something like display a progress bar
             et_main_text = et_main.getText().toString();
+
+            btn_speak.setEnabled(false);
+            //btn_speak.setBackgroundColor(Color.RED); // http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view
         }
 
         // This is run in a background thread
@@ -235,6 +239,8 @@ public class ListenText extends Activity {
             }
             //new DownloadMP3Task()
             //        .execute("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3"); // "1511040453140_3995.mp3");
+            //btn_speak.setBackgroundColor(Color.WHITE);
+            btn_speak.setEnabled(true);
         }
     } // end StuffJSON
 
@@ -279,6 +285,7 @@ public class ListenText extends Activity {
     class listener implements RecognitionListener {
         @Override
         public void onReadyForSpeech(Bundle params) {
+            btn_record.setEnabled(false); //.setBackgroundColor(Color.RED);
         }
 
         @Override
@@ -297,6 +304,7 @@ public class ListenText extends Activity {
 
         @Override
         public void onEndOfSpeech() {
+            btn_record.setEnabled(true); //.setBackgroundColor(Color.WHITE);
         }
 
         @Override
