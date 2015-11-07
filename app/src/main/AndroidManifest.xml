@@ -34,7 +34,7 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
             <intent-filter>
-                <action android:name="com.blind.karl.blind.ListenText" />
+                <action android:name="com.blind.karl.blind.ListenTextActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
