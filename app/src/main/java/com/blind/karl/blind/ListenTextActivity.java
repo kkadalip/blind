@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ListenText extends Activity {
+public class ListenTextActivity extends Activity {
 
     private EditText et_main;
     private String et_main_text;

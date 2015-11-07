@@ -5,9 +5,9 @@
     <!-- 1 Main menu title -->
     <string name="main_menu_title">Main menu</string>
     <!-- 1 Main menu buttons -->
-    <string name="bMenuMain1">Menu selection 1</string>
+    <string name="bMenuMain1">Apps</string>
     <string name="bMenuMain2">Record or listen</string>
-    <string name="bMenuMain3">Menu selection 3</string>
-    <string name="bMenuMain4">Menu selection 4</string>
+    <string name="bMenuMain3">Test</string>
+    <string name="bMenuMain4">Settings</string>
 
 </resources>

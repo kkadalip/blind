@@ -58,16 +58,17 @@ public class MenuActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()){
 		case R.id.bMenu1:
-			intent = new Intent(this, MainActivity.class);
+			intent = new Intent(this, AppsActivity.class);
 			this.startActivity(intent);
 			break;
 		case R.id.bMenu2:
-			intent = new Intent(this, ListenText.class);
+			intent = new Intent(this, ListenTextActivity.class);
 			this.startActivity(intent);
 			break;
 		case R.id.bMenu3:
-			//intent = new Intent(this, .class);
-			//this.startActivity(intent);
+			intent = new Intent(this, MainActivity.class);
+			this.startActivity(intent);
+
 			break;
 		case R.id.bMenu4:
 			//intent = new Intent(this, .class);

@@ -154,7 +154,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
 
     public void swapScreen(View veiw){
-        Intent intent = new Intent(this, ListenText.class);
+        Intent intent = new Intent(this, ListenTextActivity.class);
         this.startActivity(intent);
     }
 
