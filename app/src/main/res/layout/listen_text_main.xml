@@ -6,18 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListenText"
-    android:weightSum="1">
+    android:weightSum="100">
     <!--android:background="@android:color/white"-->
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_weight="0.90"
+        android:layout_weight="80"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/btn_record" />
 
     <LinearLayout
+        android:layout_weight="10"
         android:id="@+id/llSpeakRecordButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,4 +50,33 @@
             android:onClick="TextToSpeechService"
             android:layout_below="@+id/editText" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_weight="10"
+        android:id="@+id/llOtherButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:minHeight="80dp">
+
+        <Button
+            android:layout_weight="50"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Copy to clipboard"
+            android:id="@+id/btnCopy"
+            android:onClick="copyToClipboard"/>
+
+        <Button
+            android:layout_weight="50"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Empty text area"
+            android:id="@+id/btnEmptyTextArea"
+            android:onClick="emptyTextArea"/>
+    </LinearLayout>
+
 </LinearLayout>

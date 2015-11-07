@@ -1,6 +1,8 @@
 package com.blind.karl.blind;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
@@ -330,6 +332,17 @@ public class ListenText extends Activity {
         public void onEvent(int eventType, Bundle params) {
 
         }
+    }
+
+    public void copyToClipboard(View view){
+        String text_from_textarea = et_main.getText().toString();
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Blind", text_from_textarea);
+        clipboard.setPrimaryClip(clip);
+    }
+
+    public void emptyTextArea(View view){
+        et_main.setText("");
     }
 
 }
