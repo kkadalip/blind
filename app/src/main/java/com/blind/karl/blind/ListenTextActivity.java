@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -38,6 +39,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.os.Vibrator;
+
 public class ListenTextActivity extends Activity {
 
     private EditText et_main;
@@ -50,6 +53,7 @@ public class ListenTextActivity extends Activity {
     private MediaPlayer mediaPlayer; // http://stackoverflow.com/questions/8486147/how-can-i-play-a-mp3-without-download-from-the-url
     //private int mediaFileLengthInMilliseconds; // audio duration in ms. Used with getDuration()
 
+    private Vibrator v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,8 @@ public class ListenTextActivity extends Activity {
         String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
         sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak",grammar_supporting_server));
         sr.setRecognitionListener(new listener());
+
+        v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     public void RecordMic(View view) {
@@ -288,6 +294,7 @@ public class ListenTextActivity extends Activity {
         @Override
         public void onReadyForSpeech(Bundle params) {
             btn_record.setEnabled(false); //.setBackgroundColor(Color.RED);
+            v.vibrate(100);
         }
 
         @Override
@@ -307,6 +314,7 @@ public class ListenTextActivity extends Activity {
         @Override
         public void onEndOfSpeech() {
             btn_record.setEnabled(true); //.setBackgroundColor(Color.WHITE);
+            v.vibrate(100);
         }
 
         @Override
