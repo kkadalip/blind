@@ -14,6 +14,8 @@
     <string name="btnMenuMain3">Proov</string>
     <string name="btnMenuMain4">Sätted</string>
 
+    <string name="btnRecord">Lindista</string>
+    <string name="btnSpeak">Kuula</string>
     <string name="btnCopyToClipboard">Kopeeri</string>
     <string name="btnEmptyTextArea">Tühjenda</string>
 

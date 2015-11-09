@@ -14,6 +14,8 @@
     <string name="btnMenuMain3">Test</string>
     <string name="btnMenuMain4">Settings</string>
 
+    <string name="btnRecord">Record</string>
+    <string name="btnSpeak">Speak</string>
     <string name="btnCopyToClipboard">Copy</string>
     <string name="btnEmptyTextArea">Empty</string>
 
