@@ -19,11 +19,11 @@
             <!-- TOP PART OF SCREEN -->
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvMainMenuTitle"
                 style="@style/MenuTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/main_menu_title" />
+                android:text="@string/tvMainMenuTitle" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="@string/bMenuMain1" />
+                android:text="@string/btnMenuMain1" />
 
             <Button
                 android:id="@+id/bMenu2"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="@string/bMenuMain2" />
+                android:text="@string/btnMenuMain2" />
 
             <Button
                 android:id="@+id/bMenu3"
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="@string/bMenuMain3" />
+                android:text="@string/btnMenuMain3" />
 
             <Button
                 android:id="@+id/bMenu4"
@@ -66,9 +66,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="@string/bMenuMain4" />
+                android:text="@string/btnMenuMain4" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnLocaleET"
+        android:id="@+id/btnLocaleET"
+        android:layout_gravity="left|bottom"
+        android:onClick="btnClickLocaleET"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnLocaleEN"
+        android:id="@+id/btnLocaleEN"
+        android:layout_gravity="right|bottom"
+        android:onClick="btnClickLocaleEN"/>
 
     <!--<include layout="@layout/sliding_drawer_prefs" />-->
 

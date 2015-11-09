@@ -7,15 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Locale;
 
 public class MenuActivity extends Activity implements OnClickListener {
 
-	Button bMenu1;
-	Button bMenu2;
-	Button bMenu3;
-	Button bMenu4;
+	TextView tvMainMenuTitle;
+
+	Button btnMenu1;
+	Button btnMenu2;
+	Button btnMenu3;
+	Button btnMenu4;
 	Intent intent;
 	
 	Button bLangET;
@@ -27,14 +30,17 @@ public class MenuActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.menu_main);
-		bMenu1 = (Button) this.findViewById(R.id.bMenu1);
-		bMenu2 = (Button) this.findViewById(R.id.bMenu2);
-		bMenu3 = (Button) this.findViewById(R.id.bMenu3);
-		bMenu4 = (Button) this.findViewById(R.id.bMenu4);
-		bMenu1.setOnClickListener(this);
-		bMenu2.setOnClickListener(this);
-		bMenu3.setOnClickListener(this);
-		bMenu4.setOnClickListener(this);
+
+		tvMainMenuTitle = (TextView) this.findViewById(R.id.tvMainMenuTitle);
+
+		btnMenu1 = (Button) this.findViewById(R.id.bMenu1);
+		btnMenu2 = (Button) this.findViewById(R.id.bMenu2);
+		btnMenu3 = (Button) this.findViewById(R.id.bMenu3);
+		btnMenu4 = (Button) this.findViewById(R.id.bMenu4);
+		btnMenu1.setOnClickListener(this);
+		btnMenu2.setOnClickListener(this);
+		btnMenu3.setOnClickListener(this);
+		btnMenu4.setOnClickListener(this);
 		
 //		bLangET = (Button) this.findViewById(R.id.bLangET);
 //		bLangEN = (Button) this.findViewById(R.id.bLangEN);
@@ -46,10 +52,12 @@ public class MenuActivity extends Activity implements OnClickListener {
 	
 	private void updateTexts()
 	{
-		bMenu1.setText(R.string.bMenuMain1);
-		bMenu2.setText(R.string.bMenuMain2);
-		bMenu3.setText(R.string.bMenuMain3);
-		bMenu4.setText(R.string.bMenuMain4);
+		tvMainMenuTitle.setText(R.string.tvMainMenuTitle);
+
+		btnMenu1.setText(R.string.btnMenuMain1);
+		btnMenu2.setText(R.string.btnMenuMain2);
+		btnMenu3.setText(R.string.btnMenuMain3);
+		btnMenu4.setText(R.string.btnMenuMain4);
 		//bLangET.setText(R.string.bLangET);
 		//bLangEN.setText(R.string.bLangEN);
 	}
@@ -81,6 +89,14 @@ public class MenuActivity extends Activity implements OnClickListener {
 			changeLang("en");
 			break;*/
 		}
+	}
+
+	public void btnClickLocaleET(View v){
+		changeLang("et");
+	}
+
+	public void btnClickLocaleEN(View v){
+		changeLang("en");
 	}
 	
 	public void changeLang(String lang)

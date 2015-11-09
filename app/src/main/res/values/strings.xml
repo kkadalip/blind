@@ -1,13 +1,20 @@
 <resources>
+
     <string name="app_name">Blind</string>
     <string name="action_settings">Settings</string>
 
+    <string name="btnLocaleET">Estonian</string>
+    <string name="btnLocaleEN">English</string>
+
     <!-- 1 Main menu title -->
-    <string name="main_menu_title">Main menu</string>
+    <string name="tvMainMenuTitle">Main menu</string>
     <!-- 1 Main menu buttons -->
-    <string name="bMenuMain1">Apps</string>
-    <string name="bMenuMain2">Record or listen</string>
-    <string name="bMenuMain3">Test</string>
-    <string name="bMenuMain4">Settings</string>
+    <string name="btnMenuMain1">Apps</string>
+    <string name="btnMenuMain2">Record or listen</string>
+    <string name="btnMenuMain3">Test</string>
+    <string name="btnMenuMain4">Settings</string>
+
+    <string name="btnCopyToClipboard">Copy</string>
+    <string name="btnEmptyTextArea">Empty</string>
 
 </resources>

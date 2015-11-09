@@ -153,7 +153,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         startNewActivity(this, "com.android.calculator2");
     }
 
-    public void swapScreen(View veiw){
+    public void swapScreen(View view){
         Intent intent = new Intent(this, ListenTextActivity.class);
         this.startActivity(intent);
     }
