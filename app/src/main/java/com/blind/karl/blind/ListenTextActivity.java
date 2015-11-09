@@ -101,7 +101,7 @@ public class ListenTextActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             // Do something like display a progress bar
-            et_main_text = et_main.getText().toString();
+            et_main_text += et_main.getText().toString();
 
             btn_speak.setEnabled(false);
             //btn_speak.setBackgroundColor(Color.RED); // http://stackoverflow.com/questions/2173936/how-to-set-background-color-of-a-view

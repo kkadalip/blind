@@ -8,12 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100" >
+        android:weightSum="1" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_weight="0.05"
             android:orientation="vertical" >
 
             <!-- TOP PART OF SCREEN -->
@@ -30,9 +30,10 @@
             android:id="@+id/llMenuButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="95"
+            android:layout_weight="0.9"
             android:orientation="vertical"
-            android:weightSum="100" >
+            android:weightSum="1"
+            android:focusable="false">
 
             <!-- MENU BUTTONS PART OF SCREEN -->
 
@@ -41,7 +42,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
+                android:layout_weight="0.2"
                 android:text="@string/btnMenuMain1" />
 
             <Button
@@ -49,7 +50,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
+                android:layout_weight="0.2"
                 android:text="@string/btnMenuMain2" />
 
             <Button
@@ -57,7 +58,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
+                android:layout_weight="0.2"
                 android:text="@string/btnMenuMain3" />
 
             <Button
@@ -65,7 +66,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"
+                android:layout_weight="0.2"
                 android:text="@string/btnMenuMain4" />
 
             <Button
@@ -74,10 +75,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:layout_weight="20"
+                android:layout_weight="0.2"
                 android:onClick="btnClickLocale"
                 android:text="@string/btnLocale"/>
-
         </LinearLayout>
     </LinearLayout>
 
