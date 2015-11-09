@@ -4,12 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="yellow1">#FFFF66</color>
-    <color name="yellow2">#E5E600</color>
-    <color name="orange4">#ffb222</color>
-    <color name="orange5">#996300</color>
-    <color name="blue2">#0f1fff</color>
-    <color name="blue25">#001d91</color>
-    <color name="grey05">#b4b4b4</color>
+    <color name="grey_light">#ffffff</color>
+    <color name="grey_darker">#f1f1f1</color>
+
+    <color name="yellow_light">#ffff00</color>
+    <color name="yellow_darker">#f0f100</color>
+
+    <color name="yellow_light_focused">#ffff80</color>
+    <color name="yellow_darker_focused">#feff83</color>
 
 </resources>
