@@ -3,8 +3,7 @@
     <string name="app_name">Blind</string>
     <string name="action_settings">Settings</string>
 
-    <string name="btnLocaleET">Estonian</string>
-    <string name="btnLocaleEN">English</string>
+    <string name="btnLocale">Estonian</string>
 
     <!-- 1 Main menu title -->
     <string name="tvMainMenuTitle">Main menu</string>

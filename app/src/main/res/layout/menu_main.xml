@@ -70,23 +70,23 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
+<!--    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnLocaleET"
         android:id="@+id/btnLocaleET"
         android:layout_gravity="left|bottom"
-        android:onClick="btnClickLocaleET"/>
+        android:onClick="btnClickLocaleET"/>-->
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnLocaleEN"
-        android:id="@+id/btnLocaleEN"
+        android:text="@string/btnLocale"
+        android:id="@+id/btnLocale"
         android:layout_gravity="right|bottom"
-        android:onClick="btnClickLocaleEN"/>
+        android:onClick="btnClickLocale"/>
 
     <!--<include layout="@layout/sliding_drawer_prefs" />-->
 

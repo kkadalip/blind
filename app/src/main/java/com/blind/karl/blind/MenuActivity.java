@@ -21,9 +21,11 @@ public class MenuActivity extends Activity implements OnClickListener {
 	Button btnMenu4;
 	Intent intent;
 	
-	Button bLangET;
-	Button bLangEN;
-	
+//	Button bLangET;
+//	Button bLangEN;
+
+	Button btnLocale;
+
 	private Locale myLocale;
 	
 	@Override
@@ -41,6 +43,8 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnMenu2.setOnClickListener(this);
 		btnMenu3.setOnClickListener(this);
 		btnMenu4.setOnClickListener(this);
+
+		btnLocale = (Button) this.findViewById(R.id.btnLocale);
 		
 //		bLangET = (Button) this.findViewById(R.id.bLangET);
 //		bLangEN = (Button) this.findViewById(R.id.bLangEN);
@@ -60,13 +64,15 @@ public class MenuActivity extends Activity implements OnClickListener {
 		btnMenu4.setText(R.string.btnMenuMain4);
 		//bLangET.setText(R.string.bLangET);
 		//bLangEN.setText(R.string.bLangEN);
+
+		btnLocale.setText(R.string.btnLocale);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
 		case R.id.bMenu1:
-			intent = new Intent(this, AppsActivity.class);
+			intent = new Intent(this, AppsExtraActivity.class);
 			this.startActivity(intent);
 			break;
 		case R.id.bMenu2:
@@ -76,11 +82,11 @@ public class MenuActivity extends Activity implements OnClickListener {
 		case R.id.bMenu3:
 			intent = new Intent(this, MainActivity.class);
 			this.startActivity(intent);
-
 			break;
 		case R.id.bMenu4:
-			//intent = new Intent(this, .class);
-			//this.startActivity(intent);
+			// APPS 2 temporarily here
+			intent = new Intent(this, AppsExtraActivity.class);
+			this.startActivity(intent);
 			break;
 /*		case R.id.bLangET:
 			changeLang("et");
@@ -91,13 +97,18 @@ public class MenuActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	public void btnClickLocaleET(View v){
-		changeLang("et");
+	public void btnClickLocale(View v){
+		Locale current = Locale.getDefault();
+		if(current.toString().equals("et")){
+			changeLang("en");
+		}else if(current.toString().equals("en")){
+			changeLang("et");
+		}
 	}
 
-	public void btnClickLocaleEN(View v){
+/*	public void btnClickLocaleEN(View v){
 		changeLang("en");
-	}
+	}*/
 	
 	public void changeLang(String lang)
 	{
