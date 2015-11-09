@@ -30,7 +30,7 @@
             android:id="@+id/llMenuButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
+            android:layout_weight="80"
             android:orientation="vertical"
             android:weightSum="100" >
 
@@ -41,7 +41,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/btnMenuMain1" />
 
             <Button
@@ -49,7 +49,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/btnMenuMain2" />
 
             <Button
@@ -57,7 +57,7 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/btnMenuMain3" />
 
             <Button
@@ -65,28 +65,31 @@
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/btnMenuMain4" />
+
+            <Button
+                android:id="@+id/btnLocale"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_weight="20"
+                android:onClick="btnClickLocale"
+                android:text="@string/btnLocale"/>
+
         </LinearLayout>
     </LinearLayout>
 
-<!--    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnLocaleET"
-        android:id="@+id/btnLocaleET"
-        android:layout_gravity="left|bottom"
-        android:onClick="btnClickLocaleET"/>-->
+    <!--    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnLocaleET"
+            android:id="@+id/btnLocaleET"
+            android:layout_gravity="left|bottom"
+            android:onClick="btnClickLocaleET"/>-->
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnLocale"
-        android:id="@+id/btnLocale"
-        android:layout_gravity="right|bottom"
-        android:onClick="btnClickLocale"/>
 
     <!--<include layout="@layout/sliding_drawer_prefs" />-->
 
