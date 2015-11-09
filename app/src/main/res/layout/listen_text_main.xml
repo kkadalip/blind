@@ -1,82 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ListenText"
     android:weightSum="100">
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--tools:context=".ListenText"-->
     <!--android:background="@android:color/white"-->
-
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_weight="80"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/btn_record" />
-
-    <LinearLayout
-        android:layout_weight="10"
-        android:id="@+id/llSpeakRecordButtons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="100"
-        android:minHeight="80dp">
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_weight="50"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/btnRecord"
-            android:id="@+id/btn_record"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="RecordMic"/>
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_weight="50"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/btnSpeak"
-            android:id="@+id/btn_speak"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/btn_record"
-            android:onClick="TextToSpeechService"
-            android:layout_below="@+id/editText" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_weight="10"
-        android:id="@+id/llOtherButtons"
+        android:layout_height="match_parent"
+        android:layout_weight="40" />
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="100"
-        android:minHeight="80dp">
+        android:layout_height="match_parent"
+        android:layout_weight="60"
+        android:weightSum="100">
 
-        <Button
-            android:layout_weight="50"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Copy to clipboard"
-            android:id="@+id/btnCopy"
-            android:onClick="copyToClipboard"/>
+        <TableRow
+            android:layout_weight="25"
+            android:weightSum="100">
+            <Button
+                android:id="@+id/btn_record"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:onClick="RecordMic"
+                android:text="@string/btnRecord"/>
 
-        <Button
-            android:layout_weight="50"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/btnEmptyTextArea"
-            android:id="@+id/btnEmptyTextArea"
-            android:onClick="emptyTextArea"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_speak"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:onClick="TextToSpeechService"
+                android:text="@string/btnSpeak" />
+        </TableRow>
 
+        <TableRow
+            android:layout_weight="25"
+            android:weightSum="100">
+            <Button
+                android:id="@+id/btnCopy"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:onClick="copyToClipboard"
+                android:text="Copy to clipboard"/>
+
+            <Button
+                android:id="@+id/btnEmptyTextArea"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:onClick="emptyTextArea"
+                android:text="@string/btnEmptyTextArea"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="25"
+            android:weightSum="100">
+            <Button
+                android:id="@+id/btnUnassigned1"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Unassigned"/>
+
+            <Button
+                android:id="@+id/btnUnassigned2"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Unassigned"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_weight="25"
+            android:weightSum="100">
+            <Button
+                android:id="@+id/btnUnassigned3"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Unassigned"/>
+
+            <Button
+                android:id="@+id/btnUnassigned4"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Unassigned"/>
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
