@@ -7,9 +7,10 @@
     <!--xmlns:tools="http://schemas.android.com/tools"-->
     <!--tools:context=".ListenText"-->
     <!--android:background="@android:color/white"-->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="40"
         android:orientation="vertical">
         <EditText
@@ -20,7 +21,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="60"
         android:weightSum="100">
 
