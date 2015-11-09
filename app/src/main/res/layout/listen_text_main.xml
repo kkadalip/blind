@@ -57,7 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:onClick="copyToClipboard"
-                android:text="Copy to clipboard asdasdasdasdasdadas"/>
+                android:text="Copy to clipboard"/>
 
             <Button
                 android:id="@+id/btnEmptyTextArea"
