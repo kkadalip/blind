@@ -7,18 +7,11 @@
     android:layout_height="match_parent"
     android:weightSum="100">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="20">
-
-    </LinearLayout>
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="80"
+        android:layout_weight="90"
         android:weightSum="100">
 
         <TableRow
@@ -107,4 +100,25 @@
         </TableRow>
     </TableLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:weightSum="100">
+
+        <Button
+            android:layout_weight="50"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Last page"
+            android:id="@+id/btnNextPage" />
+
+        <Button
+            android:layout_weight="50"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Next page"
+            android:id="@+id/btnLastPage" />
+    </LinearLayout>
 </LinearLayout>
