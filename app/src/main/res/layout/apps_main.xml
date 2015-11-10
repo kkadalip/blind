@@ -48,7 +48,8 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic"
-                android:onClick="btnClickGeneric" />
+                android:onClick="btnClickGeneric"
+                android:longClickable="true" />
 
             <Button
                 android:id="@+id/button4"

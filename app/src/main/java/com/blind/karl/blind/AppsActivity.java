@@ -17,6 +17,10 @@ public class AppsActivity extends Activity {
     String btn1_package;
     String btn1_name;
 
+    Button btn3;
+    String btn3_package;
+    String btn3_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,18 @@ public class AppsActivity extends Activity {
 
             }
         });*/
+        btn1 = (Button) findViewById(R.id.btn1);
+
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //your action on long click
+                startExtrasActivity("btn3");
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -40,12 +56,19 @@ public class AppsActivity extends Activity {
 
 
     public void updateButtons(){
-        btn1 = (Button) findViewById(R.id.btn1);
+
 
         btn1_package = getButtonSelection("btn1_package");
         btn1_name = getButtonSelection("btn1_name");
 
         btn1.setText(btn1_name);
+
+
+
+        btn3_package = getButtonSelection("btn3_package");
+        btn3_name = getButtonSelection("btn3_name");
+
+        btn3.setText(btn3_name);
     }
 
     public void btnClickGeneric(View v){

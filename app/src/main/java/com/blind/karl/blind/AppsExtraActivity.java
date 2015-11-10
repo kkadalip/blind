@@ -71,8 +71,10 @@ public class AppsExtraActivity extends Activity {
                 appPackageName = installedApps.get(position).processName.toString();
                 Log.d("log", "app appPackage is " + appPackageName);
 
-                setButtonSelection("btn1_package", appPackageName);
-                setButtonSelection("btn1_name", realName);
+                setButtonSelection(extraMessage+"_package", appPackageName);
+                setButtonSelection(extraMessage+"_name", realName);
+                //setButtonSelection("btn1_package", appPackageName);
+                //setButtonSelection("btn1_name", realName);
             }
         });
 
