@@ -85,7 +85,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.bMenu4:
 			// APPS 2 temporarily here
-			intent = new Intent(this, AppsExtraActivity.class);
+			intent = new Intent(this, SettingsActivity.class);
 			this.startActivity(intent);
 			break;
 /*		case R.id.bLangET:
