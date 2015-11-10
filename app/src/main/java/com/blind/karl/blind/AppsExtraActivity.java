@@ -25,6 +25,8 @@ public class AppsExtraActivity extends Activity {
     Button btnShortcut;
     String appPackageName; // shortcut
 
+    String extraMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,10 @@ public class AppsExtraActivity extends Activity {
         setContentView(R.layout.apps_extra);
 
         btnShortcut = (Button) this.findViewById(R.id.btnShortcut);
+
+        Intent intent = getIntent();
+        extraMessage = intent.getStringExtra(AppsActivity.EXTRA_MESSAGE);
+        Log.d("log","message from AppsActivity is " + extraMessage);
     }
 
     public void GetApps(View view) {

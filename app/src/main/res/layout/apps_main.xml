@@ -24,7 +24,8 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="to app"
-                android:onClick="btn1Click"/>
+                android:onClick="btn1Click"
+                android:tag="btn1"/>
 
             <Button
                 android:id="@+id/button2"
@@ -42,11 +43,12 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn3"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="New Button" />
+                android:text="generic"
+                android:onClick="btnClickGeneric" />
 
             <Button
                 android:id="@+id/button4"
