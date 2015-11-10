@@ -20,7 +20,7 @@
 
             <Button
                 android:id="@+id/btn1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="to app"
@@ -29,7 +29,7 @@
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="extras"
@@ -44,7 +44,7 @@
 
             <Button
                 android:id="@+id/btn3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic"
@@ -52,7 +52,7 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic 4"
@@ -67,7 +67,7 @@
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic 5"
@@ -75,7 +75,7 @@
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic 6"
@@ -90,7 +90,7 @@
 
             <Button
                 android:id="@+id/button7"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic 7"
@@ -98,7 +98,7 @@
 
             <Button
                 android:id="@+id/button8"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:text="generic 8"
@@ -115,14 +115,14 @@
 
         <Button
             android:id="@+id/btnNextPage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
             android:text="Last page" />
 
         <Button
             android:id="@+id/btnLastPage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
             android:text="Next page" />
