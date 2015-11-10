@@ -3,6 +3,7 @@ package com.blind.karl.blind;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AppsExtraActivity extends Activity {
 
@@ -57,11 +59,14 @@ public class AppsExtraActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = listViewApps.getItemAtPosition(position);
-                String oName = o.toString();
-                btnShortcut.setText(oName);
+                String realName = o.toString();
+                btnShortcut.setText(realName);
 
                 appPackageName = installedApps.get(position).processName.toString();
                 Log.d("log", "app appPackage is " + appPackageName);
+
+                setButtonSelection("btn1_package", appPackageName);
+                setButtonSelection("btn1_name", realName);
             }
         });
 
@@ -81,6 +86,13 @@ public class AppsExtraActivity extends Activity {
         }
         Log.d("log", installedApps.toString());
         Log.d("log", installedAppsNames.toString());
+    }
+
+    public void setButtonSelection(String key, String value){
+        SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(key,value); // Key, Value, to get it eg String language = prefs.getString(langPref, "");
+        editor.commit();
     }
 
     public void Shortcut(View v){

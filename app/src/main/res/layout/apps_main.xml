@@ -19,19 +19,20 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="New Button"
-                android:onClick="gridButtonClick"/>
+                android:text="to app"
+                android:onClick="btn1Click"/>
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="New Button" />
+                android:text="extras"
+                android:onClick="btn2Click"/>
         </TableRow>
 
         <TableRow
