@@ -11,9 +11,9 @@
     <color name="grey_darker_disabled">#636363</color>
 
     <color name="yellow_light">#ffff00</color>
-    <color name="yellow_darker">#f0f100</color>
+    <color name="yellow_darker">#e6e700</color>
 
     <color name="yellow_light_focused">#ffff80</color>
-    <color name="yellow_darker_focused">#feff83</color>
+    <color name="yellow_darker_focused">#e0e172</color>
 
 </resources>
