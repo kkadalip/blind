@@ -178,6 +178,7 @@ public class AppsActivity extends Activity {
 
     static final int START_EXTRAS_REQUEST = 1;  // The request code
     // http://developer.android.com/training/basics/intents/result.html
+    // http://stackoverflow.com/questions/10407159/how-to-manage-startactivityforresult-on-android
     public void startExtrasActivityForResult(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
         //intent.setType()
@@ -188,6 +189,7 @@ public class AppsActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("log","onActivityResult");
         // Check which request we're responding to
         if (requestCode == START_EXTRAS_REQUEST) {
             // Make sure the request was successful

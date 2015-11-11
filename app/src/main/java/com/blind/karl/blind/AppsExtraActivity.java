@@ -217,7 +217,7 @@ public class AppsExtraActivity extends Activity {
                     Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
                     //returnIntent.putExtra("result",result);
                     setResult(Activity.RESULT_OK,returnIntent);
-                    finish();
+                    AppsExtraActivity.this.finish();
                 }
             });
 
@@ -240,13 +240,13 @@ public class AppsExtraActivity extends Activity {
 
             // Do things like hide the progress bar or change a TextView
         }
-    } // end StuffJSON
+    } // end Async
 
     public void btnCancelClick (View v){
         Log.d("log", "cancel button clicked");
-        Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
+        Intent returnIntent = new Intent(this, AppsActivity.class);
         setResult(Activity.RESULT_CANCELED,returnIntent);
-        finish();
+        this.finish();
     }
 
 }
