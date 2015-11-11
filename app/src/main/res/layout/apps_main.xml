@@ -20,6 +20,7 @@
 
             <Button
                 android:id="@+id/btn1"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -29,6 +30,7 @@
 
             <Button
                 android:id="@+id/btn2"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -44,6 +46,7 @@
 
             <Button
                 android:id="@+id/btn3"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -52,6 +55,7 @@
 
             <Button
                 android:id="@+id/btn4"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -67,6 +71,7 @@
 
             <Button
                 android:id="@+id/btn5"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -75,6 +80,7 @@
 
             <Button
                 android:id="@+id/btn6"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -90,6 +96,7 @@
 
             <Button
                 android:id="@+id/btn7"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -98,6 +105,7 @@
 
             <Button
                 android:id="@+id/btn8"
+                style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -115,6 +123,7 @@
 
         <Button
             android:id="@+id/btnNextPage"
+            style="@style/AppsActivityButton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
@@ -122,6 +131,7 @@
 
         <Button
             android:id="@+id/btnLastPage"
+            style="@style/AppsActivityButton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"

@@ -49,6 +49,18 @@
 
     </style>
 
+    <!-- Menu button style -->
+    <style name="AppsActivityButton">
+        <item name="android:textSize">20dp</item>
+
+        <item name="android:background">@drawable/custom_button</item>
+        <!--<item name="android:layout_marginTop">5dp</item>-->
+        <!--<item name="android:layout_marginBottom">5dp</item>-->
+        <item name="android:textAllCaps">true</item>
+
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
