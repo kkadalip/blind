@@ -142,7 +142,9 @@ public class AppsActivity extends Activity {
             this.startActivity(intent);
         }else{
             Log.d("log", btn_id + " has no package assigned yet");
-            startExtrasActivity(btn_id);
+            //startExtrasActivity(btn_id);
+
+            startExtrasActivityForResult(btn_id);
         }
     }
 
@@ -165,6 +167,7 @@ public class AppsActivity extends Activity {
         this.startActivity(intent);
     }
 
+
     public void startExtrasActivity(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
 
@@ -172,4 +175,32 @@ public class AppsActivity extends Activity {
 
         this.startActivity(intent);
     }
+
+    static final int START_EXTRAS_REQUEST = 1;  // The request code
+    // http://developer.android.com/training/basics/intents/result.html
+    public void startExtrasActivityForResult(String btn_id_as_extra){
+        Intent intent = new Intent(this, AppsExtraActivity.class);
+        //intent.setType()
+        intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
+        //this.startActivity(intent);
+        this.startActivityForResult(intent, START_EXTRAS_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == START_EXTRAS_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Log.d("log","result OK");
+            }else if(resultCode == RESULT_CANCELED){
+                Log.d("log","result CANCELED");
+            }
+        }
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
 }

@@ -209,8 +209,15 @@ public class AppsExtraActivity extends Activity {
                     //setButtonSelection("btn1_package", appPackageName);
                     //setButtonSelection("btn1_name", realName);
 
-                    Intent intent = new Intent(AppsExtraActivity.this, AppsActivity.class);
-                    AppsExtraActivity.this.startActivity(intent);
+                    //Intent intent = new Intent(AppsExtraActivity.this, AppsActivity.class);
+                    //AppsExtraActivity.this.startActivity(intent);
+
+                    //AppsExtraActivity.this.finishActivity();
+
+                    Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
+                    //returnIntent.putExtra("result",result);
+                    setResult(Activity.RESULT_OK,returnIntent);
+                    finish();
                 }
             });
 
@@ -235,6 +242,11 @@ public class AppsExtraActivity extends Activity {
         }
     } // end StuffJSON
 
-
+    public void btnCancelClick (View v){
+        Log.d("log", "cancel button clicked");
+        Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
+        setResult(Activity.RESULT_CANCELED,returnIntent);
+        finish();
+    }
 
 }
