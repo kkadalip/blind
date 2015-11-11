@@ -146,7 +146,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     // tulemus asub aadressil http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/123456.mp3
     //http://stackoverflow.com/questions/6218143/how-to-send-post-request-in-json-using-httpclient
     public void doSomething4(View view) {
-        new StuffJSON().execute();
+            new StuffJSON().execute();
     }
 
     public void doSomething5(View view) {
