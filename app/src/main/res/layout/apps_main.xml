@@ -122,19 +122,19 @@
         android:weightSum="100">
 
         <Button
-            android:id="@+id/btnNextPage"
-            style="@style/AppsActivityButton"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="50"
-            android:text="Last page" />
-
-        <Button
             android:id="@+id/btnLastPage"
             style="@style/AppsActivityButton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
-            android:text="Next page" />
+            android:text="@string/btnLastPage" />
+
+        <Button
+            android:id="@+id/btnNextPage"
+            style="@style/AppsActivityButton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="50"
+            android:text="@string/btnNextPage" />
     </LinearLayout>
 </LinearLayout>

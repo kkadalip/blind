@@ -5,7 +5,10 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="grey_light">#ffffff</color>
-    <color name="grey_darker">#f1f1f1</color>
+    <color name="grey_darker">#dfdfdf</color>
+
+    <color name="grey_light_disabled">#878787</color>
+    <color name="grey_darker_disabled">#636363</color>
 
     <color name="yellow_light">#ffff00</color>
     <color name="yellow_darker">#f0f100</color>

@@ -18,4 +18,8 @@
     <string name="btnCopyToClipboard">Kopeeri</string>
     <string name="btnEmptyTextArea">Tühjenda</string>
 
+    <!-- Apps Activity (Shortcuts) -->
+    <string name="btnNextPage">Eelmine lehekülg</string>
+    <string name="btnLastPage">Järgmine lehekülg</string>
+
 </resources>

@@ -44,6 +44,9 @@ public class AppsActivity extends Activity {
 
     List<Button> buttonsList;
 
+    Button btnLastPage;
+    Button btnNextPage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,12 @@ public class AppsActivity extends Activity {
         buttonsList.add(btn6);
         buttonsList.add(btn7);
         buttonsList.add(btn8);
+
+        btnLastPage = (Button) findViewById(R.id.btnLastPage);
+        btnNextPage = (Button) findViewById(R.id.btnNextPage);
+
+        btnLastPage.setEnabled(false);
+        btnNextPage.setEnabled(false);
 
 /*        btn3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
