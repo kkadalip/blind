@@ -10,16 +10,28 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppsActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
     Button btn1;
+    Button btn2;
+    Button btn3;
+    Button btn4;
+    Button btn5;
+    Button btn6;
+    Button btn7;
+    Button btn8;
+
     String btn1_package;
     String btn1_name;
 
-    Button btn3;
     String btn3_package;
     String btn3_name;
+
+    List<Button> buttonsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +45,46 @@ public class AppsActivity extends Activity {
 
             }
         });*/
-        btn1 = (Button) findViewById(R.id.btn1);
 
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnLongClickListener(new View.OnLongClickListener() {
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn5 = (Button) findViewById(R.id.btn5);
+        btn6 = (Button) findViewById(R.id.btn6);
+        btn7 = (Button) findViewById(R.id.btn7);
+        btn8 = (Button) findViewById(R.id.btn8);
+
+        buttonsList = new ArrayList<>();
+
+        buttonsList.add(btn1);
+        buttonsList.add(btn2);
+        buttonsList.add(btn3);
+        buttonsList.add(btn4);
+        buttonsList.add(btn5);
+        buttonsList.add(btn6);
+        buttonsList.add(btn7);
+        buttonsList.add(btn8);
+
+/*        btn3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 //your action on long click
                 startExtrasActivity("btn3");
                 return true;
             }
-        });
-
+        });*/
+        for (Button b : buttonsList) {
+            b.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    //your action on long click
+                    String btn_id = getResources().getResourceEntryName(v.getId());
+                    startExtrasActivity(btn_id);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -57,17 +97,12 @@ public class AppsActivity extends Activity {
 
     public void updateButtons(){
 
-
         btn1_package = getButtonSelection("btn1_package");
         btn1_name = getButtonSelection("btn1_name");
-
         btn1.setText(btn1_name);
-
-
 
         btn3_package = getButtonSelection("btn3_package");
         btn3_name = getButtonSelection("btn3_name");
-
         btn3.setText(btn3_name);
     }
 

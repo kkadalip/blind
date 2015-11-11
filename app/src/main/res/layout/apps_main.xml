@@ -28,7 +28,7 @@
                 android:tag="btn1"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn2"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -51,7 +51,7 @@
                 android:onClick="btnClickGeneric" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btn4"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -66,7 +66,7 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btn5"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -74,7 +74,7 @@
                 android:onClick="btnClickGeneric"/>
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btn6"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -89,7 +89,7 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/btn7"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
@@ -97,7 +97,7 @@
                 android:onClick="btnClickGeneric"/>
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/btn8"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
