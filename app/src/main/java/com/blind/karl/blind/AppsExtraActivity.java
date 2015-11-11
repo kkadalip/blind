@@ -41,7 +41,7 @@ import java.util.Locale;
 public class AppsExtraActivity extends Activity {
 
     // http://stackoverflow.com/questions/6165023/get-list-of-installed-android-applications
-    Button btnShortcut;
+    //Button btnShortcut;
     String appPackageName; // shortcut
 
     String extraMessage;
@@ -55,7 +55,7 @@ public class AppsExtraActivity extends Activity {
 
         setContentView(R.layout.apps_extra);
 
-        btnShortcut = (Button) this.findViewById(R.id.btnShortcut);
+        //btnShortcut = (Button) this.findViewById(R.id.btnShortcut);
 
         Intent intent = getIntent();
         extraMessage = intent.getStringExtra(AppsActivity.EXTRA_MESSAGE);
@@ -90,7 +90,7 @@ public class AppsExtraActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = listViewApps.getItemAtPosition(position);
                 String realName = o.toString();
-                btnShortcut.setText(realName);
+                //btnShortcut.setText(realName);
 
                 appPackageName = installedApps.get(position).processName.toString();
                 Log.d("log", "app appPackage is " + appPackageName);
@@ -199,7 +199,7 @@ public class AppsExtraActivity extends Activity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Object o = listViewApps.getItemAtPosition(position);
                     String realName = o.toString();
-                    btnShortcut.setText(realName);
+                    //btnShortcut.setText(realName);
 
                     appPackageName = installedApps.get(position).processName.toString();
                     Log.d("log", "app appPackage is " + appPackageName);
@@ -208,6 +208,9 @@ public class AppsExtraActivity extends Activity {
                     setButtonSelection(extraMessage+"_name", realName);
                     //setButtonSelection("btn1_package", appPackageName);
                     //setButtonSelection("btn1_name", realName);
+
+                    Intent intent = new Intent(AppsExtraActivity.this, AppsActivity.class);
+                    AppsExtraActivity.this.startActivity(intent);
                 }
             });
 

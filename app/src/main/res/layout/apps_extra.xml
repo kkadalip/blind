@@ -6,23 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.blind.karl.blind.AppsExtraActivity">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test (populate apps list)"
-        android:id="@+id/btnTest"
-        android:onClick="GetApps"/>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button shortcut"
-        android:id="@+id/btnShortcut"
-        android:layout_gravity="center_horizontal"
-        android:onClick="Shortcut"/>
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
