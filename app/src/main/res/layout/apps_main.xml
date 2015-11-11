@@ -23,8 +23,8 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="to app"
-                android:onClick="btn1Click"
+                android:text="generic 1"
+                android:onClick="btnClickGeneric"
                 android:tag="btn1"/>
 
             <Button
@@ -32,8 +32,8 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="extras"
-                android:onClick="btn2Click"/>
+                android:text="generic 2"
+                android:onClick="btnClickGeneric"/>
         </TableRow>
 
         <TableRow
@@ -47,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic"
+                android:text="generic 3"
                 android:onClick="btnClickGeneric" />
 
             <Button

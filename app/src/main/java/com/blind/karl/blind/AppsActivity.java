@@ -1,10 +1,12 @@
 package com.blind.karl.blind;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,15 @@ import java.util.List;
 
 public class AppsActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
+
+    public class CustomButton extends Button {
+
+        public CustomButton(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+        }
+        // http://stackoverflow.com/questions/26889410/extending-button-class
+        // lisan siia igale buttonile package ja name? vb ebavajalik
+    }
 
     Button btn1;
     Button btn2;
@@ -96,14 +107,18 @@ public class AppsActivity extends Activity {
 
 
     public void updateButtons(){
+        //btn1_package = getButtonSelection("btn1_package");
+        //btn1_name = getButtonSelection("btn1_name");
+        //btn1.setText(btn1_name);
 
-        btn1_package = getButtonSelection("btn1_package");
-        btn1_name = getButtonSelection("btn1_name");
-        btn1.setText(btn1_name);
-
-        btn3_package = getButtonSelection("btn3_package");
-        btn3_name = getButtonSelection("btn3_name");
-        btn3.setText(btn3_name);
+        for (Button b : buttonsList) {
+            //String idAsString = getResources().getResourceName(b.getId()); //com.blind.karl.blind:id/btn1
+            String idAsString = getResources().getResourceEntryName(b.getId());
+            Log.d("log","id as string is " + idAsString);
+            String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
+            String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
+            b.setText(btn_name_generic);
+        }
     }
 
     public void btnClickGeneric(View v){
@@ -122,12 +137,12 @@ public class AppsActivity extends Activity {
         }
     }
 
-    public void btn1Click(View v){
+/*    public void btn1Click(View v){
         PackageManager pm = getPackageManager();
         Intent intent = pm.getLaunchIntentForPackage(btn1_package);
         Log.d("log","btn1 package is " + btn1_package);
         this.startActivity(intent);
-    }
+    }*/
 
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
