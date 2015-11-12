@@ -22,5 +22,8 @@
     <string name="btnMic">Microphone</string>
     <string name="btnNextPage">Next Page</string>
     <string name="btnLastPage">Last Page</string>
+    <!-- Apps EXTRA Activity (Shortcuts) -->
+    <string name="btnCancel">Cancel</string>
+    <string name="btnDelete">Delete</string>
 
 </resources>

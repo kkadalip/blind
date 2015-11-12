@@ -12,13 +12,23 @@
         style="@style/AppsActivityButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Cancel"
+        android:text="@string/btnCancel"
         android:id="@+id/btnCancel"
         android:layout_gravity="center_horizontal"
         android:onClick="btnCancelClick"/>
 
+    <Button
+        android:layout_weight="0.1"
+        style="@style/AppsActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/btnDelete"
+        android:id="@+id/btnDelete"
+        android:layout_gravity="center_horizontal"
+        android:onClick="btnDeleteClick"/>
+
     <ListView
-        android:layout_weight="0.9"
+        android:layout_weight="0.8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/listViewApps"

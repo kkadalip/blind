@@ -22,5 +22,8 @@
     <string name="btnMic">Mikrofon</string>
     <string name="btnNextPage">Eelmine lehekülg</string>
     <string name="btnLastPage">Järgmine lehekülg</string>
+    <!-- Apps EXTRA Activity (Shortcuts) -->
+    <string name="btnCancel">Tagasi</string>
+    <string name="btnDelete">Kustuta</string>
 
 </resources>
