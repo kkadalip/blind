@@ -101,9 +101,10 @@ public class MenuActivity extends Activity implements OnClickListener {
 	public void btnClickLocale(View v){
 		Locale current = Locale.getDefault();
 		Log.d("log", "btn locale clicked, current locale is " + current.toString());
-		if(current.toString().equals("et")){
+		String currentLanguage = current.getLanguage();
+		if(currentLanguage.equals("et")){
 			changeLang("en");
-		}else if(current.toString().equals("en")){
+		}else if(currentLanguage.contains("en")){ // || currentLanguage.equals("en_US")){
 			changeLang("et");
 		}
 	}
