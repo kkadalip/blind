@@ -1,16 +1,24 @@
 package com.blind.karl.blind;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +55,9 @@ public class AppsActivity extends Activity {
     Button btnLastPage;
     Button btnNextPage;
 
+    Vibrator v;
+    Button btnMic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +70,8 @@ public class AppsActivity extends Activity {
 
             }
         });*/
+        btnMic = (Button) findViewById(R.id.btnMic);
+        v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
 
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -162,12 +175,6 @@ public class AppsActivity extends Activity {
         return result;
     }
 
-    public void btn2Click(View v){
-        Intent intent = new Intent(this, AppsExtraActivity.class);
-        this.startActivity(intent);
-    }
-
-
     public void startExtrasActivity(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
 
@@ -189,7 +196,7 @@ public class AppsActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("log","onActivityResult");
+        Log.d("log", "onActivityResult");
         // Check which request we're responding to
         if (requestCode == START_EXTRAS_REQUEST) {
             // Make sure the request was successful
@@ -198,6 +205,74 @@ public class AppsActivity extends Activity {
             }else if(resultCode == RESULT_CANCELED){
                 Log.d("log","result CANCELED");
             }
+        }
+    }
+
+    public void btnMicClick(View v){
+        Log.d("log", "mic button clicked");
+        String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
+        String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
+        SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
+        sr.setRecognitionListener(new listener());
+
+        Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+//        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
+        sr.startListening(recognizerIntent);
+    }
+
+    class listener implements RecognitionListener {
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            btnMic.setEnabled(false); //.setBackgroundColor(Color.RED);
+            v.vibrate(100);
+        }
+
+        @Override
+        public void onBeginningOfSpeech() {
+            Log.d("tag", "THIS IS THE BEGINNING");
+            System.out.println("THIS IS THE BEGINNING");
+        }
+
+        @Override
+        public void onRmsChanged(float rmsdB) {
+        }
+
+        @Override
+        public void onBufferReceived(byte[] buffer) {
+        }
+
+        @Override
+        public void onEndOfSpeech() {
+            btnMic.setEnabled(true); //.setBackgroundColor(Color.WHITE);
+            v.vibrate(100);
+        }
+
+        @Override
+        public void onError(int error) {
+        }
+
+        @Override
+        public void onResults(Bundle results) {
+            List<String> matches=new ArrayList<String>();
+            if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
+                matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            }
+            Log.d("tag", "results " + results);
+            Log.d("tag", "matches " + matches);
+
+            Toast toast = Toast.makeText(AppsActivity.this, matches.get(0).toString(), Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+        @Override
+        public void onPartialResults(Bundle partialResults) {
+        }
+
+        @Override
+        public void onEvent(int eventType, Bundle params) {
+
         }
     }
 
