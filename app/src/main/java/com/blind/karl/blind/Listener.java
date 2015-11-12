@@ -89,7 +89,7 @@ public class Listener implements RecognitionListener {
         for(Button b : buttonsList){
             String button_text = b.getText().toString();
             Log.d("log", "Button text is " + button_text);
-            if(button_text.toLowerCase().equals(result.toLowerCase())){
+            if(button_text.equalsIgnoreCase(result)){
                 Log.d("log", " SUCCESS, FOUND MATCHING BUTTON");
                 SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();

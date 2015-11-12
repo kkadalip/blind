@@ -9,14 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <SearchView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="TTS"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"/>
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -41,7 +50,7 @@
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="2000dp"
+                    android:layout_height="wrap_content"
                     android:text="New Button"
                     android:id="@+id/button3" />
 
@@ -52,6 +61,7 @@
                     android:id="@+id/button4" />
             </TableRow>
         </TableLayout>
+
 
 
     </LinearLayout>

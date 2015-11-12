@@ -121,11 +121,20 @@
             <Button
                 android:id="@+id/btnMic"
                 style="@style/AppsActivityButton"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="Mic"
+                android:layout_weight="0.5"
+                android:text="@string/btnMic"
                 android:onClick="btnMicClick"/>
+
+            <Button
+                android:id="@+id/btnLocale"
+                style="@style/AppsActivityButton"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:text="@string/btnLocale"
+                android:onClick="btnClickLocale"/>
         </TableRow>
     </TableLayout>
 
@@ -137,19 +146,21 @@
         android:weightSum="100">
 
         <Button
-            android:id="@+id/btnLastPage"
+            android:id="@+id/btnMainMenu"
             style="@style/AppsActivityButton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
-            android:text="@string/btnLastPage" />
+            android:text="@string/btnMainMenu"
+            android:onClick="btnMainMenuClick"/>
 
         <Button
-            android:id="@+id/btnNextPage"
+            android:id="@+id/btnAllApps"
             style="@style/AppsActivityButton"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
-            android:text="@string/btnNextPage" />
+            android:text="@string/btnAllApps"
+            android:enabled="false"/>
     </LinearLayout>
 </LinearLayout>

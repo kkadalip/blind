@@ -53,8 +53,11 @@ public class AppsActivity extends Activity {
 
     List<Button> buttonsList;
 
-    Button btnLastPage;
-    Button btnNextPage;
+    //Button btnLastPage;
+    //Button btnNextPage;
+
+    Button btnMainMenu;
+    Button btnAllApps;
 
     Vibrator v;
     Button btnMic;
@@ -65,6 +68,9 @@ public class AppsActivity extends Activity {
     Listener myListener;
 
     SpeechRecognizer sr;
+
+    Button btnLocale;
+    private Locale myLocale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +107,13 @@ public class AppsActivity extends Activity {
         buttonsList.add(btn7);
         buttonsList.add(btn8);
 
-        btnLastPage = (Button) findViewById(R.id.btnLastPage);
-        btnNextPage = (Button) findViewById(R.id.btnNextPage);
+//        btnLastPage = (Button) findViewById(R.id.btnLastPage);
+//        btnNextPage = (Button) findViewById(R.id.btnNextPage);
 
-        btnLastPage.setEnabled(false);
-        btnNextPage.setEnabled(false);
+        //btnMainMenu = (Button) findViewById(R.id.btnMainMenu);
+        //btnAllApps = (Button) findViewById(R.id.btnAllApps);
+
+        //btnAllApps.setEnabled(false);
 
         //packageForIntent = "empty";
 
@@ -128,13 +136,16 @@ public class AppsActivity extends Activity {
                 }
             });
         }
-    }
+
+        btnLocale = (Button) this.findViewById(R.id.btnLocale);
+        //loadLocale();
+    } // ONCREATE END
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        updateButtons();
+        updateButtons(); // PIGEM RESTART INTENT! TODO
     }
 
 
@@ -269,16 +280,59 @@ public class AppsActivity extends Activity {
         sr.startListening(recognizerIntent);
     }
 
-    public void deactivateMicButton(){
-        // ...
-    }
-
-    public void activateMicButton(){
-        // ...
+    public void btnMainMenuClick(View v){
+        Intent intent = new Intent(this, MenuActivity.class);
+        this.startActivity(intent);
     }
 
 //    @Override
 //    public void onBackPressed() {
 //
 //    }
+
+    // LANGUAGE:
+    public void btnClickLocale(View v){
+        Locale current = Locale.getDefault();
+        Log.d("log", "btn locale clicked, current locale is " + current.toString());
+        String currentLanguage = current.getLanguage();
+        if(currentLanguage.equals("et")){
+            changeLang("en");
+        }else if(currentLanguage.contains("en")){ // || currentLanguage.equals("en_US")){
+            changeLang("et");
+        }
+        recreate();
+    }
+
+    public void changeLang(String lang)
+    {
+        if(lang.equalsIgnoreCase("")){
+            return;
+        }else{
+            myLocale = new Locale(lang);
+            saveLocale(lang);
+            Locale.setDefault(myLocale);
+            android.content.res.Configuration config = new android.content.res.Configuration();
+            config.locale = myLocale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+            //updateTexts();
+        }
+    }
+
+    public void saveLocale(String lang)
+    {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(langPref, lang);
+        editor.commit();
+    }
+
+/*    public void loadLocale()
+    {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        String language = prefs.getString(langPref, "");
+        changeLang(language);
+    }*/
 }

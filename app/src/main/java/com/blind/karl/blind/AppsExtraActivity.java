@@ -192,22 +192,24 @@ public class AppsExtraActivity extends Activity {
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                     AppsExtraActivity.this, // http://stackoverflow.com/questions/16920942/getting-context-in-asynctask
                     android.R.layout.simple_list_item_1, //simple_expandable_list_item_1
-                    list);
+                    installedAppsNames);//list);
             listViewApps.setAdapter(arrayAdapter);
             // setOnItemSelectedListener
             //listViewApps.setClickable(true);
-            listViewApps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            listViewApps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Object o = listViewApps.getItemAtPosition(position);
                     String realName = o.toString();
+                    Log.d("log", "real name is " + realName);
                     //btnShortcut.setText(realName);
 
                     appPackageName = installedApps.get(position).processName.toString();
                     Log.d("log", "app appPackage is " + appPackageName);
 
-                    setButtonSelection(extraMessage+"_package", appPackageName);
-                    setButtonSelection(extraMessage+"_name", realName);
+                    setButtonSelection(extraMessage + "_package", appPackageName);
+                    setButtonSelection(extraMessage + "_name", realName);
                     //setButtonSelection("btn1_package", appPackageName);
                     //setButtonSelection("btn1_name", realName);
 
@@ -218,7 +220,7 @@ public class AppsExtraActivity extends Activity {
 
                     Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
                     //returnIntent.putExtra("result",result);
-                    setResult(Activity.RESULT_OK,returnIntent);
+                    setResult(Activity.RESULT_OK, returnIntent);
                     AppsExtraActivity.this.finish();
                 }
             });
@@ -237,9 +239,11 @@ public class AppsExtraActivity extends Activity {
                     list.add(pm.getApplicationLabel(app).toString());
                 }
             }
-            Collections.sort(list);
             Log.d("log", installedApps.toString());
             Log.d("log", installedAppsNames.toString());
+
+            //Collections.sort(list);
+            //Collections.sort(installedAppsNames);
 
             // Do things like hide the progress bar or change a TextView
         }
@@ -261,6 +265,11 @@ public class AppsExtraActivity extends Activity {
         editor.commit();
 
         this.finish();
+    }
+
+    public class App {
+        private String realName;
+        private String launchPackageName;
     }
 
 }

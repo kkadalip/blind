@@ -38,36 +38,40 @@
             <!-- MENU BUTTONS PART OF SCREEN -->
 
             <Button
-                android:id="@+id/bMenu1"
+                android:id="@+id/btnMenu1"
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="@string/btnMenuMain1" />
+                android:text="@string/btnMenuMain1"
+                android:onClick="btnMenu1Click" />
 
             <Button
-                android:id="@+id/bMenu2"
+                android:id="@+id/btnMenu2"
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="@string/btnMenuMain2" />
+                android:text="@string/btnMenuMain2"
+                android:onClick="btnMenu2Click"/>
 
             <Button
-                android:id="@+id/bMenu3"
+                android:id="@+id/btnMenu3"
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="@string/btnMenuMain3" />
+                android:text="@string/btnMenuMain3"
+                android:onClick="btnMenu3Click"/>
 
             <Button
-                android:id="@+id/bMenu4"
+                android:id="@+id/btnMenu4"
                 style="@style/MenuButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="@string/btnMenuMain4" />
+                android:text="@string/btnMenuMain4"
+                android:onClick="btnMenu4Click"/>
 
             <Button
                 android:id="@+id/btnLocale"
@@ -76,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
                 android:layout_weight="0.2"
-                android:onClick="btnClickLocale"
-                android:text="@string/btnLocale"/>
+                android:text=""
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 

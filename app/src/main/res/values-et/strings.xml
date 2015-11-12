@@ -20,8 +20,10 @@
 
     <!-- Apps Activity (Shortcuts) -->
     <string name="btnMic">Mikrofon</string>
-    <string name="btnNextPage">Eelmine lehekülg</string>
-    <string name="btnLastPage">Järgmine lehekülg</string>
+    <!--<string name="btnNextPage">Eelmine lehekülg</string>-->
+    <!--<string name="btnLastPage">Järgmine lehekülg</string>-->
+    <string name="btnMainMenu">Menüü</string>
+    <string name="btnAllApps">Rakendused</string>
     <!-- Apps EXTRA Activity (Shortcuts) -->
     <string name="btnCancel">Tagasi</string>
     <string name="btnDelete">Kustuta</string>
