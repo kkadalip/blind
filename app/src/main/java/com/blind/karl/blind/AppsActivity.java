@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AppsActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
@@ -59,9 +60,11 @@ public class AppsActivity extends Activity {
     Button btnMic;
 
     //Intent customIntent;
-    String packageForIntent;
+    //String packageForIntent;
 
     Listener myListener;
+
+    SpeechRecognizer sr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +107,7 @@ public class AppsActivity extends Activity {
         btnLastPage.setEnabled(false);
         btnNextPage.setEnabled(false);
 
-        packageForIntent = "empty";
+        //packageForIntent = "empty";
 
 /*        btn3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -218,19 +221,51 @@ public class AppsActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try{
+            if(sr!=null)
+            {
+                sr.destroy();
+            }
+        }
+        catch (Exception e)
+        {
+            Log.e("error","Exception:"+e.toString());
+        }
+    }
+
+    // language checker? http://stackoverflow.com/questions/10538791/how-to-set-the-language-in-speech-recognition-on-android
     public void btnMicClick(View v){
         Log.d("log", "mic button clicked");
-        String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
-        String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
-        SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
+
+        Locale current = Locale.getDefault();
+        Log.d("log", "btn btnMicClick + locale clicked, current locale is " + current.toString());
+        String currentLanguage = current.getLanguage();
+
+        Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+
+        if(currentLanguage.equals("et")){ // EESTI KEEL:
+            recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            Log.d("log", "language for MIC is et");
+            String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
+            String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
+            sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
+            //recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
+        }else{ // if(currentLanguage.contains("en")){ // INGLISE KEEL:
+            Log.d("log", "language for MIC is NOT et");
+            recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.US.toString());
+            //recognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{"en"});
+            sr = SpeechRecognizer.createSpeechRecognizer(this);
+        }
         //sr.setRecognitionListener(new listener());
         myListener = new Listener(this, btnMic, buttonsList); //packageForIntent);
         sr.setRecognitionListener(myListener);
 
-        Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
-//        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
+
+
         sr.startListening(recognizerIntent);
     }
 

@@ -74,7 +74,12 @@ public class Listener implements RecognitionListener {
         Log.d("tag", "results " + results);
         Log.d("tag", "matches " + matches);
 
-        String result = matches.get(0).toString();
+        String result = "";
+        if(matches.size() > 0){
+            result = matches.get(0).toString();
+        }else{
+            Log.d("log","NO MATCHES IN LISTENER CLASS");
+        }
         Toast toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
         toast.show();
 
@@ -84,7 +89,7 @@ public class Listener implements RecognitionListener {
         for(Button b : buttonsList){
             String button_text = b.getText().toString();
             Log.d("log", "Button text is " + button_text);
-            if(button_text.toLowerCase().equals(result)){
+            if(button_text.toLowerCase().equals(result.toLowerCase())){
                 Log.d("log", " SUCCESS, FOUND MATCHING BUTTON");
                 SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();

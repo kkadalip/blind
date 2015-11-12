@@ -19,6 +19,7 @@
     <string name="btnEmptyTextArea">Tühjenda</string>
 
     <!-- Apps Activity (Shortcuts) -->
+    <string name="btnMic">Mikrofon</string>
     <string name="btnNextPage">Eelmine lehekülg</string>
     <string name="btnLastPage">Järgmine lehekülg</string>
 

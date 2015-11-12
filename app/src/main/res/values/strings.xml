@@ -19,6 +19,7 @@
     <string name="btnEmptyTextArea">Empty</string>
 
     <!-- Apps Activity (Shortcuts) -->
+    <string name="btnMic">Microphone</string>
     <string name="btnNextPage">Next Page</string>
     <string name="btnLastPage">Last Page</string>
 
