@@ -213,7 +213,8 @@ public class AppsActivity extends Activity {
         String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
         String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
         SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
-        sr.setRecognitionListener(new listener());
+        //sr.setRecognitionListener(new listener());
+        sr.setRecognitionListener(new Listener(this, btnMic));
 
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -222,58 +223,12 @@ public class AppsActivity extends Activity {
         sr.startListening(recognizerIntent);
     }
 
-    class listener implements RecognitionListener {
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-            btnMic.setEnabled(false); //.setBackgroundColor(Color.RED);
-            v.vibrate(100);
-        }
+    public void deactivateMicButton(){
+        // ...
+    }
 
-        @Override
-        public void onBeginningOfSpeech() {
-            Log.d("tag", "THIS IS THE BEGINNING");
-            System.out.println("THIS IS THE BEGINNING");
-        }
-
-        @Override
-        public void onRmsChanged(float rmsdB) {
-        }
-
-        @Override
-        public void onBufferReceived(byte[] buffer) {
-        }
-
-        @Override
-        public void onEndOfSpeech() {
-            btnMic.setEnabled(true); //.setBackgroundColor(Color.WHITE);
-            v.vibrate(100);
-        }
-
-        @Override
-        public void onError(int error) {
-        }
-
-        @Override
-        public void onResults(Bundle results) {
-            List<String> matches=new ArrayList<String>();
-            if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
-                matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            }
-            Log.d("tag", "results " + results);
-            Log.d("tag", "matches " + matches);
-
-            Toast toast = Toast.makeText(AppsActivity.this, matches.get(0).toString(), Toast.LENGTH_LONG);
-            toast.show();
-        }
-
-        @Override
-        public void onPartialResults(Bundle partialResults) {
-        }
-
-        @Override
-        public void onEvent(int eventType, Bundle params) {
-
-        }
+    public void activateMicButton(){
+        // ...
     }
 
 //    @Override
