@@ -58,6 +58,11 @@ public class AppsActivity extends Activity {
     Vibrator v;
     Button btnMic;
 
+    //Intent customIntent;
+    String packageForIntent;
+
+    Listener myListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +103,8 @@ public class AppsActivity extends Activity {
 
         btnLastPage.setEnabled(false);
         btnNextPage.setEnabled(false);
+
+        packageForIntent = "empty";
 
 /*        btn3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -141,6 +148,9 @@ public class AppsActivity extends Activity {
             String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
             b.setText(btn_name_generic);
         }
+
+        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
+        //packageForIntent = btn_package; // FOR LISTENER
     }
 
     public void btnClickGeneric(View v){
@@ -214,7 +224,8 @@ public class AppsActivity extends Activity {
         String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
         SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
         //sr.setRecognitionListener(new listener());
-        sr.setRecognitionListener(new Listener(this, btnMic));
+        myListener = new Listener(this, btnMic, buttonsList); //packageForIntent);
+        sr.setRecognitionListener(myListener);
 
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
