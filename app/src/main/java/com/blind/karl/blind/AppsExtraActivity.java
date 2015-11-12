@@ -249,4 +249,15 @@ public class AppsExtraActivity extends Activity {
         this.finish();
     }
 
+    public void btnDeleteClick (View v){
+        Log.d("log", "delete button clicked");
+        SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove(extraMessage+"_package");
+        editor.remove(extraMessage+"_name");
+        editor.commit();
+
+        this.finish();
+    }
+
 }
