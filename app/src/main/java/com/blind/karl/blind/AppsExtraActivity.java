@@ -34,6 +34,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -183,6 +184,7 @@ public class AppsExtraActivity extends Activity {
 
             final ListView listViewApps = (ListView) findViewById(R.id.listViewApps);
             final ArrayList<String> list = new ArrayList<String>();
+
             // This is the array adapter:
             // First param: context of activity
             // Second param: type of list view
@@ -235,6 +237,7 @@ public class AppsExtraActivity extends Activity {
                     list.add(pm.getApplicationLabel(app).toString());
                 }
             }
+            Collections.sort(list);
             Log.d("log", installedApps.toString());
             Log.d("log", installedAppsNames.toString());
 
