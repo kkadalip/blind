@@ -29,5 +29,6 @@
     <!-- Apps EXTRA Activity (Shortcuts) -->
     <string name="btnCancel">Tagasi</string>
     <string name="btnDelete">Kustuta</string>
+    <string name="btnEdit">Muuda</string>
 
 </resources>

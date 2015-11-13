@@ -29,5 +29,6 @@
     <!-- Apps EXTRA Activity (Shortcuts) -->
     <string name="btnCancel">Cancel</string>
     <string name="btnDelete">Delete</string>
+    <string name="btnEdit">Edit</string>
 
 </resources>
