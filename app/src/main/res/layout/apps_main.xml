@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 1"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"
                 android:tag="btn1"/>
 
@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 2"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"/>
         </TableRow>
 
@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 3"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric" />
 
             <Button
@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 4"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric" />
         </TableRow>
 
@@ -75,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 5"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"/>
 
             <Button
@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 6"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"/>
         </TableRow>
 
@@ -100,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 7"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"/>
 
             <Button
@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
-                android:text="generic 8"
+                android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"/>
         </TableRow>
         <TableRow

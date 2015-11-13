@@ -159,8 +159,10 @@ public class AppsActivity extends Activity {
             String idAsString = getResources().getResourceEntryName(b.getId());
             Log.d("log","id as string is " + idAsString);
             String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
-            String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
-            b.setText(btn_name_generic);
+            if(!btn_package_generic.isEmpty()){
+                String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
+                b.setText(btn_name_generic);
+            }
         }
 
         //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
@@ -172,7 +174,8 @@ public class AppsActivity extends Activity {
         Log.d("log", "id name is " + btn_id); // eg btn1, btn2
 
         String btn_package = getButtonSelection(btn_id + "_package");
-        if(!btn_package.equals("None")){
+        //if(!btn_package.equals("None")){
+        if(!btn_package.isEmpty()){
             PackageManager pm = getPackageManager();
             Intent intent = pm.getLaunchIntentForPackage(btn_package);
             Log.d("log","btn generic package is " + btn_package);
@@ -195,7 +198,7 @@ public class AppsActivity extends Activity {
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        String result = settings.getString(key, "None");
+        String result = settings.getString(key, ""); // default value None before, now empty string
         return result;
     }
 

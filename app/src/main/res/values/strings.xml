@@ -22,6 +22,8 @@
     <string name="btnMic">Microphone</string>
     <!--<string name="btnNextPage">Next Page</string>-->
     <!--<string name="btnLastPage">Last Page</string>-->
+    <string name="btnUnassigned">Add new</string>
+
     <string name="btnMainMenu">Menu</string>
     <string name="btnAllApps">All apps</string>
     <!-- Apps EXTRA Activity (Shortcuts) -->
