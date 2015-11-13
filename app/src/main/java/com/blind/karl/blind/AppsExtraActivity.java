@@ -62,7 +62,7 @@ public class AppsExtraActivity extends Activity {
 
         Intent intent = getIntent();
         extraMessage = intent.getStringExtra(AppsActivity.EXTRA_MESSAGE);
-        Log.d("log","message from AppsActivity is " + extraMessage);
+        Log.d("log", "message from AppsActivity is " + extraMessage);
 
         new GetAppsAsync().execute();
     }
@@ -178,6 +178,7 @@ public class AppsExtraActivity extends Activity {
         }
 
         // This runs in UI when background thread finishes
+        // http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
         @Override
         protected void onPostExecute(List<ApplicationInfo> apps) {
             super.onPostExecute(apps); //from DoInBackground
@@ -273,18 +274,26 @@ public class AppsExtraActivity extends Activity {
 
                     Intent returnIntent = new Intent(AppsExtraActivity.this, AppsActivity.class);
                     //returnIntent.putExtra("result",result);
-                    setResult(Activity.RESULT_OK, returnIntent);
+                    //AppsExtraActivity.this.startActivity(returnIntent);
+                    AppsExtraActivity.this.setResult(Activity.RESULT_OK, returnIntent);
                     AppsExtraActivity.this.finish();
                 }
             });
         }
     } // end Async
 
+/*    public void finishWithOK(){
+        Intent returnIntent = new Intent(this, AppsActivity.class);
+        this.setResult(Activity.RESULT_OK, returnIntent);
+        this.finish();
+    }*/
+
     public void btnCancelClick (View v){
         Log.d("log", "cancel button clicked");
         Intent returnIntent = new Intent(this, AppsActivity.class);
-        setResult(Activity.RESULT_CANCELED,returnIntent);
-        this.finish();
+        //startActivity(returnIntent);
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
     }
 
     public void btnDeleteClick (View v){
@@ -292,10 +301,13 @@ public class AppsExtraActivity extends Activity {
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(extraMessage+"_package");
-        editor.remove(extraMessage+"_name");
+        editor.remove(extraMessage + "_name");
         editor.commit();
 
-        this.finish();
+        Intent returnIntent = new Intent(this, AppsActivity.class);
+        //startActivity(returnIntent);
+        setResult(Activity.RESULT_OK, returnIntent); // ok because something still changes, need to update UI etc
+        finish();
     }
 
 }

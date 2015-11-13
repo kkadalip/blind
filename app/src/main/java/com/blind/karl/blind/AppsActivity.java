@@ -131,7 +131,8 @@ public class AppsActivity extends Activity {
                 public boolean onLongClick(View v) {
                     //your action on long click
                     String btn_id = getResources().getResourceEntryName(v.getId());
-                    startExtrasActivity(btn_id);
+                    //startExtrasActivity(btn_id);
+                    startExtrasActivityForResult(btn_id);
                     return true;
                 }
             });
@@ -145,10 +146,10 @@ public class AppsActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        updateButtons(); // PIGEM RESTART INTENT! TODO
+        updateButtons(); // PIGEM recreate INTENT! TODO
     }
 
-
+    // asendaks recreate(), kui for result töötaks
     public void updateButtons(){
         //btn1_package = getButtonSelection("btn1_package");
         //btn1_name = getButtonSelection("btn1_name");
@@ -183,7 +184,6 @@ public class AppsActivity extends Activity {
         }else{
             Log.d("log", btn_id + " has no package assigned yet");
             //startExtrasActivity(btn_id);
-
             startExtrasActivityForResult(btn_id);
         }
     }
@@ -202,13 +202,13 @@ public class AppsActivity extends Activity {
         return result;
     }
 
-    public void startExtrasActivity(String btn_id_as_extra){
+/*    public void startExtrasActivity(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
 
         intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
 
         this.startActivity(intent);
-    }
+    }*/
 
     static final int START_EXTRAS_REQUEST = 1;  // The request code
     // http://developer.android.com/training/basics/intents/result.html
@@ -229,6 +229,7 @@ public class AppsActivity extends Activity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 Log.d("log","result OK");
+                recreate(); // või updatebuttons
             }else if(resultCode == RESULT_CANCELED){
                 Log.d("log","result CANCELED");
             }
