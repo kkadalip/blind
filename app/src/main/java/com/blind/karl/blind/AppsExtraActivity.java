@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,6 +39,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class AppsExtraActivity extends Activity {
 
@@ -65,6 +67,7 @@ public class AppsExtraActivity extends Activity {
         new GetAppsAsync().execute();
     }
 
+/*
     public void GetApps(View view) {
         PackageManager pm = getPackageManager();
         List<ApplicationInfo> apps = pm.getInstalledApplications(0);
@@ -120,6 +123,7 @@ public class AppsExtraActivity extends Activity {
         Log.d("log", installedApps.toString());
         Log.d("log", installedAppsNames.toString());
     }
+*/
 
     public void setButtonSelection(String key, String value){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
@@ -162,7 +166,8 @@ public class AppsExtraActivity extends Activity {
         protected List<ApplicationInfo> doInBackground(String... params) {
             pm = getPackageManager();
             List<ApplicationInfo> apps = pm.getInstalledApplications(0);
-            return apps; //"this string is passed to onPostExecute";
+            Collections.sort(apps, new ApplicationInfo.DisplayNameComparator(pm));
+            return apps; //"this is passed to onPostExecute";
         } // executega kaasas, progressupdate return, onpostexecute parameeter
 
         // This is called from background thread but runs in UI
@@ -177,25 +182,73 @@ public class AppsExtraActivity extends Activity {
         protected void onPostExecute(List<ApplicationInfo> apps) {
             super.onPostExecute(apps); //from DoInBackground
 
-            final List<ApplicationInfo> installedApps = new ArrayList<>();
-            final List<String> installedAppsPackages = new ArrayList<>();
+            final List<ApplicationInfo> sortedApps = apps;
 
-            List<String> installedAppsNames = new ArrayList<String>();
+            //List<ApplicationInfo> selectedApps;
 
             final ListView listViewApps = (ListView) findViewById(R.id.listViewApps);
-            final ArrayList<String> list = new ArrayList<String>();
+
+            final List<String> installedAppsPackages = new ArrayList<>();
+            final List<String> installedAppsNames = new ArrayList<>();
+
+            //final Map<String, String> installedAppsNamesPackages = new HashMap<>();
+            //final List<Map<String, String>> appsList = new ArrayList<>();
 
             // This is the array adapter:
             // First param: context of activity
             // Second param: type of list view
             // Third param: your array
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                     AppsExtraActivity.this, // http://stackoverflow.com/questions/16920942/getting-context-in-asynctask
                     android.R.layout.simple_list_item_1, //simple_expandable_list_item_1
-                    installedAppsNames);//list);
+                    installedAppsNames); // displaying installed apps in ListView //list);
             listViewApps.setAdapter(arrayAdapter);
+
+//            for(int i=0;i < inviteListRespone.size();i++)
+//            {
+//                map = new HashMap<String, String>();
+//                map.put("id",String.valueOf(i));
+//                map.put("emailID", inviteListRespone.get(i).getEmail());
+//                appsList.add(map);
+//            }
+//            arrayAdapter = new SimpleAdapter(this, inviteList, R.layout.invite_list_view,
+//                    new String[] { "emailID" },new int[]{R.id.inviteTextView});
+//            listViewApps.setAdapter(adapter);
+
+
             // setOnItemSelectedListener
             //listViewApps.setClickable(true);
+
+            for(ApplicationInfo app : apps) {
+                if((app.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 1) {  // Updated system app, add
+                    //installedApps.add(app);
+
+                    //installedAppsNamesPackages.put(pm.getApplicationLabel(app).toString(), app.processName.toString());
+                    installedAppsPackages.add(app.processName.toString());
+                    installedAppsNames.add(pm.getApplicationLabel(app).toString()); // real names
+
+                    //Drawable icon = pm.getApplicationIcon(app); // real icons
+                }else if((app.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {// System app, don't add
+
+                }else{
+                    //installedApps.add(app);
+
+                    //installedAppsNamesPackages.put(pm.getApplicationLabel(app).toString(), app.processName.toString());
+                    installedAppsPackages.add(app.processName.toString());
+                    installedAppsNames.add(pm.getApplicationLabel(app).toString());
+
+                    //listViewApps.add(pm.getApplicationLabel(app).toString());
+                }
+            }
+            //Log.d("log", installedApps.toString());
+            Log.d("log", installedAppsNames.toString());
+            //Log.d("log", installedAppsNamesPackages.toString());
+
+            //Collections.sort(list);
+            //Collections.sort(installedAppsNames);
+
+            // Do things like hide the progress bar or change a TextView
 
             listViewApps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -205,7 +258,7 @@ public class AppsExtraActivity extends Activity {
                     Log.d("log", "real name is " + realName);
                     //btnShortcut.setText(realName);
 
-                    appPackageName = installedApps.get(position).processName.toString();
+                    appPackageName = installedAppsPackages.get(position); //sortedApps.get(position).processName.toString(); // SORTEERIMATA!
                     Log.d("log", "app appPackage is " + appPackageName);
 
                     setButtonSelection(extraMessage + "_package", appPackageName);
@@ -224,28 +277,6 @@ public class AppsExtraActivity extends Activity {
                     AppsExtraActivity.this.finish();
                 }
             });
-
-            for(ApplicationInfo app : apps) {
-                if((app.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 1) {  // Updated system app, add
-                    installedApps.add(app);
-                    installedAppsNames.add(pm.getApplicationLabel(app).toString()); // real names
-                    list.add(pm.getApplicationLabel(app).toString());
-                    //Drawable icon = pm.getApplicationIcon(app); // real icons
-                }else if((app.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {// System app, don't add
-                }else{
-                    installedApps.add(app);
-                    installedAppsNames.add(pm.getApplicationLabel(app).toString());
-                    //listViewApps.add(pm.getApplicationLabel(app).toString());
-                    list.add(pm.getApplicationLabel(app).toString());
-                }
-            }
-            Log.d("log", installedApps.toString());
-            Log.d("log", installedAppsNames.toString());
-
-            //Collections.sort(list);
-            //Collections.sort(installedAppsNames);
-
-            // Do things like hide the progress bar or change a TextView
         }
     } // end Async
 
@@ -265,11 +296,6 @@ public class AppsExtraActivity extends Activity {
         editor.commit();
 
         this.finish();
-    }
-
-    public class App {
-        private String realName;
-        private String launchPackageName;
     }
 
 }
