@@ -278,9 +278,6 @@ public class AppsActivity extends Activity {
         //sr.setRecognitionListener(new listener());
         myListener = new Listener(this, btnMic, buttonsList); //packageForIntent);
         sr.setRecognitionListener(myListener);
-
-
-
         sr.startListening(recognizerIntent);
     }
 
