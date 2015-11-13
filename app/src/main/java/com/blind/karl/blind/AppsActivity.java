@@ -49,11 +49,29 @@ public class AppsActivity extends Activity {
     Button btn7;
     Button btn8;
 
-    String btn1_package;
-    String btn1_name;
+    Button btn9;
+    Button btn10;
+    Button btn11;
+    Button btn12;
+    Button btn13;
+    Button btn14;
+    Button btn15;
+    Button btn16;
 
-    String btn3_package;
-    String btn3_name;
+    Button btn17;
+    Button btn18;
+    Button btn19;
+    Button btn20;
+    Button btn21;
+    Button btn22;
+    Button btn23;
+    Button btn24;
+
+//    String btn1_package;
+//    String btn1_name;
+//
+//    String btn3_package;
+//    String btn3_name;
 
     List<Button> buttonsList;
 
@@ -99,6 +117,17 @@ public class AppsActivity extends Activity {
         tabHost.addTab(tabHost.newTabSpec("Third Tab")
                 .setIndicator(getString(R.string.tab3))
                 .setContent(R.id.linearLayoutView3));
+
+        //getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
+
+        // WORKING, ON TAB CHANGED EVENT!
+/*        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                //int i = getTabHost().getCurrentTab();
+                updateButtons();
+            }
+        });*/
 
         // Center text vertically in tabs
         RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -149,6 +178,24 @@ public class AppsActivity extends Activity {
         btn7 = (Button) findViewById(R.id.btn7);
         btn8 = (Button) findViewById(R.id.btn8);
 
+        btn9 = (Button) findViewById(R.id.btn9);
+        btn10 = (Button) findViewById(R.id.btn10);
+        btn11 = (Button) findViewById(R.id.btn11);
+        btn12 = (Button) findViewById(R.id.btn12);
+        btn13 = (Button) findViewById(R.id.btn13);
+        btn14 = (Button) findViewById(R.id.btn14);
+        btn15 = (Button) findViewById(R.id.btn15);
+        btn16 = (Button) findViewById(R.id.btn16);
+
+        btn17 = (Button) findViewById(R.id.btn17);
+        btn18 = (Button) findViewById(R.id.btn18);
+        btn19 = (Button) findViewById(R.id.btn19);
+        btn20 = (Button) findViewById(R.id.btn20);
+        btn21 = (Button) findViewById(R.id.btn21);
+        btn22 = (Button) findViewById(R.id.btn22);
+        btn23 = (Button) findViewById(R.id.btn23);
+        btn24 = (Button) findViewById(R.id.btn24);
+
         buttonsList = new ArrayList<>();
 
         buttonsList.add(btn1);
@@ -159,6 +206,24 @@ public class AppsActivity extends Activity {
         buttonsList.add(btn6);
         buttonsList.add(btn7);
         buttonsList.add(btn8);
+
+        buttonsList.add(btn9);
+        buttonsList.add(btn10);
+        buttonsList.add(btn11);
+        buttonsList.add(btn12);
+        buttonsList.add(btn13);
+        buttonsList.add(btn14);
+        buttonsList.add(btn15);
+        buttonsList.add(btn16);
+
+        buttonsList.add(btn17);
+        buttonsList.add(btn18);
+        buttonsList.add(btn19);
+        buttonsList.add(btn20);
+        buttonsList.add(btn21);
+        buttonsList.add(btn22);
+        buttonsList.add(btn23);
+        buttonsList.add(btn24);
 
 //        btnLastPage = (Button) findViewById(R.id.btnLastPage);
 //        btnNextPage = (Button) findViewById(R.id.btnNextPage);
