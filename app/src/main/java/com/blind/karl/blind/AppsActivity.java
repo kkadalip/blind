@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -77,6 +78,48 @@ public class AppsActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.apps_main);
+
+        // create the TabHost that will contain the Tabs
+        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        //TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+
+        tabHost.setup();
+
+        tabHost.addTab(tabHost.newTabSpec("First Tab")
+                .setIndicator(getString(R.string.tab1))
+                .setContent(R.id.linearLayoutView1));
+
+        tabHost.addTab(tabHost.newTabSpec("Second Tab")
+                .setIndicator(getString(R.string.tab2))
+                .setContent(R.id.linearLayoutView2));
+
+        tabHost.addTab(tabHost.newTabSpec("Third Tab")
+                .setIndicator(getString(R.string.tab3))
+                .setContent(R.id.linearLayoutView3));
+
+/*        TabHost.TabSpec tab1 = tabHost.newTabSpec("First Tab");
+        TabHost.TabSpec tab2 = tabHost.newTabSpec("Second Tab");
+        TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");*/
+
+        // Set the Tab name and Activity
+        // that will be opened when particular Tab will be selected
+
+
+/*        tab1.setIndicator("Tab1");
+        tab1.setContent(new Intent(this, AppsActivity.class));
+
+        tab2.setIndicator("Tab2");
+        tab2.setContent(new Intent(this, AppsActivity.class));
+
+        tab3.setIndicator("Tab3");
+        tab3.setContent(new Intent(this, AppsActivity.class));*/
+
+        /** Add the tabs  to the TabHost to display. */
+
+//        tabHost.setup();
+//        tabHost.addTab(tab1);
+//        tabHost.addTab(tab2);
+//        tabHost.addTab(tab3);
 
 /*        btn1.setOnClickListener(new View.OnClickListener() {
             @Override

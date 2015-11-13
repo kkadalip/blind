@@ -31,4 +31,8 @@
     <string name="btnDelete">Kustuta</string>
     <string name="btnEdit">Muuda</string>
 
+    <string name="tab1">Leht 1</string>
+    <string name="tab2">Leht 2</string>
+    <string name="tab3">Leht 3</string>
+
 </resources>
