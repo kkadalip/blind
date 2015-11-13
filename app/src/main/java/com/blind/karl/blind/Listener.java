@@ -63,6 +63,10 @@ public class Listener implements RecognitionListener {
 
     @Override
     public void onError(int error) {
+        Log.e("log", "error in listener " + Integer.toString(error));
+        btnMic.setEnabled(true);
+        Toast toast = Toast.makeText(context, Integer.toString(error), Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -77,6 +81,29 @@ public class Listener implements RecognitionListener {
         String result = "";
         if(matches.size() > 0){
             result = matches.get(0).toString();
+
+
+            for(Button b : buttonsList){
+                String button_text = b.getText().toString();
+                Log.d("log", "Button text is " + button_text);
+                if(button_text.equalsIgnoreCase(result) || button_text.toLowerCase().contains(result.toLowerCase())){
+                    Log.d("log", " SUCCESS, FOUND MATCHING BUTTON");
+                    SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = settings.edit();
+                    String btnId = context.getResources().getResourceEntryName(b.getId());
+                    String btnPackage = settings.getString(btnId + "_package", "None");
+
+                    Log.d("log", "package for intent is " + btnPackage);
+                    if(!btnPackage.isEmpty()){
+                        PackageManager pm = context.getPackageManager();
+                        Intent intent = pm.getLaunchIntentForPackage(btnPackage);
+                        Log.d("log", "end of speech, starting intent for " + btnPackage);
+                        context.startActivity(intent);
+                    }
+                }
+            }
+
+
         }else{
             Log.d("log","NO MATCHES IN LISTENER CLASS");
         }
@@ -86,25 +113,7 @@ public class Listener implements RecognitionListener {
         //context.getApplicationContext().
         //String packageForIntent = "empty";
 
-        for(Button b : buttonsList){
-            String button_text = b.getText().toString();
-            Log.d("log", "Button text is " + button_text);
-            if(button_text.equalsIgnoreCase(result) || button_text.toLowerCase().contains(result.toLowerCase())){
-                Log.d("log", " SUCCESS, FOUND MATCHING BUTTON");
-                SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
-                String btnId = context.getResources().getResourceEntryName(b.getId());
-                String btnPackage = settings.getString(btnId + "_package", "None");
 
-                Log.d("log", "package for intent is " + btnPackage);
-                if(!btnPackage.equals("empty")){
-                    PackageManager pm = context.getPackageManager();
-                    Intent intent = pm.getLaunchIntentForPackage(btnPackage);
-                    Log.d("log", "end of speech, starting intent for " + btnPackage);
-                    context.startActivity(intent);
-                }
-            }
-        }
     }
 
     @Override
