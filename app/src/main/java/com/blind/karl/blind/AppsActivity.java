@@ -31,14 +31,14 @@ import java.util.Locale;
 public class AppsActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
-    public class CustomButton extends Button {
+/*    public class CustomButton extends Button {
 
         public CustomButton(Context context, AttributeSet attrs, int defStyleAttr) {
             super(context, attrs, defStyleAttr);
         }
         // http://stackoverflow.com/questions/26889410/extending-button-class
         // lisan siia igale buttonile package ja name? vb ebavajalik
-    }
+    }*/
 
     Button btn1;
     Button btn2;
@@ -78,8 +78,8 @@ public class AppsActivity extends Activity {
     //Button btnLastPage;
     //Button btnNextPage;
 
-    Button btnMainMenu;
-    Button btnAllApps;
+    //Button btnMainMenu;
+    //Button btnAllApps;
 
     Vibrator v;
     Button btnMic;
@@ -94,6 +94,8 @@ public class AppsActivity extends Activity {
     Button btnLocale;
     private Locale myLocale;
 
+    TabHost tabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +103,7 @@ public class AppsActivity extends Activity {
         setContentView(R.layout.apps_main);
 
         // create the TabHost that will contain the Tabs
-        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        tabHost = (TabHost) findViewById(android.R.id.tabhost);
         //TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 
         tabHost.setup();
@@ -129,43 +131,11 @@ public class AppsActivity extends Activity {
             }
         });*/
 
-        // Center text vertically in tabs
-        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        rllp.addRule(RelativeLayout.CENTER_IN_PARENT);
-        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-            tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title).setLayoutParams(rllp);
-        }
-
-/*        TabHost.TabSpec tab1 = tabHost.newTabSpec("First Tab");
-        TabHost.TabSpec tab2 = tabHost.newTabSpec("Second Tab");
-        TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");*/
+        centerTabhostText();
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
 
-
-/*        tab1.setIndicator("Tab1");
-        tab1.setContent(new Intent(this, AppsActivity.class));
-
-        tab2.setIndicator("Tab2");
-        tab2.setContent(new Intent(this, AppsActivity.class));
-
-        tab3.setIndicator("Tab3");
-        tab3.setContent(new Intent(this, AppsActivity.class));*/
-
-        /** Add the tabs  to the TabHost to display. */
-
-//        tabHost.setup();
-//        tabHost.addTab(tab1);
-//        tabHost.addTab(tab2);
-//        tabHost.addTab(tab3);
-
-/*        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -243,6 +213,28 @@ public class AppsActivity extends Activity {
                 return true;
             }
         });*/
+
+        setOnClickListenersForButtons();
+
+        btnLocale = (Button) this.findViewById(R.id.btnLocale);
+        //loadLocale();
+
+//        if(state != null){
+//            setCurrentTab(state.getInt(tabState));
+//        }
+
+    } // ONCREATE END
+
+    // Center text vertically in tabs
+    public void centerTabhostText(){
+        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rllp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title).setLayoutParams(rllp);
+        }
+    }
+
+    public void setOnClickListenersForButtons(){
         for (Button b : buttonsList) {
             b.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -255,10 +247,21 @@ public class AppsActivity extends Activity {
                 }
             });
         }
+    }
 
-        btnLocale = (Button) this.findViewById(R.id.btnLocale);
-        //loadLocale();
-    } // ONCREATE END
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("tabState", getSelectedTab());
+    }
+
+    public void setCurrentTab(){
+
+    }
+
+    public int getSelectedTab(){
+        return 3;
+    }
 
     @Override
     protected void onResume() {
