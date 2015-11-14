@@ -172,11 +172,18 @@ public class AppsActivity extends Activity {
         btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
 
-//        if(state != null){
-//            setCurrentTab(state.getInt(tabState));
-//        }
+        if(savedInstanceState != null){
+            tabHost.setCurrentTab(savedInstanceState.getInt("tabState"));
+        }
 
     } // ONCREATE END
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        int selectedTab = tabHost.getCurrentTab();
+        outState.putInt("tabState", selectedTab);
+    }
 
     // Center text vertically in tabs
     public void centerTabhostText(){
@@ -200,20 +207,6 @@ public class AppsActivity extends Activity {
                 }
             });
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("tabState", getSelectedTab());
-    }
-
-    public void setCurrentTab(){
-
-    }
-
-    public int getSelectedTab(){
-        return 3;
     }
 
     @Override
