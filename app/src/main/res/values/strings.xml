@@ -5,6 +5,9 @@
 
     <string name="btnLocale">Estonian</string>
 
+    <!-- Generic -->
+    <string name="btnNothing">Unassigned</string>
+
     <!-- 1 Main menu title -->
     <string name="tvMainMenuTitle">Main menu</string>
     <!-- 1 Main menu buttons -->

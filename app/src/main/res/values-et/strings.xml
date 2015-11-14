@@ -5,6 +5,9 @@
 
     <string name="btnLocale">Inglise keel</string>
 
+    <!-- Generic -->
+    <string name="btnNothing">Määramata</string>
+
     <!-- 1 Main menu title -->
     <string name="tvMainMenuTitle">Menüü</string>
     <!-- 1 Main menu buttons -->
