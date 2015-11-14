@@ -31,15 +31,6 @@ import java.util.Locale;
 public class AppsActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
-/*    public class CustomButton extends Button {
-
-        public CustomButton(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-        }
-        // http://stackoverflow.com/questions/26889410/extending-button-class
-        // lisan siia igale buttonile package ja name? vb ebavajalik
-    }*/
-
     Button btn1;
     Button btn2;
     Button btn3;
@@ -67,25 +58,10 @@ public class AppsActivity extends Activity {
     Button btn23;
     Button btn24;
 
-//    String btn1_package;
-//    String btn1_name;
-//
-//    String btn3_package;
-//    String btn3_name;
-
     List<Button> buttonsList;
-
-    //Button btnLastPage;
-    //Button btnNextPage;
-
-    //Button btnMainMenu;
-    //Button btnAllApps;
 
     Vibrator v;
     Button btnMic;
-
-    //Intent customIntent;
-    //String packageForIntent;
 
     Listener myListener;
 
@@ -102,12 +78,11 @@ public class AppsActivity extends Activity {
 
         setContentView(R.layout.apps_main);
 
-        // create the TabHost that will contain the Tabs
+        // Create the TabHost that will contain the Tabs
         tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        //TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 
+        // Set the Tab name and layout (or activity)
         tabHost.setup();
-
         tabHost.addTab(tabHost.newTabSpec("First Tab")
                 .setIndicator(getString(R.string.tab1))
                 .setContent(R.id.linearLayoutView1));
@@ -132,9 +107,6 @@ public class AppsActivity extends Activity {
         });*/
 
         centerTabhostText();
-
-        // Set the Tab name and Activity
-        // that will be opened when particular Tab will be selected
 
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -194,25 +166,6 @@ public class AppsActivity extends Activity {
         buttonsList.add(btn22);
         buttonsList.add(btn23);
         buttonsList.add(btn24);
-
-//        btnLastPage = (Button) findViewById(R.id.btnLastPage);
-//        btnNextPage = (Button) findViewById(R.id.btnNextPage);
-
-        //btnMainMenu = (Button) findViewById(R.id.btnMainMenu);
-        //btnAllApps = (Button) findViewById(R.id.btnAllApps);
-
-        //btnAllApps.setEnabled(false);
-
-        //packageForIntent = "empty";
-
-/*        btn3.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                //your action on long click
-                startExtrasActivity("btn3");
-                return true;
-            }
-        });*/
 
         setOnClickListenersForButtons();
 
