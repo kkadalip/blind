@@ -9,7 +9,7 @@
         android:layout_height="0dp"
         android:id="@android:id/tabhost"
         android:layout_weight="0.75">
-    <!--android:id="@+id/tabHost"-->
+        <!--android:id="@+id/tabHost"-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +44,7 @@
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.25"
                             android:weightSum="1">
@@ -53,25 +53,26 @@
                                 android:id="@+id/btn1"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
                                 android:onClick="btnClickGeneric"
-                                android:tag="btn1"/>
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn2"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -79,24 +80,26 @@
                                 android:id="@+id/btn3"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn4"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -104,24 +107,26 @@
                                 android:id="@+id/btn5"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn6"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -129,19 +134,21 @@
                                 android:id="@+id/btn7"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn8"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -161,7 +168,7 @@
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.25"
                             android:weightSum="1">
@@ -170,25 +177,26 @@
                                 android:id="@+id/btn9"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
                                 android:onClick="btnClickGeneric"
-                                android:tag="btn1"/>
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn10"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -196,24 +204,26 @@
                                 android:id="@+id/btn11"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn12"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -221,24 +231,26 @@
                                 android:id="@+id/btn13"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn14"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -246,19 +258,21 @@
                                 android:id="@+id/btn15"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn16"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -278,7 +292,7 @@
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.25"
                             android:weightSum="1">
@@ -287,25 +301,26 @@
                                 android:id="@+id/btn17"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
                                 android:onClick="btnClickGeneric"
-                                android:tag="btn1"/>
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn18"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -313,24 +328,26 @@
                                 android:id="@+id/btn19"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn20"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric" />
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -338,24 +355,26 @@
                                 android:id="@+id/btn21"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn22"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
 
                         <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.25"
                             android:weightSum="1">
 
@@ -363,19 +382,21 @@
                                 android:id="@+id/btn23"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
 
                             <Button
                                 android:id="@+id/btn24"
                                 style="@style/AppsActivityButton"
                                 android:layout_width="0dp"
-                                android:layout_height="fill_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
                                 android:text="@string/btnUnassigned"
-                                android:onClick="btnClickGeneric"/>
+                                android:onClick="btnClickGeneric"
+                                android:singleLine="true"/>
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -391,51 +412,55 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:weightSum="1">
 
             <Button
                 android:id="@+id/btnMic"
-                style="@style/AppsActivityButton"
+                style="@style/AppsBottomButtons"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/btnMic"
-                android:onClick="btnMicClick"/>
+                android:onClick="btnMicClick"
+                android:singleLine="true"/>
 
             <Button
                 android:id="@+id/btnLocale"
-                style="@style/AppsActivityButton"
+                style="@style/AppsBottomButtons"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/btnLocale"
-                android:onClick="btnClickLocale"/>
+                android:onClick="btnClickLocale"
+                android:singleLine="true"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:weightSum="1">
             <Button
                 android:id="@+id/btnMainMenu"
-                style="@style/AppsActivityButton"
+                style="@style/AppsBottomButtons"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/btnMainMenu"
-                android:onClick="btnMainMenuClick"/>
+                android:onClick="btnMainMenuClick"
+                android:singleLine="true"/>
 
             <Button
                 android:id="@+id/btnAllApps"
-                style="@style/AppsActivityButton"
+                style="@style/AppsBottomButtons"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/btnAllApps"
-                android:enabled="false"/>
+                android:enabled="false"
+                android:singleLine="true"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
