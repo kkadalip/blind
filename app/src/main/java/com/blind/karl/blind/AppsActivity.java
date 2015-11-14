@@ -1,28 +1,22 @@
 package com.blind.karl.blind;
 
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +89,8 @@ public class AppsActivity extends Activity {
                 .setIndicator(getString(R.string.tab3))
                 .setContent(R.id.linearLayoutView3));
 
+        centerTabhostText();
+
         //getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
 
         // WORKING, ON TAB CHANGED EVENT!
@@ -105,8 +101,6 @@ public class AppsActivity extends Activity {
                 updateButtons();
             }
         });*/
-
-        centerTabhostText();
 
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -246,14 +240,43 @@ public class AppsActivity extends Activity {
         if(!btn_package.isEmpty()){
             PackageManager pm = getPackageManager();
             Intent intent = pm.getLaunchIntentForPackage(btn_package);
-            Log.d("log","btn generic package is " + btn_package);
-            this.startActivity(intent);
+            Log.d("log", "btn generic package is " + btn_package);
+            if(doesPackageExist(btn_package)){
+                this.startActivity(intent);
+            }else{
+                Log.e("error","package does not exist");
+            }
         }else{
             Log.d("log", btn_id + " has no package assigned yet");
             //startExtrasActivity(btn_id);
             startExtrasActivityForResult(btn_id);
         }
     }
+
+    // kõigi jaoks
+    // TODO selliselt peaks kõik üle käima ja ära kontrollima, kui ei eksisteeri, siis eemalda (rakendamise käivitamisel)
+    public boolean doesPackageExist(String targetPackage){
+        List<ApplicationInfo> packages;
+        PackageManager pm;
+        pm = getPackageManager();
+        packages = pm.getInstalledApplications(0);
+        for (ApplicationInfo packageInfo : packages) {
+            if(packageInfo.packageName.equals(targetPackage))
+                return true;
+        }
+        return false;
+    }
+
+    // ainult ühe jaoks
+//    public boolean doesPackageExist(String targetPackage){
+//        PackageManager pm=getPackageManager();
+//        try {
+//            PackageInfo info=pm.getPackageInfo(targetPackage,PackageManager.GET_META_DATA);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            return false;
+//        }
+//        return true;
+//    }
 
 /*    public void btn1Click(View v){
         PackageManager pm = getPackageManager();

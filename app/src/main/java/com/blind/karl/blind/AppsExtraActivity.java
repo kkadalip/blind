@@ -226,8 +226,9 @@ public class AppsExtraActivity extends Activity {
                     //installedApps.add(app);
 
                     //installedAppsNamesPackages.put(pm.getApplicationLabel(app).toString(), app.processName.toString());
-                    installedAppsPackages.add(app.processName.toString());
-                    installedAppsNames.add(pm.getApplicationLabel(app).toString()); // real names
+
+                    //installedAppsPackages.add(app.processName.toString());
+                    //installedAppsNames.add(pm.getApplicationLabel(app).toString()); // real names
 
                     //Drawable icon = pm.getApplicationIcon(app); // real icons
                 }else if((app.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {// System app, don't add
