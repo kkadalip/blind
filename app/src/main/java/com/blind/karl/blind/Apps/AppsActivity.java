@@ -248,7 +248,7 @@ public class AppsActivity extends FragmentActivity {
     }*/
 
     // TODO add back later
-/*    public void setOnClickListenersForButtons(){
+    public void setOnClickListenersForButtons(){
         for (Button b : buttonsList) {
             b.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -261,7 +261,7 @@ public class AppsActivity extends FragmentActivity {
                 }
             });
         }
-    }*/
+    }
 
     @Override
     protected void onResume() {
