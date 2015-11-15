@@ -172,7 +172,7 @@ public class AppsActivity extends FragmentActivity {
         buttonsList.add(btn23);
         buttonsList.add(btn24);
 
-        setOnClickListenersForButtons();
+        //setOnClickListenersForButtons(); // TODO add back later
 
         btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
@@ -199,7 +199,8 @@ public class AppsActivity extends FragmentActivity {
         }
     }*/
 
-    public void setOnClickListenersForButtons(){
+    // TODO add back later
+/*    public void setOnClickListenersForButtons(){
         for (Button b : buttonsList) {
             b.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -212,13 +213,13 @@ public class AppsActivity extends FragmentActivity {
                 }
             });
         }
-    }
+    }*/
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        updateButtons(); // PIGEM recreate INTENT! TODO
+        //updateButtons(); // PIGEM recreate INTENT! TODO add back later
     }
 
     // asendaks recreate(), kui for result töötaks

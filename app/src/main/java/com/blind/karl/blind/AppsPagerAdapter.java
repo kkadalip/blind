@@ -14,10 +14,10 @@ public class AppsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        Fragment fragment = new DemoObjectFragment();
+        Fragment fragment = new AppsFragment();
         Bundle args = new Bundle();
         // Our object is just an integer :-P
-        args.putInt(DemoObjectFragment.ARG_OBJECT, i + 1);
+        args.putInt(AppsFragment.ARG_OBJECT, i + 1);
         fragment.setArguments(args);
         return fragment;
     }
