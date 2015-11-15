@@ -11,6 +11,13 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme2" parent="android:Theme.WithActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <!-- Generic menu title -->
     <style name="MenuTitle">
         <item name="android:gravity">center</item>
