@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class AppsActivity extends FragmentActivity {
+public class AppsActivityOld extends Activity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
     Button btn1;
@@ -66,24 +64,15 @@ public class AppsActivity extends FragmentActivity {
     Button btnLocale;
     private Locale myLocale;
 
-    //TabHost tabHost;
-
-    AppsPagerAdapter myPagerAdapter;
-    ViewPager myViewPager;
+    TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.apps_main);
 
-        // ViewPager and its adapters use support library
-        // fragments, so use getSupportFragmentManager.
-        myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager());
-        myViewPager = (ViewPager) findViewById(R.id.myViewPager);
-        myViewPager.setAdapter(myPagerAdapter);
-        myViewPager.setCurrentItem(3);
-
-        /*// Create the TabHost that will contain the Tabs
+        // Create the TabHost that will contain the Tabs
         tabHost = (TabHost) findViewById(android.R.id.tabhost);
 
         // Set the Tab name and layout (or activity)
@@ -100,7 +89,7 @@ public class AppsActivity extends FragmentActivity {
                 .setIndicator(getString(R.string.tab3))
                 .setContent(R.id.linearLayoutView3));
 
-        centerTabhostText();*/
+        centerTabhostText();
 
         //getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
 
@@ -177,13 +166,13 @@ public class AppsActivity extends FragmentActivity {
         btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
 
-/*        if(savedInstanceState != null){
+        if(savedInstanceState != null){
             tabHost.setCurrentTab(savedInstanceState.getInt("tabState"));
-        }*/
+        }
 
     } // ONCREATE END
 
-/*    @Override
+    @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         int selectedTab = tabHost.getCurrentTab();
@@ -197,7 +186,7 @@ public class AppsActivity extends FragmentActivity {
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
             tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title).setLayoutParams(rllp);
         }
-    }*/
+    }
 
     public void setOnClickListenersForButtons(){
         for (Button b : buttonsList) {
