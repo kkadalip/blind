@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package com.blind.karl.blind.Apps;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -13,14 +13,15 @@ import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TabHost;
+
+import com.blind.karl.blind.AppsExtraActivity;
+import com.blind.karl.blind.Listener;
+import com.blind.karl.blind.MenuActivity;
+import com.blind.karl.blind.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,9 @@ public class AppsActivity extends FragmentActivity {
 
         final ActionBar actionBar = getActionBar();
 
+        actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
+        actionBar.setDisplayShowTitleEnabled(false); // hides action bar title
+
         // Specify that tabs should be displayed in the action bar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -94,7 +98,8 @@ public class AppsActivity extends FragmentActivity {
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
             public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                // show the given tab
+                // When the tab is selected, switch to the corresponding page in the ViewPager.
+                myViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -107,6 +112,15 @@ public class AppsActivity extends FragmentActivity {
                 // probably ignore this event
             }
         };
+
+        myViewPager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        // When swiping between pages, select the corresponding tab.
+                        getActionBar().setSelectedNavigationItem(position);
+                    }
+                });
 
         // Add 3 tabs, specifying the tab's text and TabListener
         for (int i = 0; i < 3; i++) {

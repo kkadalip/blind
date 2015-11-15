@@ -10,6 +10,8 @@
     <color name="grey_light_disabled">#878787</color>
     <color name="grey_darker_disabled">#636363</color>
 
+    <color name="black">#000000</color>
+
     <color name="yellow_light">#ffff00</color>
     <color name="yellow_darker">#e6e700</color>
 

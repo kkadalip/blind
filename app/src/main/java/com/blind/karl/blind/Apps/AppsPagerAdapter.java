@@ -1,11 +1,11 @@
-package com.blind.karl.blind;
+package com.blind.karl.blind.Apps;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.View;
+
+import com.blind.karl.blind.Apps.AppsFragment;
 
 public class AppsPagerAdapter extends FragmentPagerAdapter {
     public AppsPagerAdapter(FragmentManager fm) {
