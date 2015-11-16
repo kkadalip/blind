@@ -12,12 +12,6 @@ public class AppsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-/*        Fragment fragment1 = new AppsFragment1();
-        Bundle args = new Bundle();
-        // Our object is just an integer :-P
-        args.putInt(AppsFragment1.ARG_OBJECT, i + 1);
-        fragment1.setArguments(args);
-        return fragment1;*/
 
         Bundle args = new Bundle();
         args.putInt(AppsFragment1.ARG_OBJECT, position + 1);

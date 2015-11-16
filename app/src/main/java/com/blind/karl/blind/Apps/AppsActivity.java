@@ -30,33 +30,6 @@ import java.util.Locale;
 public class AppsActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
-    Button btn1;
-    Button btn2;
-    Button btn3;
-    Button btn4;
-    Button btn5;
-    Button btn6;
-    Button btn7;
-    Button btn8;
-
-    Button btn9;
-    Button btn10;
-    Button btn11;
-    Button btn12;
-    Button btn13;
-    Button btn14;
-    Button btn15;
-    Button btn16;
-
-    Button btn17;
-    Button btn18;
-    Button btn19;
-    Button btn20;
-    Button btn21;
-    Button btn22;
-    Button btn23;
-    Button btn24;
-
     List<Button> buttonsList;
 
     Vibrator v;
@@ -69,8 +42,6 @@ public class AppsActivity extends FragmentActivity {
     Button btnLocale;
     private Locale myLocale;
 
-    //TabHost tabHost;
-
     AppsPagerAdapter myPagerAdapter;
     ViewPager myViewPager;
 
@@ -79,8 +50,7 @@ public class AppsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
 
-        // ViewPager and its adapters use support library
-        // fragments, so use getSupportFragmentManager.
+        // ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager());
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
@@ -130,97 +100,8 @@ public class AppsActivity extends FragmentActivity {
                             .setTabListener(tabListener));
         }
 
-
-        /*// Create the TabHost that will contain the Tabs
-        tabHost = (TabHost) findViewById(android.R.id.tabhost);
-
-        // Set the Tab name and layout (or activity)
-        tabHost.setup();
-        tabHost.addTab(tabHost.newTabSpec("First Tab")
-                .setIndicator(getString(R.string.tab1))
-                .setContent(R.id.linearLayoutView1));
-
-        tabHost.addTab(tabHost.newTabSpec("Second Tab")
-                .setIndicator(getString(R.string.tab2))
-                .setContent(R.id.linearLayoutView2));
-
-        tabHost.addTab(tabHost.newTabSpec("Third Tab")
-                .setIndicator(getString(R.string.tab3))
-                .setContent(R.id.linearLayoutView3));
-
-        centerTabhostText();*/
-
-        //getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
-
-        // WORKING, ON TAB CHANGED EVENT!
-/*        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                //int i = getTabHost().getCurrentTab();
-                updateButtons();
-            }
-        });*/
-
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
-
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn5 = (Button) findViewById(R.id.btn5);
-        btn6 = (Button) findViewById(R.id.btn6);
-        btn7 = (Button) findViewById(R.id.btn7);
-        btn8 = (Button) findViewById(R.id.btn8);
-
-        btn9 = (Button) findViewById(R.id.btn9);
-        btn10 = (Button) findViewById(R.id.btn10);
-        btn11 = (Button) findViewById(R.id.btn11);
-        btn12 = (Button) findViewById(R.id.btn12);
-        btn13 = (Button) findViewById(R.id.btn13);
-        btn14 = (Button) findViewById(R.id.btn14);
-        btn15 = (Button) findViewById(R.id.btn15);
-        btn16 = (Button) findViewById(R.id.btn16);
-
-        btn17 = (Button) findViewById(R.id.btn17);
-        btn18 = (Button) findViewById(R.id.btn18);
-        btn19 = (Button) findViewById(R.id.btn19);
-        btn20 = (Button) findViewById(R.id.btn20);
-        btn21 = (Button) findViewById(R.id.btn21);
-        btn22 = (Button) findViewById(R.id.btn22);
-        btn23 = (Button) findViewById(R.id.btn23);
-        btn24 = (Button) findViewById(R.id.btn24);
-
-        buttonsList = new ArrayList<>();
-
-        buttonsList.add(btn1);
-        buttonsList.add(btn2);
-        buttonsList.add(btn3);
-        buttonsList.add(btn4);
-        buttonsList.add(btn5);
-        buttonsList.add(btn6);
-        buttonsList.add(btn7);
-        buttonsList.add(btn8);
-
-        buttonsList.add(btn9);
-        buttonsList.add(btn10);
-        buttonsList.add(btn11);
-        buttonsList.add(btn12);
-        buttonsList.add(btn13);
-        buttonsList.add(btn14);
-        buttonsList.add(btn15);
-        buttonsList.add(btn16);
-
-        buttonsList.add(btn17);
-        buttonsList.add(btn18);
-        buttonsList.add(btn19);
-        buttonsList.add(btn20);
-        buttonsList.add(btn21);
-        buttonsList.add(btn22);
-        buttonsList.add(btn23);
-        buttonsList.add(btn24);
-
-        //setOnClickListenersForButtons(); // TODO add back later
 
         btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
@@ -247,48 +128,9 @@ public class AppsActivity extends FragmentActivity {
         }
     }*/
 
-    // TODO add back later
-    public void setOnClickListenersForButtons(){
-        for (Button b : buttonsList) {
-            b.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    //your action on long click
-                    String btn_id = getResources().getResourceEntryName(v.getId());
-                    //startExtrasActivity(btn_id);
-                    startExtrasActivityForResult(btn_id);
-                    return true;
-                }
-            });
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-
-        //updateButtons(); // PIGEM recreate INTENT! TODO add back later
-    }
-
-    // asendaks recreate(), kui for result töötaks
-    public void updateButtons(){
-        //btn1_package = getButtonSelection("btn1_package");
-        //btn1_name = getButtonSelection("btn1_name");
-        //btn1.setText(btn1_name);
-
-        for (Button b : buttonsList) {
-            //String idAsString = getResources().getResourceName(b.getId()); //com.blind.karl.blind:id/btn1
-            String idAsString = getResources().getResourceEntryName(b.getId());
-            Log.d("log","id as string is " + idAsString);
-            String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
-            if(!btn_package_generic.isEmpty()){
-                String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
-                b.setText(btn_name_generic);
-            }
-        }
-
-        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
-        //packageForIntent = btn_package; // FOR LISTENER
     }
 
     public void btnClickGeneric(View v){
