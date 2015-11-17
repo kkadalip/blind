@@ -34,7 +34,7 @@ import java.util.Locale;
 public class AppsActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
-    LinearLayout llAppsMain;
+    //LinearLayout llAppsMain;
 
     List<Button> buttonsList;
 
@@ -63,7 +63,8 @@ public class AppsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
 
-        llAppsMain = (LinearLayout) findViewById(R.id.linearLayoutAppsMain);
+        //llAppsMain = (LinearLayout) findViewById(R.id.linearLayoutAppsMain);
+
 
         //llAppsMain.onInterceptTouchEvent(MotionEvent event)
 /*
