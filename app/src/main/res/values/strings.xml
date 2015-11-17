@@ -34,9 +34,6 @@
     <string name="btnDelete">Delete</string>
     <string name="btnEdit">Edit</string>
 
-
-    <string name="tab1">Page 1</string>
-    <string name="tab2">Page 2</string>
-    <string name="tab3">Page 3</string>
+    <string name="tab">Page</string>
 
 </resources>

@@ -1,3 +1,4 @@
+/*
 package com.blind.karl.blind;
 
 import android.app.Activity;
@@ -94,13 +95,15 @@ public class AppsActivityOld extends Activity {
         //getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
 
         // WORKING, ON TAB CHANGED EVENT!
+*/
 /*        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
                 //int i = getTabHost().getCurrentTab();
                 updateButtons();
             }
-        });*/
+        });*//*
+
 
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -278,12 +281,14 @@ public class AppsActivityOld extends Activity {
 //        return true;
 //    }
 
+*/
 /*    public void btn1Click(View v){
         PackageManager pm = getPackageManager();
         Intent intent = pm.getLaunchIntentForPackage(btn1_package);
         Log.d("log","btn1 package is " + btn1_package);
         this.startActivity(intent);
-    }*/
+    }*//*
+
 
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
@@ -292,13 +297,15 @@ public class AppsActivityOld extends Activity {
         return result;
     }
 
+*/
 /*    public void startExtrasActivity(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
 
         intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
 
         this.startActivity(intent);
-    }*/
+    }*//*
+
 
     static final int START_EXTRAS_REQUEST = 1;  // The request code
     // http://developer.android.com/training/basics/intents/result.html
@@ -419,11 +426,14 @@ public class AppsActivityOld extends Activity {
         editor.commit();
     }
 
+*/
 /*    public void loadLocale()
     {
         String langPref = "Language";
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         String language = prefs.getString(langPref, "");
         changeLang(language);
-    }*/
+    }*//*
+
 }
+*/

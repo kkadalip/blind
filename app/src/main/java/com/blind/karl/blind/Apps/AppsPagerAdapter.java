@@ -39,6 +39,6 @@ public class AppsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 3; // List<Fragment> fragments; return this.fragments.size();
     }
 }

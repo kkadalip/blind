@@ -13,10 +13,14 @@ import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.blind.karl.blind.AppsExtraActivity;
 import com.blind.karl.blind.Listener;
@@ -29,6 +33,8 @@ import java.util.Locale;
 
 public class AppsActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
+
+    LinearLayout llAppsMain;
 
     List<Button> buttonsList;
 
@@ -45,10 +51,71 @@ public class AppsActivity extends FragmentActivity {
     AppsPagerAdapter myPagerAdapter;
     ViewPager myViewPager;
 
+    ActionBar actionBar;
+
+/*    private boolean isReadyForPull(){
+        return mScrollView.getScrollY()==0;
+    }*/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
+
+        llAppsMain = (LinearLayout) findViewById(R.id.linearLayoutAppsMain);
+
+        //llAppsMain.onInterceptTouchEvent(MotionEvent event)
+/*
+
+
+        llAppsMain.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // get pointer index from the event object
+                //int pointerIndex = event.getActionIndex();
+
+                // get pointer ID
+                //int pointerId = event.getPointerId(pointerIndex);
+
+                // get masked (not specific to a pointer) action
+                int maskedAction = event.getActionMasked(); // or? final int action = event.getAction();
+
+                Boolean mIsBeingDragged = false;
+                float mLastMotionY = 0;
+                float mLastMotionX = 0;
+                Log.d("log","masked action is " + event.toString());
+                switch (maskedAction) {
+                    case MotionEvent.ACTION_MOVE: {
+                        if (mIsBeingDragged) {
+                            mLastMotionY = event.getY();
+                            mLastMotionX = event.getX();
+                            //pullEvent();
+                            Log.d("log", "PULL EVENT");
+                            return true;
+                        }
+*//*                        else if (isReadyForPull()) {
+                            final float y = event.getY(), x = event.getX();
+                            final float diff, oppositeDiff, absDiff;
+                            diff = y - mLastMotionY;
+                            oppositeDiff = x - mLastMotionX;
+                            absDiff = Math.abs(diff);
+                            ViewConfiguration config = ViewConfiguration.get(getContext());
+
+                            if (absDiff > config.getScaledTouchSlop() &&  absDiff >
+                                    Math.abs(oppositeDiff) && diff >= 1f) {
+                                mLastMotionY = y;
+                                mLastMotionX = x;
+                                mIsBeingDragged = true;
+                            }
+                        }*//*
+                        break;
+                    }
+                }
+                return false;
+            }
+        });*/
+
 
         // ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager());
@@ -56,7 +123,7 @@ public class AppsActivity extends FragmentActivity {
         myViewPager.setAdapter(myPagerAdapter);
         myViewPager.setCurrentItem(3);
 
-        final ActionBar actionBar = getActionBar();
+        actionBar = getActionBar();
 
         actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
         actionBar.setDisplayShowTitleEnabled(false); // hides action bar title
@@ -96,7 +163,7 @@ public class AppsActivity extends FragmentActivity {
         for (int i = 0; i < 3; i++) {
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText("Tab " + (i + 1))
+                            .setText(getString(R.string.tab) + " " + (i + 1))
                             .setTabListener(tabListener));
         }
 
