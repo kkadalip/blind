@@ -21,6 +21,8 @@ import com.blind.karl.blind.R;
 // http://neevek.net/posts/2013/10/13/implementing-onInterceptTouchEvent-and-onTouchEvent-for-ViewGroup.html
 public class CustomLinearLayout extends LinearLayout {
 
+    //ViewPager vp;
+
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
@@ -31,6 +33,9 @@ public class CustomLinearLayout extends LinearLayout {
 
     public CustomLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+
+
 //        init();
 
 /*        // Gesture detection
@@ -88,9 +93,10 @@ public class CustomLinearLayout extends LinearLayout {
     boolean mIsBeingDragged = false;
 
     float mStartX = 0;
+    float mStartY = 0;
 
-    float mLastY = 0;
     float mLastX = 0;
+    float mLastY = 0;
 
     float mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
 
@@ -134,6 +140,47 @@ public class CustomLinearLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_CANCEL:
+
+            case MotionEvent.ACTION_UP:
+                mIsBeingDragged = false;
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                float x = event.getX();
+                float y = event.getY();
+
+                float xDelta = Math.abs(x - mLastX);
+                float yDelta = Math.abs(y - mLastY);
+
+                float xDeltaTotal = x - mStartX;
+
+                if (!mIsBeingDragged && yDelta > xDelta && Math.abs(xDeltaTotal) > mTouchSlop) {
+                    mIsBeingDragged = true;
+                    mStartX = x;
+                    xDeltaTotal = 0;
+                }
+
+                if (xDeltaTotal < 0)
+                    xDeltaTotal = 0;
+
+                if (mIsBeingDragged) {
+                    //scrollBy();
+                    //scrollTo((int)xDeltaTotal, 0); // NOT THE CORRECT THING, moves while linearlayout
+                    ViewPager vp = (ViewPager) findViewById(R.id.myViewPager);
+                    vp.scrollBy((int)xDeltaTotal,0);
+                }
+
+                mLastX = x;
+                mLastY = y;
+                break;
+        }
+
+        return true;
+    }
+/*    @Override
+    public boolean onTouchEvent(MotionEvent event) {
         Log.d(getClass().toString(),"onTouchEvent event: " + event.toString());
         switch (event.getAction()) {
             case MotionEvent.ACTION_CANCEL:
@@ -166,7 +213,7 @@ public class CustomLinearLayout extends LinearLayout {
         }
 
         return true;
-    }
+    }*/
 
 /*    @Override
     public boolean onTouchEvent(MotionEvent event) {
