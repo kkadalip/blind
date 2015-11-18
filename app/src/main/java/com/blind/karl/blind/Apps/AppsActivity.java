@@ -126,6 +126,11 @@ public class AppsActivity extends FragmentActivity {
         myViewPager.setAdapter(myPagerAdapter);
         //myViewPager.setCurrentItem(3); // ??
 
+
+
+
+
+/*
         actionBar = getActionBar(); // getSupportActionBar();
 
         actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
@@ -168,7 +173,12 @@ public class AppsActivity extends FragmentActivity {
                     actionBar.newTab()
                             .setText(getString(R.string.tab) + " " + (i + 1))
                             .setTabListener(tabListener));
-        }
+        }*/
+
+
+
+
+
 
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);

@@ -20,7 +20,7 @@
         <item name="windowNoTitle">true</item>
     </style>-->
 
-    <style name="AppTheme2" parent="android:Theme.Holo">
+    <style name="AppTheme2" parent="android:Theme.Holo.NoActionBar">
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
@@ -35,17 +35,20 @@
         <item name="android:actionBarTabTextStyle">@style/MyAppActionBarTabTextStyle</item>
     </style>
 
+    <!--text in tabs-->
     <style name="MyAppActionBarTabTextStyle" parent="">
         <item name="android:textSize">25dp</item>
     </style>
 
+    <!--background and edges-->
     <style name="MyAppActionBarTabBarStyle" parent="">
-
     </style>
 
+    <!--tabs themselves-->
     <style name="MyAppActionBarTabStyle" parent="@android:style/Widget.ActionBar.TabView">
+        <!--<item name="android:gravity">center_horizontal</item>-->
         <!--<item name="android:background">@drawable/custom_button</item>-->
-        <item name="android:gravity">center_horizontal</item>
+
 <!--        <item name="android:minWidth">40dip</item>
         <item name="android:maxWidth">40dip</item>
         <item name="android:layout_width">0dip</item>
