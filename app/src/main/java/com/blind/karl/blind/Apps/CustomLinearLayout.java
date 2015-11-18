@@ -156,20 +156,21 @@ public class CustomLinearLayout extends LinearLayout {
 
                 float xDeltaTotal = x - mStartX;
 
-                if (!mIsBeingDragged && yDelta > xDelta && Math.abs(xDeltaTotal) > mTouchSlop) {
+                if (!mIsBeingDragged && Math.abs(xDeltaTotal) > mTouchSlop) { // yDelta > xDelta
                     mIsBeingDragged = true;
                     mStartX = x;
                     xDeltaTotal = 0;
                 }
 
-                if (xDeltaTotal < 0)
+                if (xDeltaTotal > 0){
                     xDeltaTotal = 0;
+                }
 
                 if (mIsBeingDragged) {
                     //scrollBy();
                     //scrollTo((int)xDeltaTotal, 0); // NOT THE CORRECT THING, moves while linearlayout
                     ViewPager vp = (ViewPager) findViewById(R.id.myViewPager);
-                    vp.scrollBy((int)xDeltaTotal,0);
+                    vp.scrollTo((int) -xDeltaTotal, 0);
                 }
 
                 mLastX = x;
@@ -179,41 +180,6 @@ public class CustomLinearLayout extends LinearLayout {
 
         return true;
     }
-/*    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        Log.d(getClass().toString(),"onTouchEvent event: " + event.toString());
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_CANCEL:
-            case MotionEvent.ACTION_UP:
-                mIsBeingDragged = false;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                float x = event.getX();
-                float y = event.getY();
-
-                float xDelta = Math.abs(x - mLastX);
-                float yDelta = Math.abs(y - mLastY);
-
-                float xDeltaTotal = x - mStartX;
-                if (!mIsBeingDragged && yDelta > xDelta && Math.abs(xDeltaTotal) > mTouchSlop) {
-                    mIsBeingDragged = true;
-                    mStartX = x;
-                    xDeltaTotal = 0;
-                }
-                if (xDeltaTotal < 0)
-                    xDeltaTotal = 0;
-
-                if (mIsBeingDragged) {
-                    scrollTo(0, (int) xDeltaTotal);
-                }
-
-                mLastX = x;
-                mLastY = y;
-                break;
-        }
-
-        return true;
-    }*/
 
 /*    @Override
     public boolean onTouchEvent(MotionEvent event) {
