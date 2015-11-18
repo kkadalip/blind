@@ -50,30 +50,6 @@ public class CustomLinearLayout extends LinearLayout {
         //ll = (CustomLinearLayout) findViewById(R.id.linearLayoutAppsMain);
     }
 
-/*    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            //if move event occurs
-            long downTime = SystemClock.uptimeMillis();
-            long eventTime = SystemClock.uptimeMillis() + 100;
-            float x = ev.getRawX();
-            float y = ev.getRawY();
-            int metaState = 0;
-            //create new motion event
-            MotionEvent motionEvent = MotionEvent.obtain(
-                    downTime,
-                    eventTime,
-                    MotionEvent.ACTION_DOWN,
-                    x,
-                    y,
-                    metaState
-            );
-            //I store a reference to listview in this layout. listview
-            ll.dispatchTouchEvent(motionEvent); //send event to listview
-            return true;
-        }
-        return super.dispatchTouchEvent(ev);
-    }*/
 
 /*    @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
@@ -127,13 +103,13 @@ public class CustomLinearLayout extends LinearLayout {
                 float x = event.getX();
                 float y = event.getY();
 
-                float xDelta = Math.abs(x - mLastX);
-                float yDelta = Math.abs(y - mLastY);
+                //float xDelta = Math.abs(x - mLastX);
+                //float yDelta = Math.abs(y - mLastY);
 
                 float xDeltaTotal = x - mStartX;
                 //float yDeltaTotal = y - mStartY;
 
-                if (xDelta > yDelta && Math.abs(xDeltaTotal) > mTouchSlop) {
+                if (Math.abs(xDeltaTotal) > mTouchSlop) { //xDelta > yDelta &&
                     mIsBeingDragged = true;
                     mStartX = x;
                     return true;
@@ -143,7 +119,7 @@ public class CustomLinearLayout extends LinearLayout {
 
         return false;
     }
-
+    boolean hasAlreadyChangedPage = false;
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -152,14 +128,15 @@ public class CustomLinearLayout extends LinearLayout {
 
             case MotionEvent.ACTION_UP:
                 mIsBeingDragged = false;
+                hasAlreadyChangedPage = false;
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 float x = event.getX();
                 float y = event.getY();
 
-                float xDelta = Math.abs(x - mLastX);
-                float yDelta = Math.abs(y - mLastY);
+                //float xDelta = Math.abs(x - mLastX);
+                //float yDelta = Math.abs(y - mLastY);
 
                 float xDeltaTotal = x - mStartX;
 
@@ -182,31 +159,33 @@ public class CustomLinearLayout extends LinearLayout {
                     ViewPager vp = (ViewPager) findViewById(R.id.myViewPager);
                     //vp.scrollTo((int) -xDeltaTotal, 0);
 
-                    Log.d("log", "delta total is " + Float.toString(xDeltaTotal));
+                    Log.d("log", "x delta total is " + Float.toString(xDeltaTotal));
                     if(xDeltaTotal < -300 && mStartX > x){
-                        Log.d("log","SWIPING RIGHT");
-                        int currentPage = vp.getCurrentItem();
-                        vp.setCurrentItem(currentPage + 1, true);
-                        mIsBeingDragged = false;
-                        xDeltaTotal = 0;
+                        if(hasAlreadyChangedPage == false){
+                            Log.d("log", "SWIPING RIGHT");
+                            int currentPage = vp.getCurrentItem();
+                            vp.setCurrentItem(currentPage + 1, true);
+                            mIsBeingDragged = false;
+                            xDeltaTotal = 0;
+                            //break; // necessary?
+                            hasAlreadyChangedPage = true;
+                        }
+
                     }
 
                     if(xDeltaTotal > 300 && mStartX < x){ // Swiping finger left to right, screen has to go left
-                        Log.d("log","SWIPING LEFT");
-                        int currentPage = vp.getCurrentItem();
-                        vp.setCurrentItem(currentPage - 1, true);
-                        mIsBeingDragged = false;
-                        xDeltaTotal = 0;
+                        if(hasAlreadyChangedPage == false){
+                            Log.d("log", "SWIPING LEFT");
+                            int currentPage = vp.getCurrentItem();
+                            vp.setCurrentItem(currentPage - 1, true);
+                            mIsBeingDragged = false;
+                            xDeltaTotal = 0;
+                            //break; // necessary?
+                            hasAlreadyChangedPage = true;
+                        }
+
                     }
 
-                    //if(xDeltaTotal > 300 && mStartX > x){
-                    //    Log.d("log","SWIPING RIGHT!");
-                    //}
-                    //else if(xDeltaTotal < 300 && mStartX < x){
-                    //    Log.d("log","SWIPING LEFT!");
-                    //}
-
-                    Log.d("log","x delta total is " + Float.toString(xDeltaTotal));
                 }
 
                 mLastX = x;
