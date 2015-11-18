@@ -35,8 +35,6 @@ public class CustomLinearLayout extends LinearLayout {
     public CustomLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-
-
 //        init();
 
 /*        // Gesture detection
