@@ -20,6 +20,7 @@ public class AppsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 fragment = new AppsFragment1();
+                //fragment = new AppsActivity.AppsFragment1();
                 break;
             case 1:
                 fragment = new AppsFragment2();

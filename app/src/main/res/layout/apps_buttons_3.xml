@@ -23,7 +23,7 @@
                 style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.1"
                 android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"
                 android:singleLine="true"/>
@@ -33,7 +33,7 @@
                 style="@style/AppsActivityButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.1"
                 android:text="@string/btnUnassigned"
                 android:onClick="btnClickGeneric"
                 android:singleLine="true"/>

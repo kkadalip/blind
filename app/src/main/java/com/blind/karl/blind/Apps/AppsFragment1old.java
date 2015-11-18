@@ -1,3 +1,4 @@
+/*
 package com.blind.karl.blind.Apps;
 
 import android.app.Activity;
@@ -5,15 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.blind.karl.blind.AppsExtraActivity;
 import com.blind.karl.blind.R;
@@ -21,7 +18,7 @@ import com.blind.karl.blind.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppsFragment1 extends Fragment {
+public class AppsFragment1old extends Fragment {
     public static final String ARG_OBJECT = "object";
 
     Button btn1;
@@ -65,33 +62,6 @@ public class AppsFragment1 extends Fragment {
         buttonsList.add(btn6);
         buttonsList.add(btn7);
         buttonsList.add(btn8);
-
-        // Gesture detection
-        gestureDetector = new GestureDetector(getActivity(), new MyGestureDetector());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        };
-
-        //imageView.setOnClickListener(SelectFilterActivity.this);
-        //btn1.setOnTouchListener(gestureListener);
-//        btn2.setOnTouchListener(gestureListener);
-//        btn3.setOnTouchListener(gestureListener);
-//        btn4.setOnTouchListener(gestureListener);
-//        btn5.setOnTouchListener(gestureListener);
-//        btn6.setOnTouchListener(gestureListener);
-//        btn7.setOnTouchListener(gestureListener);
-//        btn8.setOnTouchListener(gestureListener);
-
-/*
-        btn1.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-                Log.d("log","HAHA YOU CLICKED BTN 1");
-            }
-        });
-*/
 
         setOnClickListenersForButtons(buttonsList);
 
@@ -154,48 +124,5 @@ public class AppsFragment1 extends Fragment {
         return result;
     }
 
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private GestureDetector gestureDetector;
-    View.OnTouchListener gestureListener;
-
-    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            Log.d("log","FLING!");
-            try {
-                int currentTab = getActivity().getActionBar().getSelectedNavigationIndex(); // first tab is 0, second 1 ...
-                Log.d("log", "current tab is " + Integer.toString(currentTab));
-
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-                    return false;
-                // right to left swipe
-                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    Log.d("log", "right swipe");
-                    if(currentTab < 2){
-                        getActivity().getActionBar().setSelectedNavigationItem(currentTab + 1);
-                    }
-                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    Log.d("log", "left swipe");
-                    if(currentTab > 0){
-                        getActivity().getActionBar().setSelectedNavigationItem(currentTab - 1);
-                    }
-                    //AppsActivity.this.changeTab(2);
-
-                }
-            } catch (Exception e) {
-                // nothing
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            Log.d("log","down meh");
-            return true;
-        }
-
-    }
-
 }
+*/

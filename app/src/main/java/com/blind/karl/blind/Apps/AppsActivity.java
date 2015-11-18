@@ -180,6 +180,11 @@ public class AppsActivity extends FragmentActivity {
 
     } // ONCREATE END
 
+    public void changeTab(int tabNumber){
+        // tab.getPosition()
+        myViewPager.setCurrentItem(tabNumber);
+    }
+
 /*    @Override
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
@@ -202,6 +207,7 @@ public class AppsActivity extends FragmentActivity {
     }
 
     public void btnClickGeneric(View v){
+        Log.d("log","BTN CLICK GENERIC CLICKED!");
         String btn_id = getResources().getResourceEntryName(v.getId()); // tag for extra parameters v.getTag().toString();
         Log.d("log", "id name is " + btn_id); // eg btn1, btn2
 
