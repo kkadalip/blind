@@ -9,7 +9,11 @@
 
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+
+
     </style>
+
+
 
 <!--    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -24,6 +28,31 @@
 
         <!--<item name="android:windowActionBar">false</item>-->
         <!--<item name="android:windowNoTitle">true</item>-->
+
+
+        <item name="android:actionBarTabStyle">@style/MyAppActionBarTabStyle</item>
+        <item name="android:actionBarTabBarStyle">@style/MyAppActionBarTabBarStyle</item>
+        <item name="android:actionBarTabTextStyle">@style/MyAppActionBarTabTextStyle</item>
+    </style>
+
+    <style name="MyAppActionBarTabTextStyle" parent="">
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="MyAppActionBarTabBarStyle" parent="">
+
+    </style>
+
+    <style name="MyAppActionBarTabStyle" parent="@android:style/Widget.ActionBar.TabView">
+        <!--<item name="android:background">@drawable/custom_button</item>-->
+        <item name="android:gravity">center_horizontal</item>
+<!--        <item name="android:minWidth">40dip</item>
+        <item name="android:maxWidth">40dip</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+
+        <item name="android:paddingLeft">1dip</item>
+        <item name="android:paddingRight">1dip</item>-->
     </style>
 
     <!--http://stackoverflow.com/questions/8024706/how-do-i-change-the-background-color-of-the-actionbar-of-an-actionbaractivity-us-->

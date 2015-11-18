@@ -15,12 +15,14 @@ import android.speech.SpeechRecognizer;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.blind.karl.blind.AppsExtraActivity;
 import com.blind.karl.blind.Listener;
@@ -124,7 +126,7 @@ public class AppsActivity extends FragmentActivity {
         myViewPager.setAdapter(myPagerAdapter);
         //myViewPager.setCurrentItem(3); // ??
 
-        actionBar = getActionBar();
+        actionBar = getActionBar(); // getSupportActionBar();
 
         actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
         actionBar.setDisplayShowTitleEnabled(false); // hides action bar title
@@ -179,6 +181,22 @@ public class AppsActivity extends FragmentActivity {
         }*/
 
     } // ONCREATE END
+
+/*    private void setTabsMaxWidth() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int screenWidth = displaymetrics.widthPixels;
+        final ActionBar actionBar = getActionBar();
+        final View tabView = actionBar.getTabAt(0).getCustomView();
+        final View tabContainerView = (View) tabView.getParent();
+        final int tabPadding = tabContainerView.getPaddingLeft() + tabContainerView.getPaddingRight();
+        final int tabs = actionBar.getTabCount();
+        for(int i=0 ; i < tabs ; i++) {
+            View tab = actionBar.getTabAt(i).getCustomView();
+            TextView text1 = (TextView) tab.findViewById(R.id.text1);
+            text1.setMaxWidth(screenWidth/tabs-tabPadding-1);
+        }
+    }*/
 
     public void changeTab(int tabNumber){
         // tab.getPosition()
