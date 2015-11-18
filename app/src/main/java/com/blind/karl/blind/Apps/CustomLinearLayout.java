@@ -18,7 +18,7 @@ import com.blind.karl.blind.R;
 
 // for advanced stuff http://stackoverflow.com/questions/9181529/detect-fling-gesture-over-clickable-items
 // http://stackoverflow.com/questions/21953833/android-onintercepttouchevent-doesnt-get-action-when-have-child-view
-// http://neevek.net/posts/2013/10/13/implementing-onInterceptTouchEvent-and-onTouchEvent-for-ViewGroup.html
+// NB http://neevek.net/posts/2013/10/13/implementing-onInterceptTouchEvent-and-onTouchEvent-for-ViewGroup.html current solution inspiration
 public class CustomLinearLayout extends LinearLayout {
 
     //ViewPager vp;
@@ -26,8 +26,9 @@ public class CustomLinearLayout extends LinearLayout {
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private GestureDetector gestureDetector;
-    View.OnTouchListener gestureListener;
+
+    //private GestureDetector gestureDetector;
+    //View.OnTouchListener gestureListener;
 
     //CustomLinearLayout ll;
 
@@ -113,6 +114,7 @@ public class CustomLinearLayout extends LinearLayout {
 
             case MotionEvent.ACTION_CANCEL:
                 Log.d(getClass().toString(),"onInterceptTouchEvent ACTION CANCEL");
+                break;
 
             case MotionEvent.ACTION_UP:
                 Log.d(getClass().toString(),"onInterceptTouchEvent ACTION UP");
@@ -121,12 +123,16 @@ public class CustomLinearLayout extends LinearLayout {
 
             case MotionEvent.ACTION_MOVE:
                 Log.d(getClass().toString(),"onInterceptTouchEvent ACTION MOVE");
+
                 float x = event.getX();
                 float y = event.getY();
+
                 float xDelta = Math.abs(x - mLastX);
                 float yDelta = Math.abs(y - mLastY);
 
                 float xDeltaTotal = x - mStartX;
+                //float yDeltaTotal = y - mStartY;
+
                 if (xDelta > yDelta && Math.abs(xDeltaTotal) > mTouchSlop) {
                     mIsBeingDragged = true;
                     mStartX = x;
@@ -142,6 +148,7 @@ public class CustomLinearLayout extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_CANCEL:
+                break;
 
             case MotionEvent.ACTION_UP:
                 mIsBeingDragged = false;
@@ -162,15 +169,44 @@ public class CustomLinearLayout extends LinearLayout {
                     xDeltaTotal = 0;
                 }
 
-                if (xDeltaTotal > 0){
+/*                if (xDeltaTotal > 0){
                     xDeltaTotal = 0;
-                }
+                }*/
 
                 if (mIsBeingDragged) {
                     //scrollBy();
                     //scrollTo((int)xDeltaTotal, 0); // NOT THE CORRECT THING, moves while linearlayout
+
+                    // vp.getScrollX()
+
                     ViewPager vp = (ViewPager) findViewById(R.id.myViewPager);
-                    vp.scrollTo((int) -xDeltaTotal, 0);
+                    //vp.scrollTo((int) -xDeltaTotal, 0);
+
+                    Log.d("log", "delta total is " + Float.toString(xDeltaTotal));
+                    if(xDeltaTotal < -300 && mStartX > x){
+                        Log.d("log","SWIPING RIGHT");
+                        int currentPage = vp.getCurrentItem();
+                        vp.setCurrentItem(currentPage + 1, true);
+                        mIsBeingDragged = false;
+                        xDeltaTotal = 0;
+                    }
+
+                    if(xDeltaTotal > 300 && mStartX < x){ // Swiping finger left to right, screen has to go left
+                        Log.d("log","SWIPING LEFT");
+                        int currentPage = vp.getCurrentItem();
+                        vp.setCurrentItem(currentPage - 1, true);
+                        mIsBeingDragged = false;
+                        xDeltaTotal = 0;
+                    }
+
+                    //if(xDeltaTotal > 300 && mStartX > x){
+                    //    Log.d("log","SWIPING RIGHT!");
+                    //}
+                    //else if(xDeltaTotal < 300 && mStartX < x){
+                    //    Log.d("log","SWIPING LEFT!");
+                    //}
+
+                    Log.d("log","x delta total is " + Float.toString(xDeltaTotal));
                 }
 
                 mLastX = x;

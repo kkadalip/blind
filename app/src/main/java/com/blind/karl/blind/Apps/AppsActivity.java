@@ -122,7 +122,7 @@ public class AppsActivity extends FragmentActivity {
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager());
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
-        myViewPager.setCurrentItem(3);
+        //myViewPager.setCurrentItem(3); // ??
 
         actionBar = getActionBar();
 
