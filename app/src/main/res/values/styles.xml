@@ -13,7 +13,11 @@
 
     </style>
 
-
+    <style name="PagerTabStripText">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textStyle">bold</item>
+        <!--<item name="android:textColor">#ffff00</item>-->
+    </style>
 
 <!--    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
