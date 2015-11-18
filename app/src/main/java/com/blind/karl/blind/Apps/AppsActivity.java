@@ -121,12 +121,10 @@ public class AppsActivity extends FragmentActivity {
 
 
         // ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
-        myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager());
+        myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager(), this);
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
-        //myViewPager.setCurrentItem(3); // ??
-
-
+        myViewPager.setCurrentItem(2); // middle as main
 
 
 

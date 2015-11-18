@@ -1,14 +1,24 @@
 package com.blind.karl.blind.Apps;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.blind.karl.blind.R;
+
 public class AppsPagerAdapter extends FragmentPagerAdapter {
-    public AppsPagerAdapter(FragmentManager fm) {
+    Context myContext;
+
+    public AppsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        myContext = context;
     }
+
+/*    public AppsPagerAdapter(FragmentManager fm) {
+        super(fm);
+    }*/
 
     @Override
     public Fragment getItem(int position) {
@@ -35,7 +45,8 @@ public class AppsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "OBJECT " + (position + 1);
+        //return "OBJECT " + (position + 1);
+        return  (myContext.getString(R.string.tab) + " " + (position + 1));
     }
 
     @Override
