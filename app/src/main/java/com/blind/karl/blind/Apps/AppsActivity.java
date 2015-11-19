@@ -319,13 +319,6 @@ public class AppsActivity extends FragmentActivity {
 //        return true;
 //    }
 
-/*    public void btn1Click(View v){
-        PackageManager pm = getPackageManager();
-        Intent intent = pm.getLaunchIntentForPackage(btn1_package);
-        Log.d("log","btn1 package is " + btn1_package);
-        this.startActivity(intent);
-    }*/
-
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -406,17 +399,27 @@ public class AppsActivity extends FragmentActivity {
         sr.startListening(recognizerIntent);
     }
 
+    public void updateButtons(List<Button> buttonsList){
+        for (Button b : buttonsList) {
+            String idAsString = this.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
+            Log.d("log","id as string is " + idAsString);
+            String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
+            if(!btn_package_generic.isEmpty()){
+                String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
+                b.setText(btn_name_generic);
+            }
+        }
+        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
+        //packageForIntent = btn_package; // FOR LISTENER
+    }
+
+    // MAIN MENU BUTTON:
     public void btnMainMenuClick(View v){
         Intent intent = new Intent(this, MenuActivity.class);
         this.startActivity(intent);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//
-//    }
-
-    // LANGUAGE:
+    // LANGUAGE SECTION START:
     public void btnClickLocale(View v){
         Locale current = Locale.getDefault();
         Log.d("log", "btn locale clicked, current locale is " + current.toString());
@@ -428,7 +431,6 @@ public class AppsActivity extends FragmentActivity {
         }
         recreate();
     }
-
     public void changeLang(String lang)
     {
         if(lang.equalsIgnoreCase("")){
@@ -444,7 +446,6 @@ public class AppsActivity extends FragmentActivity {
             //updateTexts();
         }
     }
-
     public void saveLocale(String lang)
     {
         String langPref = "Language";
@@ -453,29 +454,44 @@ public class AppsActivity extends FragmentActivity {
         editor.putString(langPref, lang);
         editor.commit();
     }
+    // LANGUAGE SECTION END
 
-    public void updateButtons(List<Button> buttonsList){
-        for (Button b : buttonsList) {
-            String idAsString = this.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
-            Log.d("log","id as string is " + idAsString);
-            String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
-            if(!btn_package_generic.isEmpty()){
-                String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
-                b.setText(btn_name_generic);
-            }
-        }
-        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
-        //packageForIntent = btn_package; // FOR LISTENER
-    }
+}
 
-    public static String getButtonSelection(Context context, String key){
+
+
+
+
+
+
+
+/*    public void btn1Click(View v){
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage(btn1_package);
+        Log.d("log","btn1 package is " + btn1_package);
+        this.startActivity(intent);
+    }*/
+
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
+
+/*    public void loadLocale()
+    {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        String language = prefs.getString(langPref, "");
+        changeLang(language);
+    }*/
+
+/*    public static String getButtonSelection(Context context, String key){
         SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         String result = settings.getString(key, ""); // default value None before, now empty string
         return result;
-    }
+    }*/
 
-}
 
 /*    public void startExtrasActivity(String btn_id_as_extra){
         Intent intent = new Intent(this, AppsExtraActivity.class);
@@ -513,10 +529,3 @@ public class AppsActivity extends FragmentActivity {
     }*/
 
 
-/*    public void loadLocale()
-    {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-        String language = prefs.getString(langPref, "");
-        changeLang(language);
-    }*/
