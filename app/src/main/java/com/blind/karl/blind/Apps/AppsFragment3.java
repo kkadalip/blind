@@ -62,6 +62,8 @@ public class AppsFragment3 extends Fragment {
 
         setOnClickListenersForButtons(buttonsList);
 
+        ((AppsActivity)getActivity()).addButtonsToList(buttonsList);
+
         return rootView;
     }
 

@@ -66,6 +66,8 @@ public class AppsFragment1 extends Fragment {
 
         setOnClickListenersForButtons(buttonsList);
 
+        ((AppsActivity)getActivity()).addButtonsToList(buttonsList);
+
         return rootView;
     }
 
@@ -73,7 +75,6 @@ public class AppsFragment1 extends Fragment {
     public void onResume() {
         super.onResume();
         ((AppsActivity)getActivity()).updateButtons(buttonsList);
-
     }
 
     public void setOnClickListenersForButtons(List<Button> buttonsList){

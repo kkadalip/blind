@@ -90,73 +90,14 @@ public class AppsActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
-/*
-        View fragment1 = getFragmentManager().findFragmentById(R.id.linearLayoutView1).getView();
-        View fragment2 = getFragmentManager().findFragmentById(R.id.linearLayoutView2).getView();
-        View fragment3 = getFragmentManager().findFragmentById(R.id.linearLayoutView3).getView();
-
-        // Fragment 1
-        btn1 = (Button) fragment1.findViewById(R.id.btn1);
-        btn2 = (Button) fragment1.findViewById(R.id.btn2);
-        btn3 = (Button) fragment1.findViewById(R.id.btn3);
-        btn4 = (Button) fragment1.findViewById(R.id.btn4);
-        btn5 = (Button) fragment1.findViewById(R.id.btn5);
-        btn6 = (Button) fragment1.findViewById(R.id.btn6);
-        btn7 = (Button) fragment1.findViewById(R.id.btn7);
-        btn8 = (Button) fragment1.findViewById(R.id.btn8);
-        // Fragment 2
-        btn9 = (Button) fragment2.findViewById(R.id.btn9);
-        btn10 = (Button) fragment2.findViewById(R.id.btn10);
-        btn11 = (Button) fragment2.findViewById(R.id.btn11);
-        btn12 = (Button) fragment2.findViewById(R.id.btn12);
-        btn13 = (Button) fragment2.findViewById(R.id.btn13);
-        btn14 = (Button) fragment2.findViewById(R.id.btn14);
-        btn15 = (Button) fragment2.findViewById(R.id.btn15);
-        btn16 = (Button) fragment2.findViewById(R.id.btn16);
-        // Fragment 3
-        btn17 = (Button) fragment3.findViewById(R.id.btn17);
-        btn18 = (Button) fragment3.findViewById(R.id.btn18);
-        btn19 = (Button) fragment3.findViewById(R.id.btn19);
-        btn20 = (Button) fragment3.findViewById(R.id.btn20);
-        btn21 = (Button) fragment3.findViewById(R.id.btn21);
-        btn22 = (Button) fragment3.findViewById(R.id.btn22);
-        btn23 = (Button) fragment3.findViewById(R.id.btn23);
-        btn24 = (Button) fragment3.findViewById(R.id.btn24);
-
-        buttonsList = new ArrayList<>();
-
-        buttonsList.add(btn1);
-        buttonsList.add(btn2);
-        buttonsList.add(btn3);
-        buttonsList.add(btn4);
-        buttonsList.add(btn5);
-        buttonsList.add(btn6);
-        buttonsList.add(btn7);
-        buttonsList.add(btn8);
-
-        buttonsList.add(btn9);
-        buttonsList.add(btn10);
-        buttonsList.add(btn11);
-        buttonsList.add(btn12);
-        buttonsList.add(btn13);
-        buttonsList.add(btn14);
-        buttonsList.add(btn15);
-        buttonsList.add(btn16);
-
-        buttonsList.add(btn17);
-        buttonsList.add(btn18);
-        buttonsList.add(btn19);
-        buttonsList.add(btn20);
-        buttonsList.add(btn21);
-        buttonsList.add(btn22);
-        buttonsList.add(btn23);
-        buttonsList.add(btn24);*/
 
         // ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager(), this);
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
         myViewPager.setCurrentItem(2); // middle as main
+
+        buttonsList = new ArrayList<>();
 
 /*
         actionBar = getActionBar(); // getSupportActionBar();
@@ -413,6 +354,10 @@ public class AppsActivity extends FragmentActivity {
         //packageForIntent = btn_package; // FOR LISTENER
     }
 
+    public void addButtonsToList(List<Button> bl){
+        buttonsList.addAll(bl);
+    }
+
     // MAIN MENU BUTTON:
     public void btnMainMenuClick(View v){
         Intent intent = new Intent(this, MenuActivity.class);
@@ -463,7 +408,67 @@ public class AppsActivity extends FragmentActivity {
 
 
 
+/*
+        View fragment1 = getFragmentManager().findFragmentById(R.id.linearLayoutView1).getView();
+        View fragment2 = getFragmentManager().findFragmentById(R.id.linearLayoutView2).getView();
+        View fragment3 = getFragmentManager().findFragmentById(R.id.linearLayoutView3).getView();
 
+        // Fragment 1
+        btn1 = (Button) fragment1.findViewById(R.id.btn1);
+        btn2 = (Button) fragment1.findViewById(R.id.btn2);
+        btn3 = (Button) fragment1.findViewById(R.id.btn3);
+        btn4 = (Button) fragment1.findViewById(R.id.btn4);
+        btn5 = (Button) fragment1.findViewById(R.id.btn5);
+        btn6 = (Button) fragment1.findViewById(R.id.btn6);
+        btn7 = (Button) fragment1.findViewById(R.id.btn7);
+        btn8 = (Button) fragment1.findViewById(R.id.btn8);
+        // Fragment 2
+        btn9 = (Button) fragment2.findViewById(R.id.btn9);
+        btn10 = (Button) fragment2.findViewById(R.id.btn10);
+        btn11 = (Button) fragment2.findViewById(R.id.btn11);
+        btn12 = (Button) fragment2.findViewById(R.id.btn12);
+        btn13 = (Button) fragment2.findViewById(R.id.btn13);
+        btn14 = (Button) fragment2.findViewById(R.id.btn14);
+        btn15 = (Button) fragment2.findViewById(R.id.btn15);
+        btn16 = (Button) fragment2.findViewById(R.id.btn16);
+        // Fragment 3
+        btn17 = (Button) fragment3.findViewById(R.id.btn17);
+        btn18 = (Button) fragment3.findViewById(R.id.btn18);
+        btn19 = (Button) fragment3.findViewById(R.id.btn19);
+        btn20 = (Button) fragment3.findViewById(R.id.btn20);
+        btn21 = (Button) fragment3.findViewById(R.id.btn21);
+        btn22 = (Button) fragment3.findViewById(R.id.btn22);
+        btn23 = (Button) fragment3.findViewById(R.id.btn23);
+        btn24 = (Button) fragment3.findViewById(R.id.btn24);
+
+        buttonsList = new ArrayList<>();
+
+        buttonsList.add(btn1);
+        buttonsList.add(btn2);
+        buttonsList.add(btn3);
+        buttonsList.add(btn4);
+        buttonsList.add(btn5);
+        buttonsList.add(btn6);
+        buttonsList.add(btn7);
+        buttonsList.add(btn8);
+
+        buttonsList.add(btn9);
+        buttonsList.add(btn10);
+        buttonsList.add(btn11);
+        buttonsList.add(btn12);
+        buttonsList.add(btn13);
+        buttonsList.add(btn14);
+        buttonsList.add(btn15);
+        buttonsList.add(btn16);
+
+        buttonsList.add(btn17);
+        buttonsList.add(btn18);
+        buttonsList.add(btn19);
+        buttonsList.add(btn20);
+        buttonsList.add(btn21);
+        buttonsList.add(btn22);
+        buttonsList.add(btn23);
+        buttonsList.add(btn24);*/
 
 /*    public void btn1Click(View v){
         PackageManager pm = getPackageManager();
