@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green_light">#79ff79</color>
+    <color name="green_darker">#00db00</color>
+
+    <color name="blue_light">#7986ff</color>
+    <color name="blue_darker">#001adb</color>
+
     <color name="grey_light">#ffffff</color>
     <color name="grey_darker">#dfdfdf</color>
-    <color name="grey_even_darker">#c1c1c1</color>
+
+    <color name="grey_dark_unassigned">#afafaf</color>
+    <color name="grey_darker_unassigned">#7e7e7e</color>
 
     <color name="grey_light_disabled">#878787</color>
     <color name="grey_darker_disabled">#636363</color>

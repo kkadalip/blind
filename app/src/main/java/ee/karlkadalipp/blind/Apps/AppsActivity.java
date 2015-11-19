@@ -55,7 +55,7 @@ public class AppsActivity extends FragmentActivity {
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager(), this);
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
-        myViewPager.setCurrentItem(2); // middle as main
+        myViewPager.setCurrentItem(1); // middle as main 1 means 2nd tab, atm middle
 
         buttonsList = new ArrayList<>();
 
@@ -206,7 +206,10 @@ public class AppsActivity extends FragmentActivity {
                 String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
                 b.setText(btn_name_generic);
             }else{
-                b.getBackground().setAlpha(128);
+                b.setBackgroundResource(R.drawable.custom_button_unassigned);
+                //b.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button_unassigned));
+                //b.getBackground().setAlpha(128);
+                //b.setBackground(getDrawable(R.drawable.custom_button_unassigned));
                 //b.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_even_darker));
             }
         }
