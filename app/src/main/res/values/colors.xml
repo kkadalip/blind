@@ -2,6 +2,7 @@
 <resources>
     <color name="grey_light">#ffffff</color>
     <color name="grey_darker">#dfdfdf</color>
+    <color name="grey_even_darker">#c1c1c1</color>
 
     <color name="grey_light_disabled">#878787</color>
     <color name="grey_darker_disabled">#636363</color>

@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -204,6 +205,9 @@ public class AppsActivity extends FragmentActivity {
             if(!btn_package_generic.isEmpty()){
                 String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
                 b.setText(btn_name_generic);
+            }else{
+                b.getBackground().setAlpha(128);
+                //b.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_even_darker));
             }
         }
         //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
