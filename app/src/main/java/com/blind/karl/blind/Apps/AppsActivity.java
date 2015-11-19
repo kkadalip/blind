@@ -70,11 +70,6 @@ public class AppsActivity extends FragmentActivity {
 
         btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
-
-/*        if(savedInstanceState != null){
-            tabHost.setCurrentTab(savedInstanceState.getInt("tabState"));
-        }*/
-
     } // ONCREATE END
 
     public void changeTab(int tabNumber){
@@ -261,7 +256,6 @@ public class AppsActivity extends FragmentActivity {
             android.content.res.Configuration config = new android.content.res.Configuration();
             config.locale = myLocale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
             //updateTexts();
         }
     }
@@ -286,7 +280,9 @@ public class AppsActivity extends FragmentActivity {
 
 
 
-
+/*        if(savedInstanceState != null){
+            tabHost.setCurrentTab(savedInstanceState.getInt("tabState"));
+        }*/
 
 /*    @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
