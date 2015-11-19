@@ -184,7 +184,8 @@ public class ListenTextActivity extends Activity {
                             c.getInputStream(),"utf-8"));
                     String line = null;
                     while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
+                        sb.append(line);
+                        sb.append("\n");
                     }
                     br.close();
                     Log.d(LOG_TAG, "[StuffJSON doInBackground] sb is " + sb.toString());
@@ -330,7 +331,7 @@ public class ListenTextActivity extends Activity {
             }
             Log.d(LOG_TAG, "[StuffJSON onResults] results " + results);
             Log.d(LOG_TAG, "[StuffJSON onResults] matches " + matches);
-            et_main.setText(matches.get(0).toString());
+            et_main.setText(matches.get(0));
         }
 
         @Override

@@ -239,7 +239,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             Log.d(LOG_TAG, "[onResults] results " + results);
             Log.d(LOG_TAG, "[onResults] matches " + matches);
             EditText editText = (EditText) findViewById(R.id.editText1);
-            editText.setText(matches.get(0).toString());
+            editText.setText(matches.get(0));
         }
 
         @Override
@@ -374,7 +374,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                             c.getInputStream(),"utf-8"));
                     String line;
                     while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
+                        sb.append(line);
+                        sb.append("\n");
                     }
                     br.close();
                     Log.d(LOG_TAG,"[StuffJSON doInBackground] sb is " + sb.toString());

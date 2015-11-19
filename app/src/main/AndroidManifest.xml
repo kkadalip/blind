@@ -26,6 +26,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--  On SDK version 23 and up, your app data will be automatically backed up and restored on app install. Consider adding the attribute android:fullBackupContent to specify an @xml resource which configures which files to backup. More info: https://developer.android.com/preview/backup/index.html-->
 
         <activity
             android:name="ee.karlkadalipp.blind.MainActivity"

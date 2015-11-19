@@ -82,14 +82,14 @@ public class Listener implements RecognitionListener {
 
         String result = "";
         if(matches.size() > 0){
-            result = matches.get(0).toString();
+            result = matches.get(0);
             for(Button b : buttonsList){
                 String button_text = b.getText().toString();
                 Log.d(LOG_TAG, "[onResults] Button text is " + button_text);
                 if(button_text.equalsIgnoreCase(result) || button_text.toLowerCase().contains(result.toLowerCase())){
                     Log.d(LOG_TAG, "[onResults] SUCCESS, FOUND MATCHING BUTTON");
                     SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = settings.edit();
+                    //SharedPreferences.Editor editor = settings.edit();
                     String btnId = context.getResources().getResourceEntryName(b.getId());
                     String btnPackage = settings.getString(btnId + "_package", "None");
 

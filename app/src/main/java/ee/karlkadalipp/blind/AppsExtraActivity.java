@@ -112,7 +112,8 @@ public class AppsExtraActivity extends Activity {
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(key,value); // Key, Value, to get it eg String language = prefs.getString(langPref, "");
-        editor.commit();
+        //editor.commit();
+        editor.apply();
     }
 
     public void Shortcut(View v){
@@ -166,7 +167,7 @@ public class AppsExtraActivity extends Activity {
         protected void onPostExecute(List<ApplicationInfo> apps) {
             super.onPostExecute(apps); //from DoInBackground
 
-            final List<ApplicationInfo> sortedApps = apps;
+            //final List<ApplicationInfo> sortedApps = apps;
 
             //List<ApplicationInfo> selectedApps;
 
@@ -220,7 +221,7 @@ public class AppsExtraActivity extends Activity {
                     //installedApps.add(app);
 
                     //installedAppsNamesPackages.put(pm.getApplicationLabel(app).toString(), app.processName.toString());
-                    installedAppsPackages.add(app.processName.toString());
+                    installedAppsPackages.add(app.processName);
                     installedAppsNames.add(pm.getApplicationLabel(app).toString());
 
                     //listViewApps.add(pm.getApplicationLabel(app).toString());
@@ -285,7 +286,8 @@ public class AppsExtraActivity extends Activity {
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(extraMessage+"_package");
         editor.remove(extraMessage + "_name");
-        editor.commit();
+        //editor.commit();
+        editor.apply();
 
         Intent returnIntent = new Intent(this, AppsActivity.class);
         //startActivity(returnIntent);

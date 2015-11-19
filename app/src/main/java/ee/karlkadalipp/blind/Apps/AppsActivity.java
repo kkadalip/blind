@@ -124,7 +124,7 @@ public class AppsActivity extends FragmentActivity {
 
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
+        //SharedPreferences.Editor editor = settings.edit();
         return settings.getString(key, ""); // RESULT. default value None before, now empty string
     }
 
@@ -257,7 +257,8 @@ public class AppsActivity extends FragmentActivity {
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(langPref, lang);
-        editor.commit();
+        //editor.commit();
+        editor.apply();
     }
     // LANGUAGE SECTION END
 
