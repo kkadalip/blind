@@ -73,7 +73,7 @@ public class AppsFragment1 extends Fragment {
     public void onResume() {
         super.onResume();
         ((AppsActivity)getActivity()).updateButtons(buttonsList);
-        //updateButtons();
+
     }
 
     public void setOnClickListenersForButtons(List<Button> buttonsList){
@@ -82,7 +82,6 @@ public class AppsFragment1 extends Fragment {
                 @Override
                 public boolean onLongClick(View v) {
                     String btn_id = getResources().getResourceEntryName(v.getId());
-                    //startExtrasActivity(btn_id);
                     ((AppsActivity)getActivity()).startExtrasActivityForResult(btn_id);
                     return true;
                 }
@@ -92,6 +91,14 @@ public class AppsFragment1 extends Fragment {
 }
 
 
+
+
+
+
+
+
+//updateButtons();
+//startExtrasActivity(btn_id);
 
 //        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
 //                Integer.toString(args.getInt(ARG_OBJECT)));
