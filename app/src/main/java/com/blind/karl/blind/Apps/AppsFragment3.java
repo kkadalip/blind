@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppsFragment3 extends Fragment {
+    String LOG_TAG = "[AppsFragment2]";
     public static final String ARG_OBJECT = "object";
 
     Button btn17;
@@ -38,7 +39,7 @@ public class AppsFragment3 extends Fragment {
         View rootView = inflater.inflate(R.layout.apps_buttons_3, container, false);
 
         Bundle args = getArguments();
-        Log.d("log", "args are " + Integer.toString(args.getInt(ARG_OBJECT)));
+        Log.d(LOG_TAG, "[onCreateView] args are " + Integer.toString(args.getInt(ARG_OBJECT)));
 
         btn17 = (Button) rootView.findViewById(R.id.btn17);
         btn18 = (Button) rootView.findViewById(R.id.btn18);

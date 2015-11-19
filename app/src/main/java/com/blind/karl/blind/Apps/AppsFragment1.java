@@ -23,6 +23,7 @@ import java.util.List;
 
 // http://stackoverflow.com/questions/12659747/call-an-activity-method-from-a-fragment
 public class AppsFragment1 extends Fragment {
+    String LOG_TAG = "[AppsFragment1]";
     public static final String ARG_OBJECT = "object";
 
     Button btn1;
@@ -42,7 +43,7 @@ public class AppsFragment1 extends Fragment {
         View rootView = inflater.inflate(R.layout.apps_buttons_1, container, false);
 
         Bundle args = getArguments();
-        Log.d("log", "args are " + Integer.toString(args.getInt(ARG_OBJECT)));
+        Log.d(LOG_TAG, "[onCreateView] args are " + Integer.toString(args.getInt(ARG_OBJECT)));
 
         btn1 = (Button) rootView.findViewById(R.id.btn1); // getView() works as well
         btn2 = (Button) rootView.findViewById(R.id.btn2);

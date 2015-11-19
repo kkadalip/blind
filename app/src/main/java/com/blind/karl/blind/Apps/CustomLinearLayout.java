@@ -20,50 +20,15 @@ import com.blind.karl.blind.R;
 // http://stackoverflow.com/questions/21953833/android-onintercepttouchevent-doesnt-get-action-when-have-child-view
 // NB http://neevek.net/posts/2013/10/13/implementing-onInterceptTouchEvent-and-onTouchEvent-for-ViewGroup.html current solution inspiration
 public class CustomLinearLayout extends LinearLayout {
-
-    //ViewPager vp;
+    String LOG_TAG = "[CustomLinearLayout]";
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-    //private GestureDetector gestureDetector;
-    //View.OnTouchListener gestureListener;
-
-    //CustomLinearLayout ll;
-
     public CustomLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-//        init();
-
-/*        // Gesture detection
-        gestureDetector = new GestureDetector(new MyGestureDetector()); // new GestureDetector(this, new MyGestureDetector());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        };*/
-
-        //ll = (CustomLinearLayout) findViewById(R.id.linearLayoutAppsMain);
     }
-
-
-/*    @Override
-    public boolean onInterceptTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                return false;
-
-            case MotionEvent.ACTION_MOVE:
-                return true; // Layout to consume all the touch events from its children
-
-            case MotionEvent.ACTION_UP:
-                return false;
-        }
-
-        return true;
-    }*/
 
     boolean mIsBeingDragged = false;
 
@@ -80,23 +45,23 @@ public class CustomLinearLayout extends LinearLayout {
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
-                Log.d(getClass().toString(),"onInterceptTouchEvent ACTION DOWN");
+                Log.d(LOG_TAG,"[onInterceptTouchEvent] ACTION DOWN");
                 mLastX = event.getX();
                 mLastY = event.getY();
                 mStartX = mLastX;
                 break;
 
             case MotionEvent.ACTION_CANCEL:
-                Log.d(getClass().toString(),"onInterceptTouchEvent ACTION CANCEL");
+                Log.d(LOG_TAG,"[onInterceptTouchEvent] ACTION CANCEL");
                 break;
 
             case MotionEvent.ACTION_UP:
-                Log.d(getClass().toString(),"onInterceptTouchEvent ACTION UP");
+                Log.d(LOG_TAG,"[onInterceptTouchEvent] ACTION UP");
                 mIsBeingDragged = false;
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Log.d(getClass().toString(),"onInterceptTouchEvent ACTION MOVE");
+                Log.d(LOG_TAG,"[onInterceptTouchEvent] ACTION MOVE");
 
                 float x = event.getX();
                 float y = event.getY();
@@ -144,9 +109,9 @@ public class CustomLinearLayout extends LinearLayout {
                     xDeltaTotal = 0;
                 }
 
-/*                if (xDeltaTotal > 0){
-                    xDeltaTotal = 0;
-                }*/
+                //if (xDeltaTotal > 0)
+                //   xDeltaTotal = 0;
+
 
                 if (mIsBeingDragged) {
                     //scrollBy();
@@ -157,10 +122,10 @@ public class CustomLinearLayout extends LinearLayout {
                     ViewPager vp = (ViewPager) findViewById(R.id.myViewPager);
                     //vp.scrollTo((int) -xDeltaTotal, 0);
 
-                    Log.d("log", "x delta total is " + Float.toString(xDeltaTotal));
+                    Log.d(LOG_TAG, "[onTouchEvent] x delta total is " + Float.toString(xDeltaTotal));
                     if(xDeltaTotal < -300 && mStartX > x){
                         if(hasAlreadyChangedPage == false){
-                            Log.d("log", "SWIPING RIGHT");
+                            Log.d(LOG_TAG, "[onTouchEvent] SWIPING RIGHT");
                             int currentPage = vp.getCurrentItem();
                             vp.setCurrentItem(currentPage + 1, true);
                             mIsBeingDragged = false;
@@ -173,7 +138,7 @@ public class CustomLinearLayout extends LinearLayout {
 
                     if(xDeltaTotal > 300 && mStartX < x){ // Swiping finger left to right, screen has to go left
                         if(hasAlreadyChangedPage == false){
-                            Log.d("log", "SWIPING LEFT");
+                            Log.d(LOG_TAG, "[onTouchEvent] SWIPING LEFT");
                             int currentPage = vp.getCurrentItem();
                             vp.setCurrentItem(currentPage - 1, true);
                             mIsBeingDragged = false;
@@ -193,6 +158,51 @@ public class CustomLinearLayout extends LinearLayout {
 
         return true;
     }
+
+}
+
+
+
+
+
+
+
+
+
+//ViewPager vp;
+//private GestureDetector gestureDetector;
+//View.OnTouchListener gestureListener;
+
+//CustomLinearLayout ll;
+//        init();
+
+/*        // Gesture detection
+        gestureDetector = new GestureDetector(new MyGestureDetector()); // new GestureDetector(this, new MyGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        };*/
+
+//ll = (CustomLinearLayout) findViewById(R.id.linearLayoutAppsMain);
+
+
+
+/*    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                return false;
+
+            case MotionEvent.ACTION_MOVE:
+                return true; // Layout to consume all the touch events from its children
+
+            case MotionEvent.ACTION_UP:
+                return false;
+        }
+
+        return true;
+    }*/
 
 /*    @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -251,8 +261,8 @@ public class CustomLinearLayout extends LinearLayout {
 
 
 // http://twigstechtips.blogspot.com.ee/2013/02/android-detecting-gesture-swipes-and.html
-    // http://stackoverflow.com/questions/937313/android-basic-gesture-detection
-    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+// http://stackoverflow.com/questions/937313/android-basic-gesture-detection
+/*    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {
@@ -260,9 +270,9 @@ public class CustomLinearLayout extends LinearLayout {
                     return false;
                 // right to left swipe
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    Log.d("log", "left swipe");
+                    Log.d(LOG_TAG, "[onFling] left swipe");
                 }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    Log.d("log", "right swipe");
+                    Log.d(LOG_TAG, "[onFling] right swipe");
                 }
             } catch (Exception e) {
                 // nothing
@@ -274,7 +284,4 @@ public class CustomLinearLayout extends LinearLayout {
         public boolean onDown(MotionEvent e) {
             return true;
         }
-    }
-
-}
-
+    }*/

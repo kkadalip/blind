@@ -37,6 +37,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class AppsActivity extends FragmentActivity {
+    String LOG_TAG = "[AppsActivity]"; // getClass().toString()
+
     List<Button> buttonsList;
 
     Vibrator v;
@@ -83,23 +85,23 @@ public class AppsActivity extends FragmentActivity {
     }
 
     public void btnClickGeneric(View v){
-        Log.d("log","BTN CLICK GENERIC CLICKED!");
+        Log.d(LOG_TAG,"[btnClickGeneric] CLICKED!");
         String btn_id = getResources().getResourceEntryName(v.getId()); // tag for extra parameters v.getTag().toString();
-        Log.d("log", "id name is " + btn_id); // eg btn1, btn2
+        Log.d(LOG_TAG, "[btnClickGeneric] btn_id: " + btn_id); // eg btn1, btn2
 
         String btn_package = getButtonSelection(btn_id + "_package");
         //if(!btn_package.equals("None")){
         if(!btn_package.isEmpty()){
             PackageManager pm = getPackageManager();
             Intent intent = pm.getLaunchIntentForPackage(btn_package);
-            Log.d("log", "btn generic package is " + btn_package);
+            Log.d(LOG_TAG, "[btnClickGeneric] package is " + btn_package);
             if(doesPackageExist(btn_package)){
                 this.startActivity(intent);
             }else{
-                Log.e("error","package does not exist");
+                Log.e(LOG_TAG,"[btnClickGeneric] error, package does not exist");
             }
         }else{
-            Log.d("log", btn_id + " has no package assigned yet");
+            Log.d(LOG_TAG, btn_id + "[btnClickGeneric] has no package assigned yet");
             //startExtrasActivity(btn_id);
             startExtrasActivityForResult(btn_id);
         }
@@ -150,15 +152,15 @@ public class AppsActivity extends FragmentActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("log", "onActivityResult");
+        Log.d(LOG_TAG, "[onActivityResult]");
         // Check which request we're responding to
         if (requestCode == START_EXTRAS_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                Log.d("log","result OK");
+                Log.d(LOG_TAG,"[onActivityResult] result OK");
                 recreate(); // või updatebuttons
             }else if(resultCode == RESULT_CANCELED){
-                Log.d("log","result CANCELED");
+                Log.d(LOG_TAG,"[onActivityResult] result CANCELED");
             }
         }
     }
@@ -180,10 +182,10 @@ public class AppsActivity extends FragmentActivity {
 
     // language checker? http://stackoverflow.com/questions/10538791/how-to-set-the-language-in-speech-recognition-on-android
     public void btnMicClick(View v){
-        Log.d("log", "mic button clicked");
+        Log.d(LOG_TAG, "[btnMicClick] mic button clicked");
 
         Locale current = Locale.getDefault();
-        Log.d("log", "btn btnMicClick + locale clicked, current locale is " + current.toString());
+        Log.d(LOG_TAG, "[btnMicClick] btn btnMicClick + locale clicked, current locale is " + current.toString());
         String currentLanguage = current.getLanguage();
 
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -191,19 +193,19 @@ public class AppsActivity extends FragmentActivity {
 
         if(currentLanguage.equals("et")){ // EESTI KEEL:
             recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            Log.d("log", "language for MIC is et");
+            Log.d(LOG_TAG, "[btnMicClick] language for MIC is et");
             String grammar_supporting_server = "ee.ioc.phon.android.speak.service.HttpRecognitionService";
             String continuous_full_duplex_server = "ee.ioc.phon.android.speak.service.WebSocketRecognitionService";
             sr = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName("ee.ioc.phon.android.speak", grammar_supporting_server));
             //recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         }else{ // if(currentLanguage.contains("en")){ // INGLISE KEEL:
-            Log.d("log", "language for MIC is NOT et");
+            Log.d(LOG_TAG, "[btnMicClick] language for MIC is NOT et");
             recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.US.toString());
             //recognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{"en"});
             sr = SpeechRecognizer.createSpeechRecognizer(this);
         }
         //sr.setRecognitionListener(new listener());
-        Log.d(getClass().toString(),"buttons list size in apps activity is " + buttonsList.size());
+        Log.d(LOG_TAG,"[btnMicClick] buttons list size in apps activity is " + buttonsList.size());
         myListener = new Listener(this, btnMic, buttonsList); //packageForIntent);
         sr.setRecognitionListener(myListener);
         sr.startListening(recognizerIntent);
@@ -212,7 +214,7 @@ public class AppsActivity extends FragmentActivity {
     public void updateButtons(List<Button> buttonsList){
         for (Button b : buttonsList) {
             String idAsString = this.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
-            Log.d("log","id as string is " + idAsString);
+            Log.d(LOG_TAG,"[updateButtons] id as string is " + idAsString);
             String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
             if(!btn_package_generic.isEmpty()){
                 String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
@@ -236,7 +238,7 @@ public class AppsActivity extends FragmentActivity {
     // LANGUAGE SECTION START:
     public void btnClickLocale(View v){
         Locale current = Locale.getDefault();
-        Log.d("log", "btn locale clicked, current locale is " + current.toString());
+        Log.d(LOG_TAG, "[btnClickLocale] btn locale clicked, current locale is " + current.toString());
         String currentLanguage = current.getLanguage();
         if(currentLanguage.equals("et")){
             changeLang("en");

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppsFragment2 extends Fragment {
+    String LOG_TAG = "[AppsFragment2]";
     public static final String ARG_OBJECT = "object";
 
     Button btn9;
@@ -39,7 +40,7 @@ public class AppsFragment2 extends Fragment {
         View rootView = inflater.inflate(R.layout.apps_buttons_2, container, false);
 
         Bundle args = getArguments();
-        Log.d("log", "args are " + Integer.toString(args.getInt(ARG_OBJECT))); // NULLPOINTER, argsi pealt
+        Log.d(LOG_TAG, "[onCreateView] args are " + Integer.toString(args.getInt(ARG_OBJECT))); // NULLPOINTER, argsi pealt
 
         btn9 = (Button) rootView.findViewById(R.id.btn9);
         btn10 = (Button) rootView.findViewById(R.id.btn10);
