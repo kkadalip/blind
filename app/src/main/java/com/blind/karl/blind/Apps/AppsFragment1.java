@@ -21,6 +21,7 @@ import com.blind.karl.blind.R;
 import java.util.ArrayList;
 import java.util.List;
 
+// http://stackoverflow.com/questions/12659747/call-an-activity-method-from-a-fragment
 public class AppsFragment1 extends Fragment {
     public static final String ARG_OBJECT = "object";
 
@@ -33,7 +34,7 @@ public class AppsFragment1 extends Fragment {
     Button btn7;
     Button btn8;
 
-    List<Button> buttonsList;
+    public List<Button> buttonsList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +47,8 @@ public class AppsFragment1 extends Fragment {
 //        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
 //                Integer.toString(args.getInt(ARG_OBJECT)));
 
-        btn1 = (Button) rootView.findViewById(R.id.btn1);
+        // getView().findViewById(R.id.your_view);
+        btn1 = (Button) rootView.findViewById(R.id.btn1); // getView() works as well
         btn2 = (Button) rootView.findViewById(R.id.btn2);
         btn3 = (Button) rootView.findViewById(R.id.btn3);
         btn4 = (Button) rootView.findViewById(R.id.btn4);
@@ -67,12 +69,12 @@ public class AppsFragment1 extends Fragment {
         buttonsList.add(btn8);
 
         // Gesture detection
-        gestureDetector = new GestureDetector(getActivity(), new MyGestureDetector());
+/*        gestureDetector = new GestureDetector(getActivity(), new MyGestureDetector());
         gestureListener = new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetector.onTouchEvent(event);
             }
-        };
+        };*/
 
         //imageView.setOnClickListener(SelectFilterActivity.this);
         //btn1.setOnTouchListener(gestureListener);
@@ -101,8 +103,8 @@ public class AppsFragment1 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        updateButtons();
+        ((AppsActivity)getActivity()).updateButtons(getContext(), buttonsList);
+        //updateButtons();
     }
 
     public void setOnClickListenersForButtons(List<Button> buttonsList){
@@ -110,7 +112,6 @@ public class AppsFragment1 extends Fragment {
             b.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    //your action on long click
                     String btn_id = getResources().getResourceEntryName(v.getId());
                     //startExtrasActivity(btn_id);
                     startExtrasActivityForResult(btn_id);
@@ -132,10 +133,9 @@ public class AppsFragment1 extends Fragment {
         this.startActivityForResult(intent, START_EXTRAS_REQUEST);
     }
 
-    public void updateButtons(){
+/*    public void updateButtons(){
         for (Button b : buttonsList) {
-            //String idAsString = getResources().getResourceName(b.getId()); //com.blind.karl.blind:id/btn1
-            String idAsString = getResources().getResourceEntryName(b.getId());
+            String idAsString = getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
             Log.d("log","id as string is " + idAsString);
             String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
             if(!btn_package_generic.isEmpty()){
@@ -145,22 +145,24 @@ public class AppsFragment1 extends Fragment {
         }
         //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
         //packageForIntent = btn_package; // FOR LISTENER
-    }
+    }*/
 
+/*
     public String getButtonSelection(String key){
         SharedPreferences settings = getActivity().getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         String result = settings.getString(key, ""); // default value None before, now empty string
         return result;
     }
+*/
 
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private GestureDetector gestureDetector;
-    View.OnTouchListener gestureListener;
+//    private static final int SWIPE_MIN_DISTANCE = 120;
+//    private static final int SWIPE_MAX_OFF_PATH = 250;
+//    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+//    private GestureDetector gestureDetector;
+//    View.OnTouchListener gestureListener;
 
-    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+/*    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             Log.d("log","FLING!");
@@ -196,6 +198,5 @@ public class AppsFragment1 extends Fragment {
             return true;
         }
 
-    }
-
+    }*/
 }

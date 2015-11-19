@@ -12,9 +12,11 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -36,9 +38,38 @@ import java.util.Locale;
 public class AppsActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
-    //LinearLayout llAppsMain;
+/*    // Fragment 1
+    Button btn1;
+    Button btn2;
+    Button btn3;
+    Button btn4;
+    Button btn5;
+    Button btn6;
+    Button btn7;
+    Button btn8;
+    // Fragment 2
+    Button btn9;
+    Button btn10;
+    Button btn11;
+    Button btn12;
+    Button btn13;
+    Button btn14;
+    Button btn15;
+    Button btn16;
+    // Fragment 3
+    Button btn17;
+    Button btn18;
+    Button btn19;
+    Button btn20;
+    Button btn21;
+    Button btn22;
+    Button btn23;
+    Button btn24;
+    // List of buttons*/
 
-    List<Button> buttonsList;
+    List<Button> buttonsList; // TODO get it populated
+
+    //LinearLayout llAppsMain;
 
     Vibrator v;
     Button btnMic;
@@ -53,80 +84,79 @@ public class AppsActivity extends FragmentActivity {
     AppsPagerAdapter myPagerAdapter;
     ViewPager myViewPager;
 
-    ActionBar actionBar;
-
-/*    private boolean isReadyForPull(){
-        return mScrollView.getScrollY()==0;
-    }*/
-
+    //ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
-
-        //llAppsMain = (LinearLayout) findViewById(R.id.linearLayoutAppsMain);
-
-
-        //llAppsMain.onInterceptTouchEvent(MotionEvent event)
 /*
+        View fragment1 = getFragmentManager().findFragmentById(R.id.linearLayoutView1).getView();
+        View fragment2 = getFragmentManager().findFragmentById(R.id.linearLayoutView2).getView();
+        View fragment3 = getFragmentManager().findFragmentById(R.id.linearLayoutView3).getView();
 
+        // Fragment 1
+        btn1 = (Button) fragment1.findViewById(R.id.btn1);
+        btn2 = (Button) fragment1.findViewById(R.id.btn2);
+        btn3 = (Button) fragment1.findViewById(R.id.btn3);
+        btn4 = (Button) fragment1.findViewById(R.id.btn4);
+        btn5 = (Button) fragment1.findViewById(R.id.btn5);
+        btn6 = (Button) fragment1.findViewById(R.id.btn6);
+        btn7 = (Button) fragment1.findViewById(R.id.btn7);
+        btn8 = (Button) fragment1.findViewById(R.id.btn8);
+        // Fragment 2
+        btn9 = (Button) fragment2.findViewById(R.id.btn9);
+        btn10 = (Button) fragment2.findViewById(R.id.btn10);
+        btn11 = (Button) fragment2.findViewById(R.id.btn11);
+        btn12 = (Button) fragment2.findViewById(R.id.btn12);
+        btn13 = (Button) fragment2.findViewById(R.id.btn13);
+        btn14 = (Button) fragment2.findViewById(R.id.btn14);
+        btn15 = (Button) fragment2.findViewById(R.id.btn15);
+        btn16 = (Button) fragment2.findViewById(R.id.btn16);
+        // Fragment 3
+        btn17 = (Button) fragment3.findViewById(R.id.btn17);
+        btn18 = (Button) fragment3.findViewById(R.id.btn18);
+        btn19 = (Button) fragment3.findViewById(R.id.btn19);
+        btn20 = (Button) fragment3.findViewById(R.id.btn20);
+        btn21 = (Button) fragment3.findViewById(R.id.btn21);
+        btn22 = (Button) fragment3.findViewById(R.id.btn22);
+        btn23 = (Button) fragment3.findViewById(R.id.btn23);
+        btn24 = (Button) fragment3.findViewById(R.id.btn24);
 
-        llAppsMain.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // get pointer index from the event object
-                //int pointerIndex = event.getActionIndex();
+        buttonsList = new ArrayList<>();
 
-                // get pointer ID
-                //int pointerId = event.getPointerId(pointerIndex);
+        buttonsList.add(btn1);
+        buttonsList.add(btn2);
+        buttonsList.add(btn3);
+        buttonsList.add(btn4);
+        buttonsList.add(btn5);
+        buttonsList.add(btn6);
+        buttonsList.add(btn7);
+        buttonsList.add(btn8);
 
-                // get masked (not specific to a pointer) action
-                int maskedAction = event.getActionMasked(); // or? final int action = event.getAction();
+        buttonsList.add(btn9);
+        buttonsList.add(btn10);
+        buttonsList.add(btn11);
+        buttonsList.add(btn12);
+        buttonsList.add(btn13);
+        buttonsList.add(btn14);
+        buttonsList.add(btn15);
+        buttonsList.add(btn16);
 
-                Boolean mIsBeingDragged = false;
-                float mLastMotionY = 0;
-                float mLastMotionX = 0;
-                Log.d("log","masked action is " + event.toString());
-                switch (maskedAction) {
-                    case MotionEvent.ACTION_MOVE: {
-                        if (mIsBeingDragged) {
-                            mLastMotionY = event.getY();
-                            mLastMotionX = event.getX();
-                            //pullEvent();
-                            Log.d("log", "PULL EVENT");
-                            return true;
-                        }
-*//*                        else if (isReadyForPull()) {
-                            final float y = event.getY(), x = event.getX();
-                            final float diff, oppositeDiff, absDiff;
-                            diff = y - mLastMotionY;
-                            oppositeDiff = x - mLastMotionX;
-                            absDiff = Math.abs(diff);
-                            ViewConfiguration config = ViewConfiguration.get(getContext());
-
-                            if (absDiff > config.getScaledTouchSlop() &&  absDiff >
-                                    Math.abs(oppositeDiff) && diff >= 1f) {
-                                mLastMotionY = y;
-                                mLastMotionX = x;
-                                mIsBeingDragged = true;
-                            }
-                        }*//*
-                        break;
-                    }
-                }
-                return false;
-            }
-        });*/
-
+        buttonsList.add(btn17);
+        buttonsList.add(btn18);
+        buttonsList.add(btn19);
+        buttonsList.add(btn20);
+        buttonsList.add(btn21);
+        buttonsList.add(btn22);
+        buttonsList.add(btn23);
+        buttonsList.add(btn24);*/
 
         // ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
         myPagerAdapter = new AppsPagerAdapter(getSupportFragmentManager(), this);
         myViewPager = (ViewPager) findViewById(R.id.myViewPager);
         myViewPager.setAdapter(myPagerAdapter);
         myViewPager.setCurrentItem(2); // middle as main
-
-
 
 /*
         actionBar = getActionBar(); // getSupportActionBar();
@@ -173,11 +203,6 @@ public class AppsActivity extends FragmentActivity {
                             .setTabListener(tabListener));
         }*/
 
-
-
-
-
-
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -189,6 +214,20 @@ public class AppsActivity extends FragmentActivity {
         }*/
 
     } // ONCREATE END
+
+/*    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        //return super.onCreateView(name, context, attrs);
+
+
+    }*/
+
+/*
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
+    }
+*/
 
 /*    private void setTabsMaxWidth() {
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -368,6 +407,7 @@ public class AppsActivity extends FragmentActivity {
             sr = SpeechRecognizer.createSpeechRecognizer(this);
         }
         //sr.setRecognitionListener(new listener());
+        Log.d(getClass().toString(),"buttons list size in apps activity is " + buttonsList.size());
         myListener = new Listener(this, btnMic, buttonsList); //packageForIntent);
         sr.setRecognitionListener(myListener);
         sr.startListening(recognizerIntent);
@@ -419,6 +459,27 @@ public class AppsActivity extends FragmentActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(langPref, lang);
         editor.commit();
+    }
+
+    public static void updateButtons(Context context, List<Button> buttonsList){
+        for (Button b : buttonsList) {
+            String idAsString = context.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
+            Log.d("log","id as string is " + idAsString);
+            String btn_package_generic = getButtonSelection(context, idAsString + "_package"); // btn1_package
+            if(!btn_package_generic.isEmpty()){
+                String btn_name_generic = getButtonSelection(context, idAsString + "_name"); // btn1_name
+                b.setText(btn_name_generic);
+            }
+        }
+        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
+        //packageForIntent = btn_package; // FOR LISTENER
+    }
+
+    public static String getButtonSelection(Context context, String key){
+        SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        String result = settings.getString(key, ""); // default value None before, now empty string
+        return result;
     }
 
 /*    public void loadLocale()

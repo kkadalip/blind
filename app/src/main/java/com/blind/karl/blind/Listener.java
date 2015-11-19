@@ -33,6 +33,7 @@ public class Listener implements RecognitionListener {
         //packageForIntent = s;
 
         buttonsList = bl;
+        Log.d(getClass().toString(), "buttons list size is " + buttonsList.size());
     }
 
     @Override
@@ -81,8 +82,6 @@ public class Listener implements RecognitionListener {
         String result = "";
         if(matches.size() > 0){
             result = matches.get(0).toString();
-
-
             for(Button b : buttonsList){
                 String button_text = b.getText().toString();
                 Log.d("log", "Button text is " + button_text);
@@ -102,8 +101,6 @@ public class Listener implements RecognitionListener {
                     }
                 }
             }
-
-
         }else{
             Log.d("log","NO MATCHES IN LISTENER CLASS");
         }
