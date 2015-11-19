@@ -39,7 +39,7 @@ public class AppsActivity extends FragmentActivity {
 
     SpeechRecognizer sr;
 
-    Button btnLocale;
+    //Button btnLocale;
     private Locale myLocale;
 
     AppsPagerAdapter myPagerAdapter;
@@ -61,14 +61,9 @@ public class AppsActivity extends FragmentActivity {
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
 
-        btnLocale = (Button) this.findViewById(R.id.btnLocale);
+        //btnLocale = (Button) this.findViewById(R.id.btnLocale);
         //loadLocale();
     } // ONCREATE END
-
-    public void changeTab(int tabNumber){
-        // tab.getPosition()
-        myViewPager.setCurrentItem(tabNumber);
-    }
 
     @Override
     protected void onResume() {
@@ -239,9 +234,10 @@ public class AppsActivity extends FragmentActivity {
     }
     public void changeLang(String lang)
     {
-        if(lang.equalsIgnoreCase("")){
+/*        if(lang.equalsIgnoreCase("")){
             //return;
-        }else{
+        }else{*/
+        if(!lang.equalsIgnoreCase("")){
             myLocale = new Locale(lang);
             saveLocale(lang);
             Locale.setDefault(myLocale);
@@ -271,7 +267,10 @@ public class AppsActivity extends FragmentActivity {
 
 
 
-
+/*    public void changeTab(int tabNumber){
+        // tab.getPosition()
+        myViewPager.setCurrentItem(tabNumber);
+    }*/
 
 /*        if(savedInstanceState != null){
             tabHost.setCurrentTab(savedInstanceState.getInt("tabState"));

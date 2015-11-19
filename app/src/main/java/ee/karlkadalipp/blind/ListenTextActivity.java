@@ -123,7 +123,7 @@ public class ListenTextActivity extends Activity {
                 publishProgress(i);
             }
 */
-            HashMap myParams = new HashMap();
+            HashMap<String,String> myParams = new HashMap<>();
             myParams.put("v", "6");
             myParams.put("speech", "hobune lammas orkester test 1234 2");
             Gson gson = new GsonBuilder().create();
@@ -182,7 +182,7 @@ public class ListenTextActivity extends Activity {
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             c.getInputStream(),"utf-8"));
-                    String line = null;
+                    String line;
                     while ((line = br.readLine()) != null) {
                         sb.append(line);
                         sb.append("\n");
@@ -326,13 +326,19 @@ public class ListenTextActivity extends Activity {
 
         @Override
         public void onResults(Bundle results) {
-            List<String> matches=new ArrayList<String>();
+            List<String> matches=new ArrayList<>();
             if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
                 matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             }
             Log.d(LOG_TAG, "[StuffJSON onResults] results " + results);
             Log.d(LOG_TAG, "[StuffJSON onResults] matches " + matches);
-            et_main.setText(matches.get(0));
+
+            try {
+                et_main.setText(matches.get(0));
+            } catch(NullPointerException e) {
+                Log.e(LOG_TAG,"[listener onResulsts] matches.get nullpointer error " + e.toString());
+            }
+
         }
 
         @Override
