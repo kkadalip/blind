@@ -1,7 +1,9 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.blind.karl.blind.R;
 
 public class SettingsActivity extends Activity {
 

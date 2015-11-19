@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blind.karl.blind.AppsExtraActivity"
+    tools:context="ee.karlkadalipp.blind.AppsExtraActivity"
     android:weightSum="1">
 
     <ListView

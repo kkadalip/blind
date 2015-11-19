@@ -1,35 +1,26 @@
-package com.blind.karl.blind.Apps;
+package ee.karlkadalipp.blind.Apps;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.blind.karl.blind.AppsExtraActivity;
-import com.blind.karl.blind.Listener;
-import com.blind.karl.blind.MenuActivity;
+import ee.karlkadalipp.blind.Listener;
+import ee.karlkadalipp.blind.MenuActivity;
+import ee.karlkadalipp.blind.AppsExtraActivity;
+
 import com.blind.karl.blind.R;
 
 import java.util.ArrayList;
@@ -134,8 +125,7 @@ public class AppsActivity extends FragmentActivity {
     public String getButtonSelection(String key){
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        String result = settings.getString(key, ""); // default value None before, now empty string
-        return result;
+        return settings.getString(key, ""); // RESULT. default value None before, now empty string
     }
 
     public static final String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
@@ -250,7 +240,7 @@ public class AppsActivity extends FragmentActivity {
     public void changeLang(String lang)
     {
         if(lang.equalsIgnoreCase("")){
-            return;
+            //return;
         }else{
             myLocale = new Locale(lang);
             saveLocale(lang);

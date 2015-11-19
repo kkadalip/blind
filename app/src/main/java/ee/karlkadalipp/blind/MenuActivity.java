@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.blind.karl.blind.Apps.AppsActivity;
+import ee.karlkadalipp.blind.Apps.AppsActivity;
+
+import com.blind.karl.blind.R;
 
 public class MenuActivity extends Activity {
 

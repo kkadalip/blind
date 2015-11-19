@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.blind.karl.blind.Apps.AppsActivity;
+import ee.karlkadalipp.blind.Apps.AppsActivity;
+
+import com.blind.karl.blind.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

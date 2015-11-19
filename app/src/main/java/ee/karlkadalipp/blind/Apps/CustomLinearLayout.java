@@ -1,18 +1,12 @@
-package com.blind.karl.blind.Apps;
+package ee.karlkadalipp.blind.Apps;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.blind.karl.blind.R;
 
@@ -124,7 +118,7 @@ public class CustomLinearLayout extends LinearLayout {
 
                     Log.d(LOG_TAG, "[onTouchEvent] x delta total is " + Float.toString(xDeltaTotal));
                     if(xDeltaTotal < -300 && mStartX > x){
-                        if(hasAlreadyChangedPage == false){
+                        if(!hasAlreadyChangedPage){
                             Log.d(LOG_TAG, "[onTouchEvent] SWIPING RIGHT");
                             int currentPage = vp.getCurrentItem();
                             vp.setCurrentItem(currentPage + 1, true);
@@ -137,12 +131,12 @@ public class CustomLinearLayout extends LinearLayout {
                     }
 
                     if(xDeltaTotal > 300 && mStartX < x){ // Swiping finger left to right, screen has to go left
-                        if(hasAlreadyChangedPage == false){
+                        if(!hasAlreadyChangedPage){
                             Log.d(LOG_TAG, "[onTouchEvent] SWIPING LEFT");
                             int currentPage = vp.getCurrentItem();
                             vp.setCurrentItem(currentPage - 1, true);
                             mIsBeingDragged = false;
-                            xDeltaTotal = 0;
+                            //xDeltaTotal = 0;
                             //break; // necessary?
                             hasAlreadyChangedPage = true;
                         }

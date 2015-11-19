@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.app.Activity;
 import android.content.Context;
@@ -73,7 +73,7 @@ public class Listener implements RecognitionListener {
 
     @Override
     public void onResults(Bundle results) {
-        List<String> matches=new ArrayList<String>();
+        List<String> matches=new ArrayList<>();
         if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
             matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         }

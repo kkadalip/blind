@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -14,8 +14,6 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.blind.karl.blind.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -233,7 +232,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
         @Override
         public void onResults(Bundle results) {
-            List<String> matches=new ArrayList<String>();
+            List<String> matches=new ArrayList<>();
             if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
                 matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             }
@@ -373,7 +372,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             c.getInputStream(),"utf-8"));
-                    String line = null;
+                    String line;
                     while ((line = br.readLine()) != null) {
                         sb.append(line + "\n");
                     }

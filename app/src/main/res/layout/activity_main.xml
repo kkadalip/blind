@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.blind.karl.blind.MainActivity">
+    tools:context="MainActivity">
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,7 +20,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.blind.karl.blind.MainActivity"
+    tools:context="ee.karlkadalipp.blind.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView

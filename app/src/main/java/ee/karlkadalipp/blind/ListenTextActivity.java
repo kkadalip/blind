@@ -1,4 +1,4 @@
-package com.blind.karl.blind;
+package ee.karlkadalipp.blind;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.blind.karl.blind.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;

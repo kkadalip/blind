@@ -1,8 +1,5 @@
-package com.blind.karl.blind.Apps;
+package ee.karlkadalipp.blind.Apps;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,24 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.blind.karl.blind.AppsExtraActivity;
 import com.blind.karl.blind.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppsFragment3 extends Fragment {
+public class AppsFragment2 extends Fragment {
     String LOG_TAG = "[AppsFragment2]";
     public static final String ARG_OBJECT = "object";
 
-    Button btn17;
-    Button btn18;
-    Button btn19;
-    Button btn20;
-    Button btn21;
-    Button btn22;
-    Button btn23;
-    Button btn24;
+    Button btn9;
+    Button btn10;
+    Button btn11;
+    Button btn12;
+    Button btn13;
+    Button btn14;
+    Button btn15;
+    Button btn16;
 
     List<Button> buttonsList;
 
@@ -36,30 +32,30 @@ public class AppsFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         // The last two arguments ensure LayoutParams are inflated properly.
-        View rootView = inflater.inflate(R.layout.apps_buttons_3, container, false);
+        View rootView = inflater.inflate(R.layout.apps_buttons_2, container, false);
 
         Bundle args = getArguments();
-        Log.d(LOG_TAG, "[onCreateView] args are " + Integer.toString(args.getInt(ARG_OBJECT)));
+        Log.d(LOG_TAG, "[onCreateView] args are " + Integer.toString(args.getInt(ARG_OBJECT))); // NULLPOINTER, argsi pealt
 
-        btn17 = (Button) rootView.findViewById(R.id.btn17);
-        btn18 = (Button) rootView.findViewById(R.id.btn18);
-        btn19 = (Button) rootView.findViewById(R.id.btn19);
-        btn20 = (Button) rootView.findViewById(R.id.btn20);
-        btn21 = (Button) rootView.findViewById(R.id.btn21);
-        btn22 = (Button) rootView.findViewById(R.id.btn22);
-        btn23 = (Button) rootView.findViewById(R.id.btn23);
-        btn24 = (Button) rootView.findViewById(R.id.btn24);
+        btn9 = (Button) rootView.findViewById(R.id.btn9);
+        btn10 = (Button) rootView.findViewById(R.id.btn10);
+        btn11 = (Button) rootView.findViewById(R.id.btn11);
+        btn12 = (Button) rootView.findViewById(R.id.btn12);
+        btn13 = (Button) rootView.findViewById(R.id.btn13);
+        btn14 = (Button) rootView.findViewById(R.id.btn14);
+        btn15 = (Button) rootView.findViewById(R.id.btn15);
+        btn16 = (Button) rootView.findViewById(R.id.btn16);
 
         buttonsList = new ArrayList<>();
 
-        buttonsList.add(btn17);
-        buttonsList.add(btn18);
-        buttonsList.add(btn19);
-        buttonsList.add(btn20);
-        buttonsList.add(btn21);
-        buttonsList.add(btn22);
-        buttonsList.add(btn23);
-        buttonsList.add(btn24);
+        buttonsList.add(btn9);
+        buttonsList.add(btn10);
+        buttonsList.add(btn11);
+        buttonsList.add(btn12);
+        buttonsList.add(btn13);
+        buttonsList.add(btn14);
+        buttonsList.add(btn15);
+        buttonsList.add(btn16);
 
         setOnClickListenersForButtons(buttonsList);
 

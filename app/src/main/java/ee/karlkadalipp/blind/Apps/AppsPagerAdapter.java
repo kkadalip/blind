@@ -1,4 +1,4 @@
-package com.blind.karl.blind.Apps;
+package ee.karlkadalipp.blind.Apps;
 
 import android.content.Context;
 import android.os.Bundle;
