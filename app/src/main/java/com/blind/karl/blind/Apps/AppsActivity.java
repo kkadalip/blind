@@ -39,8 +39,6 @@ import java.util.Locale;
 public class AppsActivity extends FragmentActivity {
     List<Button> buttonsList;
 
-    //LinearLayout llAppsMain;
-
     Vibrator v;
     Button btnMic;
 
@@ -79,56 +77,10 @@ public class AppsActivity extends FragmentActivity {
 
     } // ONCREATE END
 
-/*    @Override
-    public View onCreateView(String name, Context context, AttributeSet attrs) {
-        //return super.onCreateView(name, context, attrs);
-
-
-    }*/
-
-/*
-    @Override
-    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-        return super.onCreateView(parent, name, context, attrs);
-    }
-*/
-
-/*    private void setTabsMaxWidth() {
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int screenWidth = displaymetrics.widthPixels;
-        final ActionBar actionBar = getActionBar();
-        final View tabView = actionBar.getTabAt(0).getCustomView();
-        final View tabContainerView = (View) tabView.getParent();
-        final int tabPadding = tabContainerView.getPaddingLeft() + tabContainerView.getPaddingRight();
-        final int tabs = actionBar.getTabCount();
-        for(int i=0 ; i < tabs ; i++) {
-            View tab = actionBar.getTabAt(i).getCustomView();
-            TextView text1 = (TextView) tab.findViewById(R.id.text1);
-            text1.setMaxWidth(screenWidth/tabs-tabPadding-1);
-        }
-    }*/
-
     public void changeTab(int tabNumber){
         // tab.getPosition()
         myViewPager.setCurrentItem(tabNumber);
     }
-
-/*    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        int selectedTab = tabHost.getCurrentTab();
-        outState.putInt("tabState", selectedTab);
-    }
-
-    // Center text vertically in tabs
-    public void centerTabhostText(){
-        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        rllp.addRule(RelativeLayout.CENTER_IN_PARENT);
-        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-            tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title).setLayoutParams(rllp);
-        }
-    }*/
 
     @Override
     protected void onResume() {
@@ -331,6 +283,57 @@ public class AppsActivity extends FragmentActivity {
 
 
 
+
+
+
+
+
+/*    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        //return super.onCreateView(name, context, attrs);
+    }*/
+
+/*
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
+    }
+*/
+
+/*    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        int selectedTab = tabHost.getCurrentTab();
+        outState.putInt("tabState", selectedTab);
+    }
+
+    // Center text vertically in tabs of tabhost. Works but stupid
+    public void centerTabhostText(){
+        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rllp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title).setLayoutParams(rllp);
+        }
+    }*/
+
+//LinearLayout llAppsMain;
+
+/*    // doesn't work but has some good stuff
+private void setTabsMaxWidth() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int screenWidth = displaymetrics.widthPixels;
+        final ActionBar actionBar = getActionBar();
+        final View tabView = actionBar.getTabAt(0).getCustomView();
+        final View tabContainerView = (View) tabView.getParent();
+        final int tabPadding = tabContainerView.getPaddingLeft() + tabContainerView.getPaddingRight();
+        final int tabs = actionBar.getTabCount();
+        for(int i=0 ; i < tabs ; i++) {
+            View tab = actionBar.getTabAt(i).getCustomView();
+            TextView text1 = (TextView) tab.findViewById(R.id.text1);
+            text1.setMaxWidth(screenWidth/tabs-tabPadding-1);
+        }
+    }*/
 
 /*
         //ActionBar actionBar;
