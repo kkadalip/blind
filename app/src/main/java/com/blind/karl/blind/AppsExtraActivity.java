@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class AppsExtraActivity extends Activity {
+    String LOG_TAG = "[AppsExtraActivity]";
 
     // http://stackoverflow.com/questions/6165023/get-list-of-installed-android-applications
     //Button btnShortcut;
@@ -42,7 +43,7 @@ public class AppsExtraActivity extends Activity {
 
         Intent intent = getIntent();
         extraMessage = intent.getStringExtra(AppsActivity.EXTRA_MESSAGE);
-        Log.d("log", "message from AppsActivity is " + extraMessage);
+        Log.d(LOG_TAG, "[onCreate] message from AppsActivity is " + extraMessage);
 
         new GetAppsAsync().execute();
     }
@@ -223,9 +224,8 @@ public class AppsExtraActivity extends Activity {
                     //listViewApps.add(pm.getApplicationLabel(app).toString());
                 }
             }
-            //Log.d("log", installedApps.toString());
-            Log.d("log", installedAppsNames.toString());
-            //Log.d("log", installedAppsNamesPackages.toString());
+            Log.d(LOG_TAG, "[onPostExecute] installed apps packages: " + installedAppsPackages.toString());
+            Log.d(LOG_TAG, "[onPostExecute] installed apps names: " + installedAppsNames.toString());
 
             //Collections.sort(list);
             //Collections.sort(installedAppsNames);
@@ -237,11 +237,11 @@ public class AppsExtraActivity extends Activity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Object o = listViewApps.getItemAtPosition(position);
                     String realName = o.toString();
-                    Log.d("log", "real name is " + realName);
+                    Log.d(LOG_TAG, "[onPostExecute] real name is " + realName);
                     //btnShortcut.setText(realName);
 
                     appPackageName = installedAppsPackages.get(position); //sortedApps.get(position).processName.toString(); // SORTEERIMATA!
-                    Log.d("log", "app appPackage is " + appPackageName);
+                    Log.d(LOG_TAG, "[onPostExecute] app appPackage is " + appPackageName);
 
                     setButtonSelection(extraMessage + "_package", appPackageName);
                     setButtonSelection(extraMessage + "_name", realName);
@@ -270,7 +270,7 @@ public class AppsExtraActivity extends Activity {
     }*/
 
     public void btnCancelClick (View v){
-        Log.d("log", "cancel button clicked");
+        Log.d(LOG_TAG, "[btnCancelClick] cancel button clicked");
         Intent returnIntent = new Intent(this, AppsActivity.class);
         //startActivity(returnIntent);
         setResult(Activity.RESULT_CANCELED, returnIntent);
@@ -278,7 +278,7 @@ public class AppsExtraActivity extends Activity {
     }
 
     public void btnDeleteClick (View v){
-        Log.d("log", "delete button clicked");
+        Log.d(LOG_TAG, "[btnCancelClick] delete button clicked");
         SharedPreferences settings = getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(extraMessage+"_package");

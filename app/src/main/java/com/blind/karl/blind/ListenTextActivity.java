@@ -41,6 +41,7 @@ import java.util.List;
 import android.os.Vibrator;
 
 public class ListenTextActivity extends Activity {
+    String LOG_TAG = "[ListenTextActivity]";
 
     private EditText et_main;
     private String et_main_text;
@@ -126,7 +127,7 @@ public class ListenTextActivity extends Activity {
             myParams.put("speech", "hobune lammas orkester test 1234 2");
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
-            Log.d("tag", "json is: " + json);
+            Log.d(LOG_TAG, "[StuffJSON doInBackground] json is: " + json);
             StringBuilder sb = new StringBuilder();
 
             HttpURLConnection c = null;
@@ -176,7 +177,7 @@ public class ListenTextActivity extends Activity {
                 os.close();
 
                 int HttpResult = c.getResponseCode();
-                Log.d("tag","httpresult is " + Integer.toString(HttpResult));
+                Log.d(LOG_TAG,"[StuffJSON doInBackground] httpresult is " + Integer.toString(HttpResult));
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             c.getInputStream(),"utf-8"));
@@ -185,9 +186,9 @@ public class ListenTextActivity extends Activity {
                         sb.append(line + "\n");
                     }
                     br.close();
-                    Log.d("tag", "sb is " + sb.toString());
+                    Log.d(LOG_TAG, "[StuffJSON doInBackground] sb is " + sb.toString());
                 }else{
-                    Log.d("tag","sb is "+c.getResponseMessage());
+                    Log.d(LOG_TAG,"[StuffJSON doInBackground] sb is "+c.getResponseMessage());
                     System.out.println("swag");
                 }
             } catch (IOException e) {
@@ -209,7 +210,7 @@ public class ListenTextActivity extends Activity {
             String mp3value = jsonElement.getAsString();
             //String mp3value = o.get("mp3").toString();
             //String mp3value = o.get("mp3").toString();
-            Log.d("tag", "mp3value is " + mp3value);
+            Log.d(LOG_TAG, "[StuffJSON doInBackground] mp3value is " + mp3value);
 
             //return null;
             return mp3value; //"this string is passed to onPostExecute";
@@ -236,7 +237,7 @@ public class ListenTextActivity extends Activity {
 
             //String sound_url = String.format("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/", Uri.encode(mp3value), Uri.encode(".mp3"));
 
-            Log.d("tag", "mp3 link is " + sound_url);
+            Log.d(LOG_TAG, "[StuffJSON onPostExecute] mp3 link is " + sound_url);
 
             try {
                 playAudio(sound_url);
@@ -298,7 +299,7 @@ public class ListenTextActivity extends Activity {
 
         @Override
         public void onBeginningOfSpeech() {
-            Log.d("tag", "THIS IS THE BEGINNING");
+            Log.d(LOG_TAG, "[StuffJSON onBeginningOfSpeech] THIS IS THE BEGINNING");
             System.out.println("THIS IS THE BEGINNING");
         }
 
@@ -326,8 +327,8 @@ public class ListenTextActivity extends Activity {
             if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
                 matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             }
-            Log.d("tag", "results " + results);
-            Log.d("tag", "matches " + matches);
+            Log.d(LOG_TAG, "[StuffJSON onResults] results " + results);
+            Log.d(LOG_TAG, "[StuffJSON onResults] matches " + matches);
             et_main.setText(matches.get(0).toString());
         }
 

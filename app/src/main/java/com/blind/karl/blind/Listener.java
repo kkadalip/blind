@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Listener implements RecognitionListener {
+    String LOG_TAG = "[Listener]";
+
     Vibrator v;
     Context context;
     Button btnMic;
@@ -33,7 +35,7 @@ public class Listener implements RecognitionListener {
         //packageForIntent = s;
 
         buttonsList = bl;
-        Log.d(getClass().toString(), "buttons list size is " + buttonsList.size());
+        Log.d(LOG_TAG, "[Listener constructor] buttons list size is " + buttonsList.size());
     }
 
     @Override
@@ -44,8 +46,7 @@ public class Listener implements RecognitionListener {
 
     @Override
     public void onBeginningOfSpeech() {
-        Log.d("tag", "THIS IS THE BEGINNING");
-        System.out.println("THIS IS THE BEGINNING");
+        Log.d(LOG_TAG, "[onBeginningOfSpeech] THIS IS THE BEGINNING");
     }
 
     @Override
@@ -76,33 +77,33 @@ public class Listener implements RecognitionListener {
         if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
             matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         }
-        Log.d("tag", "results " + results);
-        Log.d("tag", "matches " + matches);
+        Log.d(LOG_TAG, "[onResults] results " + results);
+        Log.d(LOG_TAG, "[onResults] matches " + matches);
 
         String result = "";
         if(matches.size() > 0){
             result = matches.get(0).toString();
             for(Button b : buttonsList){
                 String button_text = b.getText().toString();
-                Log.d("log", "Button text is " + button_text);
+                Log.d(LOG_TAG, "[onResults] Button text is " + button_text);
                 if(button_text.equalsIgnoreCase(result) || button_text.toLowerCase().contains(result.toLowerCase())){
-                    Log.d("log", " SUCCESS, FOUND MATCHING BUTTON");
+                    Log.d(LOG_TAG, "[onResults] SUCCESS, FOUND MATCHING BUTTON");
                     SharedPreferences settings = context.getSharedPreferences("AppPrefs", Activity.MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     String btnId = context.getResources().getResourceEntryName(b.getId());
                     String btnPackage = settings.getString(btnId + "_package", "None");
 
-                    Log.d("log", "package for intent is " + btnPackage);
+                    Log.d(LOG_TAG, "[onResults] package for intent is " + btnPackage);
                     if(!btnPackage.isEmpty()){
                         PackageManager pm = context.getPackageManager();
                         Intent intent = pm.getLaunchIntentForPackage(btnPackage);
-                        Log.d("log", "end of speech, starting intent for " + btnPackage);
+                        Log.d(LOG_TAG, "[onResults] end of speech, starting intent for " + btnPackage);
                         context.startActivity(intent);
                     }
                 }
             }
         }else{
-            Log.d("log","NO MATCHES IN LISTENER CLASS");
+            Log.d(LOG_TAG,"[onResults] NO MATCHES IN LISTENER CLASS");
         }
         Toast toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
         toast.show();

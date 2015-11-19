@@ -45,6 +45,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends Activity implements TextToSpeech.OnInitListener { //AppCompatActivity
+    String LOG_TAG = "[MainActivity]";
 
     private Button btnSpeak;
 
@@ -111,7 +112,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
 
     public void doSomething2(View view) {
-        Log.d("tag", "do something 2 start");
+        Log.d(LOG_TAG, "[doSomething2] start");
 
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -123,12 +124,12 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                         "ee.ioc.phon.android.speak.service.HttpRecognitionService"));*/
         sr.startListening(recognizerIntent);
         //startActivity(intent);
-        Log.d("tag", "do something 2 end");
+        Log.d(LOG_TAG, "[doSomething2] end");
     }
 
     public void doSomething3(View view) {
         String textToRead = edit_text_1.getText().toString();
-        Log.d("tag", "text to read is " + textToRead);
+        Log.d(LOG_TAG, "[doSomething3] text to read is " + textToRead);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ttsGreater21(textToRead);
         } else {
@@ -210,7 +211,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
         @Override
         public void onBeginningOfSpeech() {
-            Log.d("tag", "THIS IS THE BEGINNING");
+            Log.d(LOG_TAG, "[onBeginningOfSpeech] THIS IS THE BEGINNING");
             System.out.println("THIS IS THE BEGINNING");
         }
 
@@ -236,8 +237,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             if ((results != null) && results.containsKey(SpeechRecognizer.RESULTS_RECOGNITION)) {
                 matches=results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             }
-            Log.d("tag", "results " + results);
-            Log.d("tag", "matches " + matches);
+            Log.d(LOG_TAG, "[onResults] results " + results);
+            Log.d(LOG_TAG, "[onResults] matches " + matches);
             EditText editText = (EditText) findViewById(R.id.editText1);
             editText.setText(matches.get(0).toString());
         }
@@ -274,7 +275,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     }
 
     public void doSomething(View view){
-        Log.d("tag", "do something start");
+        Log.d(LOG_TAG, "[doSomething] start");
         //Intent intent = new Intent(this, DisplayMessageActivity.class);
         // http://stackoverflow.com/questions/2209513/how-to-start-activity-in-another-application
 
@@ -284,7 +285,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                         "ee.ioc.phon.android.speak",
                         "ee.ioc.phon.android.speak.activity.SpeechActionActivity"));
         startActivity(intent);
-        Log.d("tag", "do something end");
+        Log.d(LOG_TAG, "[doSomething] end");
     }
 
     // http://stackoverflow.com/questions/25647881/android-asynctask-example-and-explanation/25647882#25647882
@@ -318,7 +319,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             myParams.put("speech", "hobune lammas orkester test 1234 2");
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
-            Log.d("tag", "json is: " + json);
+            Log.d(LOG_TAG, "[StuffJSON doInBackground] json is: " + json);
             StringBuilder sb = new StringBuilder();
 
             HttpURLConnection c = null;
@@ -368,7 +369,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                 os.close();
 
                 int HttpResult = c.getResponseCode();
-                Log.d("tag","httpresult is " + Integer.toString(HttpResult));
+                Log.d(LOG_TAG,"[StuffJSON doInBackground] httpresult is " + Integer.toString(HttpResult));
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             c.getInputStream(),"utf-8"));
@@ -377,9 +378,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
                         sb.append(line + "\n");
                     }
                     br.close();
-                    Log.d("tag", "sb is " + sb.toString());
+                    Log.d(LOG_TAG,"[StuffJSON doInBackground] sb is " + sb.toString());
                 }else{
-                    Log.d("tag","sb is "+c.getResponseMessage());
+                    Log.d(LOG_TAG,"[StuffJSON doInBackground] sb is "+c.getResponseMessage());
                     System.out.println("swag");
                 }
             } catch (IOException e) {
@@ -401,7 +402,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             String mp3value = jsonElement.getAsString();
             //String mp3value = o.get("mp3").toString();
             //String mp3value = o.get("mp3").toString();
-            Log.d("tag", "mp3value is " + mp3value);
+            Log.d(LOG_TAG, "[StuffJSON doInBackground] mp3value is " + mp3value);
 
             //return null;
             return mp3value; //"this string is passed to onPostExecute";
@@ -428,7 +429,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 
             //String sound_url = String.format("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/", Uri.encode(mp3value), Uri.encode(".mp3"));
 
-            Log.d("tag", "mp3 link is " + sound_url);
+            Log.d(LOG_TAG, "[StuffJSON onPostExecute] mp3 link is " + sound_url);
 
             try {
                 playAudio(sound_url);
