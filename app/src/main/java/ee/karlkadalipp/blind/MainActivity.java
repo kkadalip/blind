@@ -421,11 +421,12 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         protected void onPostExecute(String mp3value) {
             super.onPostExecute(mp3value);
             // Do things like hide the progress bar or change a TextView
-            StringBuilder sb_sound_url = new StringBuilder();
+            String sound_url = ("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3");
+/*            StringBuilder sb_sound_url = new StringBuilder();
             sb_sound_url.append("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/");
             sb_sound_url.append(mp3value);
             sb_sound_url.append(".mp3");
-            String sound_url = sb_sound_url.toString();
+            String sound_url = sb_sound_url.toString();*/
 
             //String sound_url = String.format("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/", Uri.encode(mp3value), Uri.encode(".mp3"));
 
