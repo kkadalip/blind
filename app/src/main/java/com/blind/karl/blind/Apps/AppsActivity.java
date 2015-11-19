@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AppsActivity extends FragmentActivity {
-    public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
+    //public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
 
 /*    // Fragment 1
     Button btn1;
@@ -333,15 +333,8 @@ public class AppsActivity extends FragmentActivity {
         return result;
     }
 
-/*    public void startExtrasActivity(String btn_id_as_extra){
-        Intent intent = new Intent(this, AppsExtraActivity.class);
-
-        intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
-
-        this.startActivity(intent);
-    }*/
-
-    static final int START_EXTRAS_REQUEST = 1;  // The request code
+    public static final String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
+    public static final int START_EXTRAS_REQUEST = 1;  // The request code
     // http://developer.android.com/training/basics/intents/result.html
     // http://stackoverflow.com/questions/10407159/how-to-manage-startactivityforresult-on-android
     public void startExtrasActivityForResult(String btn_id_as_extra){
@@ -461,13 +454,13 @@ public class AppsActivity extends FragmentActivity {
         editor.commit();
     }
 
-    public static void updateButtons(Context context, List<Button> buttonsList){
+    public void updateButtons(List<Button> buttonsList){
         for (Button b : buttonsList) {
-            String idAsString = context.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
+            String idAsString = this.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
             Log.d("log","id as string is " + idAsString);
-            String btn_package_generic = getButtonSelection(context, idAsString + "_package"); // btn1_package
+            String btn_package_generic = getButtonSelection(idAsString + "_package"); // btn1_package
             if(!btn_package_generic.isEmpty()){
-                String btn_name_generic = getButtonSelection(context, idAsString + "_name"); // btn1_name
+                String btn_name_generic = getButtonSelection(idAsString + "_name"); // btn1_name
                 b.setText(btn_name_generic);
             }
         }
@@ -482,6 +475,44 @@ public class AppsActivity extends FragmentActivity {
         return result;
     }
 
+}
+
+/*    public void startExtrasActivity(String btn_id_as_extra){
+        Intent intent = new Intent(this, AppsExtraActivity.class);
+
+        intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
+
+        this.startActivity(intent);
+    }*/
+
+
+// http://developer.android.com/training/basics/intents/result.html
+// http://stackoverflow.com/questions/10407159/how-to-manage-startactivityforresult-on-android
+
+/*    public static void updateButtons(Context context, List<Button> buttonsList){
+        for (Button b : buttonsList) {
+            String idAsString = context.getResources().getResourceEntryName(b.getId()); // .getResourceName(b.getId()); would get com.blind.karl.blind:id/btn1 not btn1
+            Log.d("log","id as string is " + idAsString);
+            String btn_package_generic = getButtonSelection(context, idAsString + "_package"); // btn1_package
+            if(!btn_package_generic.isEmpty()){
+                String btn_name_generic = getButtonSelection(context, idAsString + "_name"); // btn1_name
+                b.setText(btn_name_generic);
+            }
+        }
+        //myListener.packageForIntent = btn_package; // UPDATING CLASS CONSTRUCTOR PARAMETER
+        //packageForIntent = btn_package; // FOR LISTENER
+    }*/
+
+
+/*    public static void startExtrasActivityForResult(Activity activity, String btn_id_as_extra){
+        Intent intent = new Intent(activity, AppsExtraActivity.class);
+        //intent.setType()
+        intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
+        //this.startActivity(intent);
+        activity.startActivityForResult(intent, START_EXTRAS_REQUEST);
+    }*/
+
+
 /*    public void loadLocale()
     {
         String langPref = "Language";
@@ -489,4 +520,3 @@ public class AppsActivity extends FragmentActivity {
         String language = prefs.getString(langPref, "");
         changeLang(language);
     }*/
-}

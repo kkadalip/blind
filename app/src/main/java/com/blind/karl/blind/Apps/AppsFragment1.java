@@ -44,10 +44,6 @@ public class AppsFragment1 extends Fragment {
         Bundle args = getArguments();
         Log.d("log", "args are " + Integer.toString(args.getInt(ARG_OBJECT)));
 
-//        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
-//                Integer.toString(args.getInt(ARG_OBJECT)));
-
-        // getView().findViewById(R.id.your_view);
         btn1 = (Button) rootView.findViewById(R.id.btn1); // getView() works as well
         btn2 = (Button) rootView.findViewById(R.id.btn2);
         btn3 = (Button) rootView.findViewById(R.id.btn3);
@@ -68,7 +64,41 @@ public class AppsFragment1 extends Fragment {
         buttonsList.add(btn7);
         buttonsList.add(btn8);
 
-        // Gesture detection
+        setOnClickListenersForButtons(buttonsList);
+
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppsActivity)getActivity()).updateButtons(buttonsList);
+        //updateButtons();
+    }
+
+    public void setOnClickListenersForButtons(List<Button> buttonsList){
+        for (Button b : buttonsList) {
+            b.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    String btn_id = getResources().getResourceEntryName(v.getId());
+                    //startExtrasActivity(btn_id);
+                    ((AppsActivity)getActivity()).startExtrasActivityForResult(btn_id);
+                    return true;
+                }
+            });
+        }
+    }
+}
+
+
+
+//        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
+//                Integer.toString(args.getInt(ARG_OBJECT)));
+
+// getView().findViewById(R.id.your_view);
+
+// Gesture detection
 /*        gestureDetector = new GestureDetector(getActivity(), new MyGestureDetector());
         gestureListener = new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -76,8 +106,8 @@ public class AppsFragment1 extends Fragment {
             }
         };*/
 
-        //imageView.setOnClickListener(SelectFilterActivity.this);
-        //btn1.setOnTouchListener(gestureListener);
+//imageView.setOnClickListener(SelectFilterActivity.this);
+//btn1.setOnTouchListener(gestureListener);
 //        btn2.setOnTouchListener(gestureListener);
 //        btn3.setOnTouchListener(gestureListener);
 //        btn4.setOnTouchListener(gestureListener);
@@ -95,33 +125,7 @@ public class AppsFragment1 extends Fragment {
         });
 */
 
-        setOnClickListenersForButtons(buttonsList);
-
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppsActivity)getActivity()).updateButtons(getContext(), buttonsList);
-        //updateButtons();
-    }
-
-    public void setOnClickListenersForButtons(List<Button> buttonsList){
-        for (Button b : buttonsList) {
-            b.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    String btn_id = getResources().getResourceEntryName(v.getId());
-                    //startExtrasActivity(btn_id);
-                    startExtrasActivityForResult(btn_id);
-                    return true;
-                }
-            });
-        }
-    }
-
-    public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
+/*    public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
     static final int START_EXTRAS_REQUEST = 1;  // The request code
     // http://developer.android.com/training/basics/intents/result.html
     // http://stackoverflow.com/questions/10407159/how-to-manage-startactivityforresult-on-android
@@ -131,7 +135,7 @@ public class AppsFragment1 extends Fragment {
         intent.putExtra(EXTRA_MESSAGE, btn_id_as_extra);
         //this.startActivity(intent);
         this.startActivityForResult(intent, START_EXTRAS_REQUEST);
-    }
+    }*/
 
 /*    public void updateButtons(){
         for (Button b : buttonsList) {
@@ -199,4 +203,4 @@ public class AppsFragment1 extends Fragment {
         }
 
     }*/
-}
+
