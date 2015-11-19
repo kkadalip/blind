@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -36,38 +37,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AppsActivity extends FragmentActivity {
-    //public final static String EXTRA_MESSAGE = "com.blind.karl.blind.MESSAGE";
-
-/*    // Fragment 1
-    Button btn1;
-    Button btn2;
-    Button btn3;
-    Button btn4;
-    Button btn5;
-    Button btn6;
-    Button btn7;
-    Button btn8;
-    // Fragment 2
-    Button btn9;
-    Button btn10;
-    Button btn11;
-    Button btn12;
-    Button btn13;
-    Button btn14;
-    Button btn15;
-    Button btn16;
-    // Fragment 3
-    Button btn17;
-    Button btn18;
-    Button btn19;
-    Button btn20;
-    Button btn21;
-    Button btn22;
-    Button btn23;
-    Button btn24;
-    // List of buttons*/
-
-    List<Button> buttonsList; // TODO get it populated
+    List<Button> buttonsList;
 
     //LinearLayout llAppsMain;
 
@@ -84,8 +54,6 @@ public class AppsActivity extends FragmentActivity {
     AppsPagerAdapter myPagerAdapter;
     ViewPager myViewPager;
 
-    //ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,51 +66,6 @@ public class AppsActivity extends FragmentActivity {
         myViewPager.setCurrentItem(2); // middle as main
 
         buttonsList = new ArrayList<>();
-
-/*
-        actionBar = getActionBar(); // getSupportActionBar();
-
-        actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
-        actionBar.setDisplayShowTitleEnabled(false); // hides action bar title
-
-        // Specify that tabs should be displayed in the action bar.
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // Create a tab listener that is called when the user changes tabs.
-        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-            @Override
-            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                // When the tab is selected, switch to the corresponding page in the ViewPager.
-                myViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                // hide the given tab
-            }
-
-            @Override
-            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                // probably ignore this event
-            }
-        };
-
-        myViewPager.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        // When swiping between pages, select the corresponding tab.
-                        getActionBar().setSelectedNavigationItem(position);
-                    }
-                });
-
-        // Add 3 tabs, specifying the tab's text and TabListener
-        for (int i = 0; i < 3; i++) {
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(getString(R.string.tab) + " " + (i + 1))
-                            .setTabListener(tabListener));
-        }*/
 
         btnMic = (Button) findViewById(R.id.btnMic);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE); //this.context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -236,7 +159,7 @@ public class AppsActivity extends FragmentActivity {
     }
 
     // kõigi jaoks
-    // TODO selliselt peaks kõik üle käima ja ära kontrollima, kui ei eksisteeri, siis eemalda (rakendamise käivitamisel)
+    // TODO selliselt peaks kõik üle käima ja ära kontrollima, kui ei eksisteeri, siis peaks eemaldama või küsima, kas tahad eemaldada või uuendada (rakendamise käivitamisel)
     public boolean doesPackageExist(String targetPackage){
         List<ApplicationInfo> packages;
         PackageManager pm;
@@ -248,8 +171,7 @@ public class AppsActivity extends FragmentActivity {
         }
         return false;
     }
-
-    // ainult ühe jaoks
+//    // WORKING!!! Checks if package exists.
 //    public boolean doesPackageExist(String targetPackage){
 //        PackageManager pm=getPackageManager();
 //        try {
@@ -407,6 +329,85 @@ public class AppsActivity extends FragmentActivity {
 
 
 
+
+
+
+/*
+        //ActionBar actionBar;
+
+        // ONCREATE ACTIONBAR STUFF
+        actionBar = getActionBar(); // getSupportActionBar();
+
+        actionBar.setDisplayShowHomeEnabled(false);  // hides action bar icon
+        actionBar.setDisplayShowTitleEnabled(false); // hides action bar title
+
+        // Specify that tabs should be displayed in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        // Create a tab listener that is called when the user changes tabs.
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+                // When the tab is selected, switch to the corresponding page in the ViewPager.
+                myViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+                // hide the given tab
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+                // probably ignore this event
+            }
+        };
+
+        myViewPager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        // When swiping between pages, select the corresponding tab.
+                        getActionBar().setSelectedNavigationItem(position);
+                    }
+                });
+
+        // Add 3 tabs, specifying the tab's text and TabListener
+        for (int i = 0; i < 3; i++) {
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(getString(R.string.tab) + " " + (i + 1))
+                            .setTabListener(tabListener));
+        }*/
+
+/*    // Fragment 1
+    Button btn1;
+    Button btn2;
+    Button btn3;
+    Button btn4;
+    Button btn5;
+    Button btn6;
+    Button btn7;
+    Button btn8;
+    // Fragment 2
+    Button btn9;
+    Button btn10;
+    Button btn11;
+    Button btn12;
+    Button btn13;
+    Button btn14;
+    Button btn15;
+    Button btn16;
+    // Fragment 3
+    Button btn17;
+    Button btn18;
+    Button btn19;
+    Button btn20;
+    Button btn21;
+    Button btn22;
+    Button btn23;
+    Button btn24;
+    // List of buttons*/
 
 /*
         View fragment1 = getFragmentManager().findFragmentById(R.id.linearLayoutView1).getView();
