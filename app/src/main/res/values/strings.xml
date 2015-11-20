@@ -12,7 +12,7 @@
     <string name="tvMainMenuTitle">Main menu</string>
     <!-- 1 Main menu buttons -->
     <string name="btnMenuMain1">Apps</string>
-    <string name="btnMenuMain2">Record or listen</string>
+    <string name="btnMenuMain2">Record or listen (EST)</string>
     <string name="btnMenuMain3">Test</string>
     <string name="btnMenuMain4">Settings</string>
 

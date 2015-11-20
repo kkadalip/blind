@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:text="@string/btnMenuMain3"
-                android:onClick="btnMenu3Click"/>
+                android:onClick="btnMenu3Click"
+                android:enabled="false"/>
 
             <Button
                 android:id="@+id/btnMenu4"
@@ -71,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:text="@string/btnMenuMain4"
-                android:onClick="btnMenu4Click"/>
+                android:onClick="btnMenu4Click"
+                android:enabled="false"/>
 
             <Button
                 android:id="@+id/btnLocale"

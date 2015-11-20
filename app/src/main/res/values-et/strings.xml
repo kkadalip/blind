@@ -12,7 +12,7 @@
     <string name="tvMainMenuTitle">Menüü</string>
     <!-- 1 Main menu buttons -->
     <string name="btnMenuMain1">Rakendused</string>
-    <string name="btnMenuMain2">Lindista ja kuula</string>
+    <string name="btnMenuMain2">Lindista ja kuula (EST)</string>
     <string name="btnMenuMain3">Proov</string>
     <string name="btnMenuMain4">Sätted</string>
 
