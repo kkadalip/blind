@@ -123,12 +123,15 @@ public class ListenTextActivity extends Activity {
                 publishProgress(i);
             }
 */
+            /*
+            // Works but not using atm:
             HashMap<String,String> myParams = new HashMap<>();
-            myParams.put("v", "6");
-            myParams.put("speech", "hobune lammas orkester test 1234 2");
+            myParams.put("v", "15");
+            myParams.put("speech", "katsetus katsetus üks kaks kolm");
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
-            Log.d(LOG_TAG, "[StuffJSON doInBackground] json is: " + json);
+            Log.d(LOG_TAG, "[StuffJSON doInBackground] test json is: " + json);
+            */
             StringBuilder sb = new StringBuilder();
 
             HttpURLConnection c = null;
@@ -137,13 +140,18 @@ public class ListenTextActivity extends Activity {
             DataInputStream input;
             try {
                 //URL url = new URL(path); //(getCodeBase().toString() + "env.tcgi");
-                String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php";
+
+                //String request = "http://heli.eki.ee/koduleht/kiisu/koduleht.php"; // CHANGED
+                String request = "http://www.eki.ee/heli/kiisu/syntproxy.php";
                 URL url = new URL (request); // URL url = new URL(strings[0]);
                 c = (HttpURLConnection) url.openConnection();
                 c.setRequestMethod("POST");
                 c.setRequestProperty("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
                 //c.setRequestProperty("Content-Type", "application/json");
-                c.setRequestProperty("Host", "heli.eki.ee");
+
+                //c.setRequestProperty("Host", "heli.eki.ee"); // CHANGED
+                c.setRequestProperty("Host", "www.eki.ee");
+
                 //c.setRequestProperty("Content-Length", "" + Integer.toString(postData.getBytes().length));
 
                 c.setDoOutput(true);
@@ -155,13 +163,17 @@ public class ListenTextActivity extends Activity {
                 //http://stackoverflow.com/questions/20020902/android-httpurlconnection-how-to-set-post-data-in-http-body
 
                 //Create JSONObject here
+                // works, not using atm:
+                /*
                 JSONObject jsonParam = new JSONObject();
                 try {
-                    jsonParam.put("v", "6");
+                    jsonParam.put("v", "15");
                     jsonParam.put("speech", "proov");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                */
+
                 // Send POST output.
                 //printout = new DataOutputStream(c.getOutputStream());
 
@@ -171,7 +183,10 @@ public class ListenTextActivity extends Activity {
 //                printout.flush();
 //                printout.close();
 
-                String str = "v=6&speech="+ et_main_text; //json; //"some string goes here";
+                // REAL THING HERE:
+                Log.d(LOG_TAG,"et main text is " + et_main_text);
+                String str = "v=15&speech="+ et_main_text; //json; //"some string goes here";
+                Log.d(LOG_TAG,"str " + str);
                 byte[] outputInBytes = str.getBytes("UTF-8");
                 OutputStream os = c.getOutputStream();
                 os.write(outputInBytes);
@@ -181,7 +196,7 @@ public class ListenTextActivity extends Activity {
                 Log.d(LOG_TAG,"[StuffJSON doInBackground] httpresult is " + Integer.toString(HttpResult));
                 if(HttpResult == HttpURLConnection.HTTP_OK){
                     BufferedReader br = new BufferedReader(new InputStreamReader(
-                            c.getInputStream(),"utf-8"));
+                            c.getInputStream(),"UTF-8"));
                     String line;
                     while ((line = br.readLine()) != null) {
                         sb.append(line);
@@ -206,14 +221,19 @@ public class ListenTextActivity extends Activity {
             //JSONObject JSONresult = gson.toJson(sb);
 
             JsonParser parser = new JsonParser();
-            JsonObject o = (JsonObject)parser.parse(sb.toString()); //"{\"a\": \"A\"}"
-
-            JsonElement jsonElement = o.get("mp3");
-            String mp3value = jsonElement.getAsString();
-            //String mp3value = o.get("mp3").toString();
-            //String mp3value = o.get("mp3").toString();
-            Log.d(LOG_TAG, "[StuffJSON doInBackground] mp3value is " + mp3value);
-
+            String stringBuilderAsString = sb.toString();
+            String mp3value = null;
+            if(!stringBuilderAsString.isEmpty()){
+                Log.d(LOG_TAG, "[StuffJSON doInBackground] stringBuilderAsString is " + stringBuilderAsString);
+                JsonObject o = (JsonObject)parser.parse(stringBuilderAsString); //"{\"a\": \"A\"}"
+                JsonElement jsonElement = o.get("mp3");
+                mp3value = jsonElement.getAsString();
+                //String mp3value = o.get("mp3").toString();
+                //String mp3value = o.get("mp3").toString();
+                Log.d(LOG_TAG, "[StuffJSON doInBackground] mp3value is " + mp3value);
+            }else{
+                Log.e(LOG_TAG, "[StuffJSON doInBackground] stringBuilderAsString is null or empty!");
+            }
             //return null;
             return mp3value; //"this string is passed to onPostExecute";
         } // executega kaasas, progressupdate return, onpostexecute parameeter
@@ -231,7 +251,14 @@ public class ListenTextActivity extends Activity {
         protected void onPostExecute(String mp3value) {
             super.onPostExecute(mp3value);
             // Do things like hide the progress bar or change a TextView
-            String sound_url = ("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3");
+            //String sound_url = ("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/" + mp3value + ".mp3"); // CHANGED
+
+
+            // String sound_url = ("http://www.eki.ee/heli/tmp/" + mp3value + ".mp3"); // OLD, CHANGED
+
+            String sound_url = ("http://www.eki.ee/" + mp3value); // eg /heli/temp/12321321321.mp3 is the mp3value now
+            Log.d(LOG_TAG,"sound url is " + sound_url);
+
 /*            StringBuilder sb_sound_url = new StringBuilder();
             sb_sound_url.append("http://heli.eki.ee/koduleht/kiisu/synteesitudtekstid/");
             sb_sound_url.append(mp3value);
