@@ -126,7 +126,7 @@ public class ListenTextActivity extends Activity {
             /*
             // Works but not using atm:
             HashMap<String,String> myParams = new HashMap<>();
-            myParams.put("v", "15");
+            myParams.put("v", "6");
             myParams.put("speech", "katsetus katsetus üks kaks kolm");
             Gson gson = new GsonBuilder().create();
             String json = gson.toJson(myParams);
@@ -167,7 +167,7 @@ public class ListenTextActivity extends Activity {
                 /*
                 JSONObject jsonParam = new JSONObject();
                 try {
-                    jsonParam.put("v", "15");
+                    jsonParam.put("v", "6");
                     jsonParam.put("speech", "proov");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -185,7 +185,7 @@ public class ListenTextActivity extends Activity {
 
                 // REAL THING HERE:
                 Log.d(LOG_TAG,"et main text is " + et_main_text);
-                String str = "v=15&speech="+ et_main_text; //json; //"some string goes here";
+                String str = "v=6&speech="+ et_main_text; //json; //"some string goes here";
                 Log.d(LOG_TAG,"str " + str);
                 byte[] outputInBytes = str.getBytes("UTF-8");
                 OutputStream os = c.getOutputStream();
